@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  font-family: 'Odibee Sans', cursive;  
+  background-color:gray;
   color: white;
+  opacity: 0.8;
+  font-weight: 400;
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+  display: 'flex';
+  background-color: black;
+  padding: 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-title {
+  background-color: black;
+  font-size: 25px;
+  padding: 0 0 0 1rem;
+  text-align: left;
+}
+
+.row {
+  display: "flex";
+  line-height: 32px;
+  height: 32px;
+}
+
+
+.camera {
+  overflow: hidden;
+  background:rgba(33, 37, 25, 0.801);
+  position:relative;
+  height: 700px;
+  width: 1800px;
+}
+
+.map {
+  background-color: #545454;
+  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23545454' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); */
+  /* background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCI+CjxyZWN0IHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCIgZmlsbD0iI2JiZDgxNyI+PC9yZWN0Pgo8ZyB0cmFuc2Zvcm09InJvdGF0ZSg0NSkiPgo8cmVjdCB3aWR0aD0iOTkiIGhlaWdodD0iMjUiIGZpbGw9IiNhOWNlMDAiPjwvcmVjdD4KPHJlY3QgeT0iLTUwIiB3aWR0aD0iOTkiIGhlaWdodD0iMjUiIGZpbGw9IiNhOWNlMDAiPjwvcmVjdD4KPC9nPgo8L3N2Zz4="); */
+  background: url('assets/grass_boi.png');
+  image-rendering: pixelated;
+  background-size: 100%;
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  border-style: solid;
+  border-width: 50px;
+  border-color: black;
+}
+
+.game {
+  width: 100%;
+  height: 100%;
 }
