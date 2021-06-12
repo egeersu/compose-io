@@ -1,4 +1,4 @@
-import food_png from "../assets/weapon.png"
+import food_png from "../assets/canned_food.png"
 //import food_png from "../assets/Zombie1/animation/Attack1.png"
 
 import React from 'react'

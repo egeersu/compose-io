@@ -11,7 +11,7 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
     const addDirection = (e) => {
         const index = heldDirections.indexOf(e.code)
         if (index === -1 && walking_keys.includes(e.code)) {
-            setheldDirections(prev_heldDirections => [e.code, ...heldDirections])
+            setheldDirections([e.code, ...heldDirections])
         }
         //console.log(heldDirections)
     }
@@ -39,8 +39,8 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
 
         var new_x = playerX + velocity[0]
         var new_y = playerY + velocity[1]        
-        const max_x = 950 // map width (-border)
-        const max_y = 950 // map height (-border)
+        const max_x = 1950 // map width (-border)
+        const max_y = 1950 // map height (-border)
 
         var new_map_x = mapX - velocity[0]
         var new_map_y = mapY - velocity[1]

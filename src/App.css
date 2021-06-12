@@ -10,9 +10,9 @@ body {
 }
 
 .header {
-  display: 'flex';
   background-color: black;
   padding: 0.5rem;
+  height: 40px;
 }
 
 .header-title {
@@ -33,8 +33,8 @@ body {
   overflow: hidden;
   background:rgba(33, 37, 25, 0.801);
   position:relative;
-  height: 700px;
-  width: 1800px;
+  height: 100%;
+  width: 100%;
 }
 
 .map {
@@ -45,8 +45,6 @@ body {
   image-rendering: pixelated;
   background-size: 100%;
   position: relative;
-  width: 1000px;
-  height: 1000px;
   border-style: solid;
   border-width: 50px;
   border-color: black;
@@ -55,4 +53,56 @@ body {
 .game {
   width: 100%;
   height: 100%;
+}
+
+.item-food {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(54, 54, 54);
+  background-size: 100%;
+  align-items: center;
+  background-image: url('assets/canned_food.png');
+  border: solid;
+  border-color: black;
+  margin-left: 1px;
+  font-size: 22px;
+}
+
+.item-food:hover {
+  background-color: rgb(5, 5, 5);
+  border-color: white;
+}
+
+.item-weapon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(54, 54, 54);
+  background-size: 100%;
+  align-items: center;
+  background-image: url('assets/grenade.png');
+  border: solid;
+  border-color: black;
+  margin-left: 1px;
+  font-size: 22px;
+}
+
+.item-weapon:hover {
+  background-color: rgb(5, 5, 5);
+  border-color: white;
+}
+
+.action-bar {
+  width: 800px;
+  height: 120px;
+  align-items: center;
+  display: flex;
+  background: transparent;
+}
+
+.control-screen {
+  width: 100%;
+  align-items: center;
+  background: transparent;
 }
