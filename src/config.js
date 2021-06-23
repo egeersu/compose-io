@@ -23,20 +23,31 @@ const food3 = {health: 40, hunger: 40, image: food3_png}
 const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
+const images = {
+    food1: food1_png,
+    food2: food2_png,
+    food3: food3_png,
+    food4: food4_png,
+    weapon1: weapon1_png,
+    weapon2: weapon2_png,
+    weapon3: weapon3_png,
+    weapon4: weapon4_png,
+}
+
 
 // TODO: Customizable days
 // {Day1: {...}, Day2: {...}}
 
-const map_height = 2000
-const map_width = 2000
+const map_height = 4000
+const map_width = 4000
 const num_food = 10
 const num_weapon = 10
 const num_zombies = 30
 
 
 // Crafting System
-const input_size = 5
+const input_size = 3
 const output_size = 5
 // TODO: RULES
 
-export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size}
+export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images}

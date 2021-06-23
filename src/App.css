@@ -146,3 +146,8 @@ body {
   user-select: none;
 }
 
+.input-item:hover {
+  background-color: rgb(5, 5, 5);
+  border-color: white;
+}
+
