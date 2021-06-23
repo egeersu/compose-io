@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import idle_boi from "../assets/walker.png"
+import idle_boi from "../../assets/walker.png"
 
 import WeaponRange from "./WeaponRange"
 

@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {map_height, map_width, num_food, num_weapon, weapons} from '../config'
+import {map_height, map_width, num_food, num_weapon, weapons} from '../../config'
 
 export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, get_zombies_in_range, playerX, playerY) => {
 

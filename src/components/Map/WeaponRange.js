@@ -1,5 +1,5 @@
 import React from 'react'
-import target_image from "../assets/target.png"
+import target_image from "../../assets/target.png"
 
 
 const WeaponRange = (props) => {

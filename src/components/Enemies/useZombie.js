@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {map_height, map_width, num_zombies} from '../config'
+import {map_height, map_width, num_zombies} from '../../config'
 
 export const useZombie = () => {
 

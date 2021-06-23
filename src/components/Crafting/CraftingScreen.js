@@ -1,11 +1,10 @@
 import React from 'react'
-import Inputs from './CraftingComponents/Inputs'
-import Outputs from './CraftingComponents/Outputs'
-import Materials from './CraftingComponents/Materials'
-import {useCraft} from './CraftingComponents/useCraft'
+import Inputs from './Inputs'
+import Outputs from './Outputs'
+import Materials from './Materials'
+import {useCraft} from './useCraft'
 
 const CraftingScreen = (props) => {
-
 
     const expressions_div_style = {
         display: 'flex',

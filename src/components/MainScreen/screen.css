@@ -1,0 +1,31 @@
+.char-screen {
+    margin: 120px 20rem 0px 20rem;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: black;
+    color: white;
+    font-size: 30px;
+}
+
+input {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    -webkit-appearance: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+}
+
+
+.arrows {
+    background-color: black;
+}
+

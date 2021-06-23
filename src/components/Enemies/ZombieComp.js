@@ -1,5 +1,5 @@
-import zombie_standing from "../assets/zombie/animation/Hurt5.png"
-import zombie_dead from "../assets/zombie/animation/Dead5.png"
+import zombie_standing from "../../assets/zombie/animation/Hurt5.png"
+import zombie_dead from "../../assets/zombie/animation/Dead5.png"
 
 import React from 'react'
 

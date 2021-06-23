@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
-import Map from './Map'
-import ControlScreen from './ControlScreen'
-import CraftingScreen from './CraftingScreen'
-import MainScreen from './MainScreen'
+import Map from './Map/Map'
+import ControlScreen from './Map/ControlScreen'
+import CraftingScreen from './Crafting/CraftingScreen'
+import MainScreen from './MainScreen/MainScreen'
 
-import {useItem} from './useItem'
-import {useZombie} from './useZombie'
+import {useItem} from './Map/useItem'
+import {useZombie} from './Enemies/useZombie'
 import {useKeyPress} from './useKeyPress'
 import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
@@ -17,11 +17,15 @@ const Game = () => {
     // Browser Specific Adjustments
     const [cameraWidth, setcameraWidth] = useState('50px')
     const [cameraHeight, setcameraHeight] = useState('50px')
+    const cameraStyle={
+        width: '50px',
+        height: '50px'
+    }
 
     // Game Settings
     const [days, setDays] = useState(0) //
     const [gameTime, setgameTime] = useState(0) // use this to keep track of time
-    const [phase, setPhase] = useState('main')
+    const [phase, setPhase] = useState('game')
 
     // Initialize Player
     const [playerHealth, setplayerHealth] = useState(100)

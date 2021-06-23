@@ -1,4 +1,4 @@
-import {weapons, foods} from '../config'
+import {weapons, foods} from '../../config'
 
 const Inventory = (props) => {
 
