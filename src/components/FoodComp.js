@@ -1,4 +1,4 @@
-import food_png from "../assets/canned_food.png"
+import food_png from "../assets/foods/food1.png"
 //import food_png from "../assets/Zombie1/animation/Attack1.png"
 
 import React from 'react'
@@ -21,7 +21,7 @@ const FoodComp = (props) => {
         borderStyle: 'solid',
         borderWidth: reachable,
         borderColor: 'white',
-        borderRadius: '50%'          
+        borderRadius: '30%'          
     }
 
     return (

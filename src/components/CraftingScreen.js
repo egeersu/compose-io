@@ -1,17 +1,35 @@
 import React from 'react'
-import Inputs from './Inputs'
-import Outputs from './Outputs'
-import CraftingItems from './CraftingItems'
+import Inputs from './CraftingComponents/Inputs'
+import Outputs from './CraftingComponents/Outputs'
+import Materials from './CraftingComponents/Materials'
 
 const CraftingScreen = (props) => {
+
+
+    const expressions_div_style = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const inventory_div_style= {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+    
     return (
         <div>
-            <CraftingItems />
-            <Inputs />
-            <button>COMPOSE!</button>
-            <Outputs />
-            <h1>{props.inventory['food1']}</h1>
+            <div style={expressions_div_style}>
+                <Inputs inventory={props.inventory}/>
+                <button>COMPOSE!</button>
+                <Inputs inventory={props.inventory}/>
+            </div>
+            <div style={inventory_div_style}> 
+                <Materials inventory={props.inventory}/>
+            </div>
         </div>
+
     )
 }   
 

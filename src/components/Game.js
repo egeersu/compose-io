@@ -18,9 +18,9 @@ const Game = () => {
     const [cameraHeight, setcameraHeight] = useState('50px')
 
     // Game Settings
-    const [days, setDays] = useState(0)
-    const [gameTime, setgameTime] = useState(0)
-    const [crafting, setCrafting] = useState(true)
+    const [days, setDays] = useState(0) //
+    const [gameTime, setgameTime] = useState(0) // use this to keep track of time
+    const [crafting, setCrafting] = useState(true) // if true: display crafting components; if false: display gameplay components
 
     // Initialize Player
     const [playerHealth, setplayerHealth] = useState(100)
@@ -31,7 +31,7 @@ const Game = () => {
     const [mapY, setmapY] = useState(-350) //camera/2
     
     // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:0, food2:0, food3:0, food4:0, weapon1:15, weapon2:0, weapon3:0, weapon4:0})
+    const [inventory, setInventory] = useState({food1:0, food2:0, food3:0, food4:0, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
 
     // Movement
     const [addDirection, removeDirection, move] = useWalk(playerX, playerY, setplayerX, setplayerY, mapX, setmapX, mapY, setmapY)
@@ -63,7 +63,7 @@ const Game = () => {
       
     return (
         <>
-        {crafting ? 
+        {!crafting ? 
         /* game UI begins here*/
         <div className='game'>
             <div className='header'>

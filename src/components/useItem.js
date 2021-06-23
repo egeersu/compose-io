@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {map_height, map_width, num_food, num_weapon} from '../config'
+import {map_height, map_width, num_food, num_weapon, weapons} from '../config'
 
 export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, get_zombies_in_range, playerX, playerY) => {
 
@@ -9,7 +9,7 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
     const weapon_max_x = 950
     const weapon_max_y = 950
 
-    const looting_distance = 60;
+    const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
 
@@ -124,19 +124,14 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
     const consumeWeapon = (e) => {
 
         const clicked_weapon = e.target.id
+        const weapon_damage = weapons[clicked_weapon]['damage']
+        const weapon_range = weapons[clicked_weapon]['range']
+        console.log(weapon_damage, weapon_range)
+
         if (inventory[clicked_weapon] > 0){
-            const zombies_in_range = get_zombies_in_range(playerX, playerY, 200)
-            if (clicked_weapon === 'weapon1') {
-                console.log(zombies_in_range)
-                for (var i = 0; i<zombies_in_range.length; i++) {
-                    zombies_in_range[i].health = Math.max(0, zombies_in_range[i].health - 50)
-                }
-            }
-            if (clicked_weapon === 'weapon2') {
-            }
-            if (clicked_weapon === 'weapon3') {
-            }
-            if (clicked_weapon === 'weapon4') {
+            const zombies_in_range = get_zombies_in_range(playerX, playerY, weapon_range)
+            for (var i = 0; i<zombies_in_range.length; i++) {
+                zombies_in_range[i].health = Math.max(0, zombies_in_range[i].health - weapon_damage)
             }
             setInventory({...inventory, [clicked_weapon]: inventory[clicked_weapon]-1})
         }
@@ -144,6 +139,11 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
             console.log('NOT ENOUGH!')
         }
 
+    }
+
+    const hoverItem = (e) => {
+        const hovered_item = e.target.id
+        console.log(e)
     }
 
     return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon]

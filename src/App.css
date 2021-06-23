@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 
+html, body {margin: 0; height: 100%; overflow: hidden}
 
 body {
   font-family: 'Odibee Sans', cursive;  
@@ -56,17 +57,25 @@ body {
 }
 
 .item-food {
+  padding: 0 0 0 0;
   position: relative;
-  width: 100px;
+  width: 110px;
   height: 100px;
   background-color: rgb(54, 54, 54);
-  background-size: 100%;
+  background-size: cover;
   align-items: center;
-  background-image: url('assets/canned_food.png');
   border: solid;
   border-color: black;
-  margin-left: 1px;
+  margin-left: 2px;
   font-size: 22px;
+  background-repeat: no-repeat;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .item-food:hover {
@@ -76,16 +85,24 @@ body {
 
 .item-weapon {
   position: relative;
-  width: 100px;
+  width: 110px;
   height: 100px;
   background-color: rgb(54, 54, 54);
-  background-size: 100%;
+  background-size: cover;
   align-items: center;
-  background-image: url('assets/grenade.png');
   border: solid;
   border-color: black;
   margin-left: 1px;
   font-size: 22px;
+  background-repeat: no-repeat;
+  background-position-x: -3px;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .item-weapon:hover {
@@ -106,3 +123,26 @@ body {
   align-items: center;
   background: transparent;
 }
+
+.input-item {
+  padding: 0 0 0 0;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(54, 54, 54);
+  background-size: cover;
+  align-items: center;
+  border: solid;
+  border-color: black;
+  margin-left: 2px;
+  font-size: 22px;
+  background-repeat: no-repeat;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
