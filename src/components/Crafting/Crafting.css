@@ -1,0 +1,10 @@
+.crafting-screen {
+    background-color: red;
+}
+
+.expressions-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

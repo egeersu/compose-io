@@ -1,24 +1,25 @@
 import {useState} from 'react'
-import {input_size, images} from '../../config'
+import {input_size, output_size, images} from '../../config'
 
 const Inputs = (props) => {
 
-    const action_bar_style = {
+    const inputsStyle = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        width: (Math.max(input_size, output_size) * 8) + 'rem',
+        height: '8rem',
+        backgroundColor: 'grey',
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderRadius: '1px'
     }
-
-    const clicker_boi = (e)=>{
-        console.log('clicked!')
-    }
-
     const boxes = []
 
     for (var i=0; i<input_size; i++) {
         var background_image = null
-        if (i < props.itemList.length) {
-            background_image = images[props.itemList[i]]
+        if (i < props.inputList.length) {
+            background_image = images[props.inputList[i]]
         }
 
         boxes.push(
@@ -32,7 +33,7 @@ const Inputs = (props) => {
     }
 
     return (
-        <div className='action-bar' style={action_bar_style}>
+        <div style={inputsStyle}>
             {boxes}
         </div>
     )

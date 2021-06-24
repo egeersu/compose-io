@@ -7,6 +7,7 @@ const Inventory = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
     }
 
     const mousedOver = (e) => {

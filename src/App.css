@@ -61,14 +61,14 @@ body {
 .item-food {
   padding: 0 0 0 0;
   position: relative;
-  width: 110px;
-  height: 100px;
+  width: 5.8vw;
+  height: 5.8vw;
+  margin-left: 0.13vw;
   background-color: rgb(54, 54, 54);
   background-size: cover;
   align-items: center;
   border: solid;
   border-color: black;
-  margin-left: 2px;
   font-size: 22px;
   background-repeat: no-repeat;
   cursor: default;
@@ -87,17 +87,16 @@ body {
 
 .item-weapon {
   position: relative;
-  width: 110px;
-  height: 100px;
+  width: 5.8vw;
+  height: 5.8vw;
+  margin-left: 0.13vw;
   background-color: rgb(54, 54, 54);
   background-size: cover;
   align-items: center;
   border: solid;
   border-color: black;
-  margin-left: 1px;
   font-size: 22px;
   background-repeat: no-repeat;
-  background-position-x: -3px;
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -129,8 +128,8 @@ body {
 .input-item {
   padding: 0 0 0 0;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 6rem;
+  height: 6rem;
   background-color: rgb(54, 54, 54);
   background-size: cover;
   align-items: center;
@@ -153,3 +152,9 @@ body {
   border-color: white;
 }
 
+.wasd {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}

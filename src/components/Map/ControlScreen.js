@@ -11,24 +11,27 @@ const ControlScreen = (props) => {
 
     const control_screen_style = {
         position: 'absolute',
-        top: (h - 210) + 'px',
-        left: (w/2 - 400) + 'px',
+        top: (h*0.75) + 'px',
+        //top: (h - 210) + 'px',
+        //left: (w/2 - 400) + 'px',
         alignItems: 'center',
-        display: 'flex'
+        display: 'flex',
+        width: '100%',
     }
 
     useEffect(() => {
         const handle_resize = (e) => {
             console.log('resized to: ', window.innerWidth, ', ', window.innerHeight)
-            setw(window.innerWidth)
+            setw(window.innerWidth)  
             seth(window.innerHeight)
+            //TODO: Fix Bar Size
         }
         window.addEventListener('resize', handle_resize)
     }, [window.innerWidth, window.innerHeight])
 
     return (
         <div className='control-screen' style={control_screen_style}>
-            {/* <HungerBar hunger={props.playerHunger}/> */}d
+            {/* <HungerBar hunger={props.playerHunger}/> */}
             {/* <HealthBar health={props.playerHealth}/> */}
             <Inventory inventory={props.inventory} consumeFood={props.consumeFood} consumeWeapon={props.consumeWeapon}/>
         </div>

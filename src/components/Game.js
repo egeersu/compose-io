@@ -3,6 +3,7 @@ import Map from './Map/Map'
 import ControlScreen from './Map/ControlScreen'
 import CraftingScreen from './Crafting/CraftingScreen'
 import MainScreen from './MainScreen/MainScreen'
+import MessageBox from './MessageBox'
 
 import {useItem} from './Map/useItem'
 import {useZombie} from './Enemies/useZombie'
@@ -48,7 +49,7 @@ const Game = () => {
     const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, playerHunger, setplayerHunger, get_zombies_in_range, playerX, playerY)
 
     useKeyPress((e) => {
-        addDirection(e)
+        addDirection(e) 
         loot_food(e)
         loot_weapon(e)
     })
@@ -97,7 +98,7 @@ const Game = () => {
                 <div className='header'>
                     <h1 className='header-title'>COMPOSE.IO</h1>
                 </div>
-                <div className='camera' style={{width:{cameraWidth}, height:{cameraHeight}}}>
+                <div className='camera'>
                     <Map 
                     food_list={food_list} 
                     weapon_list={weapon_list}
@@ -109,13 +110,14 @@ const Game = () => {
                     somethingReachable={somethingReachable}
                     reachableItem={reachableItem}
                     />
-                <ControlScreen 
-                playerHealth={playerHealth} 
-                playerHunger={playerHunger} 
-                consumeFood={consumeFood} 
-                consumeWeapon={consumeWeapon} 
-                inventory={inventory}/> 
-                </div>
+                    <ControlScreen 
+                        playerHealth={playerHealth} 
+                        playerHunger={playerHunger} 
+                        consumeFood={consumeFood} 
+                        consumeWeapon={consumeWeapon} 
+                        inventory={inventory}/> 
+                    <MessageBox />
+                    </div>
          </div>
         )
     }

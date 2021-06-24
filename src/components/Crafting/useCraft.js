@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react'
-import {input_size, output_size, images} from '../../config'
+import {input_size, output_size, images, rules} from '../../config'
 
 export const useCraft = (inventory) => {
 
-
     const [inputList, setinputList] = useState([])
+    const [outputList, setoutputList] = useState([])
 
     const addItem = (item) => {
         if (inputList.length < input_size){
@@ -23,7 +23,6 @@ export const useCraft = (inventory) => {
 
     const removeItem = (e) => {
         const box_number = e.target.id[3]
-        console.log(box_number)
         if (box_number < inputList.length) {
             // put it back to inventory        
             const removed_item_id = inputList[box_number]
@@ -36,8 +35,15 @@ export const useCraft = (inventory) => {
         }
     }
 
-    const [somethingReachable, setsomethingReachable] = useState(false)
-    const [reachableItem, setreachableItem] = useState()
+    const craft = (e) => {
+        rules.forEach((rule)=>{
+            const rule_inputs = rule[0]
+            if (inputList.toString() === rule_inputs.toString()) {
+                const rule_outputs = rule[1]               
+                setoutputList(rule_outputs)
+            }
+        })
+    }
 
-    return [inputList, addItem, removeItem]
+    return [inputList, outputList, addItem, removeItem, craft]
 }

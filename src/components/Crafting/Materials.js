@@ -10,8 +10,7 @@ const Materials = (props) => {
 
     const clicker_boi = (e)=>{
         if (e.target.className === 'item-food' || e.target.className === 'item-weapon'){
-            console.log(e.target.className)
-             props.addItem(e.target.id)
+            props.addItem(e.target.id)
         }
     }
 
