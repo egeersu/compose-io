@@ -5,6 +5,7 @@ export const useCraft = (inventory) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
+    const [success, setSuccess] = useState('null')
 
     const addItem = (item) => {
         if (inputList.length < input_size){
@@ -35,15 +36,52 @@ export const useCraft = (inventory) => {
         }
     }
 
+    const collectItem = (e) => {
+        const box_number = e.target.id[3]
+        if (box_number < outputList.length) {
+            // put it back to inventory        
+            const collecting_item = outputList[box_number]
+            inventory[collecting_item] += 1
+
+            // update output list
+            var outputList_copy = [...outputList]
+            outputList_copy.splice(box_number, 1)
+            setoutputList(outputList_copy)
+            if (outputList.length === 1){setSuccess('null')}
+        }
+    }
+
+    const check_uncollected = () => {
+        if (outputList.length > 0) {
+            outputList.map((item) => inventory[item] += 1)
+            setoutputList([])
+        }
+    }
+
     const craft = (e) => {
+        check_uncollected()
+        var rule_found = false
         rules.forEach((rule)=>{
             const rule_inputs = rule[0]
             if (inputList.toString() === rule_inputs.toString()) {
-                const rule_outputs = rule[1]               
+                const rule_outputs = rule[1]
+                rule_found = true               
                 setoutputList(rule_outputs)
+                setinputList([])
+                setSuccess('success')
             }
         })
+        if (!rule_found) {
+            setoutputList([])
+            setinputList([])
+            setSuccess('fail')
+            var clear_fail_alert = setInterval(function(){ 
+                setSuccess('null') 
+                clearInterval(clear_fail_alert)
+            }, 4000);
+            // TODO: Fail animation
+        }
     }
 
-    return [inputList, outputList, addItem, removeItem, craft]
+    return [inputList, outputList, success, addItem, removeItem, collectItem, craft]
 }

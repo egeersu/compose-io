@@ -4,6 +4,7 @@ import FoodComp from './FoodComp'
 import WeaponComp from './WeaponComp'
 import ZombieComp from '../Enemies/ZombieComp'
 import LootingPanel from './LootingPanel'
+import MessageBox from '../MessageBox'
 
 import {map_width, map_height} from '../../config'
 
@@ -19,6 +20,7 @@ const Map = (props) => {
     return (
         <div>
             <div className='map' style={map_style}>
+                <MessageBox />
                 <Player position_x={props.playerX} position_y={props.playerY}/>
                 {props.food_list.map((food)=> {return <FoodComp x={food.x} y={food.y} reachable={food.reachable} itemType={food.itemType} key={food.id}/>})}
                 {props.weapon_list.map((weapon)=> {return <WeaponComp x={weapon.x} y={weapon.y} reachable={weapon.reachable} itemType={weapon.itemType} key={weapon.id}/>})}

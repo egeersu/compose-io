@@ -21,8 +21,8 @@ const MessageBox = () => {
 
     const box_style = {
         position: 'absolute',
-        top: (h/2 - 380) + 'px',
-        left: (w/2 - 300) + 'px', 
+        //top: (h/2 - 380) + 'px',
+        //left: (w/2 - 300) + 'px', 
         width: '600px',
         height: '600px',
         alignItems: 'center',
@@ -56,10 +56,10 @@ const MessageBox = () => {
 
 
     return (
-        <>
+        <div style={{position: 'relative', top: '0', left:'0', display:'flex', justifyContent:'center', alignItems:'center', width:'100%', opacity:'100%'}}>
             {message === 'walking' ? tutorial_walk() : null}
             {message === 'looting' ? tutorial_loot() : null}
-        </>
+        </div>
     )   
 }
 

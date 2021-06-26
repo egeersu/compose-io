@@ -1,5 +1,9 @@
 .crafting-screen {
-    background-color: red;
+    background-color: gray;
+    padding: 3rem;
+    border-style: solid;
+    border-color: black;
+    border-width: 8px;
 }
 
 .expressions-div {
@@ -8,3 +12,20 @@
     align-items: center;
 }
 
+.crafting-instructions {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+}
+
+.instruction-line {
+    font-size: 1.4em;  
+    color: white;
+    padding: 1rem;
+}
+
+.compose {
+    margin: 0 3rem 0 3rem;
+}

@@ -26,7 +26,7 @@ const Game = () => {
     // Game Settings
     const [days, setDays] = useState(0) //
     const [gameTime, setgameTime] = useState(0) // use this to keep track of time
-    const [phase, setPhase] = useState('game')
+    const [phase, setPhase] = useState('crafting')
 
     // Initialize Player
     const [playerHealth, setplayerHealth] = useState(100)
@@ -37,7 +37,7 @@ const Game = () => {
     const [mapY, setmapY] = useState(-350) //camera/2
     
     // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:3, food2:2, food3:1, food4:0, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
+    const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
 
     // Movement
     const [addDirection, removeDirection, move] = useWalk(playerX, playerY, setplayerX, setplayerY, mapX, setmapX, mapY, setmapY)
@@ -64,31 +64,31 @@ const Game = () => {
             // enemies act here
           },10)
           return () => {clearInterval(gameTimerId)}    
-      }
-      )
+      })
 
 
     function main_screen() {
         return (
-            <div className='main-screen'>
-            <div className='header'>
-                <h1 className='header-title'>COMPOSE.IO</h1>
-            </div>
-            <MainScreen />
-            </div>
-        )
-    }
+            <>
+                <div className='header'>
+                    <h1 className='header-title'>COMPOSE.IO</h1>
+                </div>
+                <div className='main-screen'>
+                    <MainScreen />
+                </div>
+            </>
+            )
+        }
       
 
     function crafting_ui(){
         return (
-            <div className='crafting-screen'>
+            <>
                 <div className='header'>
-                    <h1 className='header-title'>COMPOSE.IO</h1>
+                        <h1 className='header-title'>COMPOSE.IO</h1>
                 </div>
-                <CraftingScreen 
-                inventory={inventory}/>
-         </div>
+                <CraftingScreen inventory={inventory}/>
+            </>
         )
     }
 
@@ -116,7 +116,6 @@ const Game = () => {
                         consumeFood={consumeFood} 
                         consumeWeapon={consumeWeapon} 
                         inventory={inventory}/> 
-                    <MessageBox />
                     </div>
          </div>
         )

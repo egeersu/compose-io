@@ -46,23 +46,27 @@ const num_zombies = 30
 
 
 // Crafting System
-const input_size = 6
-const output_size = 1
+const input_size = 3
+const output_size = 3
+const primitives_enabled = false
 
 // TODO: RULES
 const flexible = [
     [['food1'], ['food1']],
     [['food2'], ['food2']],
     [['food3'], ['food3']],
+    [['food1', 'food1'], ['food2']],
     [['weapon1'], ['weapon1']],
     [['weapon2'], ['weapon2']],
     [['weapon3'], ['weapon3']],
     [['food1', 'food1', 'food1'], ['food3']],
     [['food1', 'food2'], ['food3']],
     [['food2', 'food1'], ['food3']],
+    [['food2', 'food2'], ['food4']],
     [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
     [['weapon2', 'weapon1'], ['weapon3']],
-    [['weapon1', 'weapon2'], ['weapon3']]
+    [['weapon1', 'weapon2'], ['weapon3']],
+    [['food3', 'food3'], ['food3', 'food3']]
 ]
 
 
