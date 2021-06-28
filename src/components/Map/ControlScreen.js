@@ -12,8 +12,6 @@ const ControlScreen = (props) => {
     const control_screen_style = {
         position: 'absolute',
         top: (h*0.75) + 'px',
-        //top: (h - 210) + 'px',
-        //left: (w/2 - 400) + 'px',
         alignItems: 'center',
         display: 'flex',
         width: '100%',
@@ -33,7 +31,13 @@ const ControlScreen = (props) => {
         <div className='control-screen' style={control_screen_style}>
             {/* <HungerBar hunger={props.playerHunger}/> */}
             {/* <HealthBar health={props.playerHealth}/> */}
-            <Inventory inventory={props.inventory} consumeFood={props.consumeFood} consumeWeapon={props.consumeWeapon}/>
+            <Inventory 
+                inventory={props.inventory} 
+                consumeFood={props.consumeFood} 
+                consumeWeapon={props.consumeWeapon}
+                setweaponHovered={props.setweaponHovered}
+                setfoodHovered={props.setfoodHovered}
+            />
         </div>
     )
 }

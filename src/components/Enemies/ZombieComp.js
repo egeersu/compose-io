@@ -5,22 +5,27 @@ import React from 'react'
 
 const ZombieComp = (props) => {
 
-    const reachable = props.reachable ? '5px' : '0px'
     const following = false //props
+
+    const zombie = props.zombie
+
+    const zombie_width = 60
+    const zombie_height = 120
 
     const zombie_style = {
         position: 'absolute',
         display: 'flex',
-        backgroundImage: props.health > 0 ? `url(${zombie_standing})` : `url(${zombie_dead})`,
-        left: props.x,
-        top: props.y,
+        backgroundImage: zombie.health > 0 ? `url(${zombie_standing})` : `url(${zombie_dead})`,
+        left: zombie.x,
+        top: zombie.y,
         backgroundSize: 'cover',
-        height: props.health > 0 ? '120px' : '60px',
-        width: props.health > 0 ? '60px' : '120px',
-        opacity: props.health > 0 ? '1.0' : '0.7',
+        height: zombie.health > 0 ? zombie_height : zombie_width,
+        width: zombie.health > 0 ? zombie_width : zombie_height,
+        opacity: zombie.health > 0 ? '1.0' : '0.7',
         scale: '20%',
         borderStyle: 'solid',
-        borderWidth: reachable,
+        borderWidth: '3px',
+        borderColor: zombie.aggro ? 'red' : 'black'
     }
 
     const health_bar_style = {
@@ -28,16 +33,28 @@ const ZombieComp = (props) => {
         top: "-50px",
         left: "0",
         height: '30px',
-        width: '150px',
+        width: '100%',
         textAlign: 'center',
-        backgroundColor: following ? 'red' : 'black'
+        backgroundColor: zombie.aggro ? 'red' : 'black'
     }
+
+    /*
+    const zombie_aggro = {
+        position: 'absolute',
+        left: zombie.x,
+        top: zombie.y,
+        height: '100px',
+        width: '100px',
+        opacity: '50%',
+        backgroundColor: 'red',
+
+    }
+    */
     
 
     return (
         <div style={zombie_style}>
-            {props.health > 0 ? <h1 style={health_bar_style}>{props.health}</h1> : null}
-            <div className='zombie'></div>
+            {zombie.health > 0 ? <h1 style={health_bar_style}>{zombie.health}</h1> : null}
         </div>
     )
 }

@@ -38,11 +38,11 @@ const images = {
 // TODO: Customizable days
 // {Day1: {...}, Day2: {...}}
 
-const map_height = 4000
-const map_width = 4000
-const num_food = 10
-const num_weapon = 10
-const num_zombies = 30
+const map_height = 1500
+const map_width = 1500
+const num_food = 5
+const num_weapon = 5
+const num_zombies = 10
 
 
 // Crafting System

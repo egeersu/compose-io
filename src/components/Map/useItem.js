@@ -6,8 +6,8 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
     const food_max_x = map_width - 50
     const food_max_y = map_height - 50
 
-    const weapon_max_x = 950
-    const weapon_max_y = 950
+    const weapon_max_x = map_width - 50
+    const weapon_max_y = map_height - 50
 
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
@@ -126,10 +126,10 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
         const clicked_weapon = e.target.id
         const weapon_damage = weapons[clicked_weapon]['damage']
         const weapon_range = weapons[clicked_weapon]['range']
-        console.log(weapon_damage, weapon_range)
 
         if (inventory[clicked_weapon] > 0){
-            const zombies_in_range = get_zombies_in_range(playerX, playerY, weapon_range)
+            const zombies_in_range = get_zombies_in_range(weapon_range)
+            console.log(zombies_in_range)
             for (var i = 0; i<zombies_in_range.length; i++) {
                 zombies_in_range[i].health = Math.max(0, zombies_in_range[i].health - weapon_damage)
             }
@@ -139,11 +139,6 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
             console.log('NOT ENOUGH!')
         }
 
-    }
-
-    const hoverItem = (e) => {
-        const hovered_item = e.target.id
-        console.log(e)
     }
 
     return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon]

@@ -12,18 +12,12 @@ const Inventory = (props) => {
 
     const mousedOver = (e) => {
         const hovered_weapon = e.target.id
-        const weapon_range = document.getElementsByClassName('weapon-range')[0]
-        weapon_range.style.display = 'block'
-        weapon_range.style.height = weapons[hovered_weapon]['range'] + 'px'
-        weapon_range.style.width = weapons[hovered_weapon]['range'] + 'px'
+        props.setweaponHovered(hovered_weapon) 
         // UPDATE INFORMATION BAR (HOVER)
     }
 
     const mouseLeaved = (e) => {
-        const clicked_weapon = e.target.id
-        const weapon_range = document.getElementsByClassName('weapon-range')[0]
-        weapon_range.style.display = 'none'
-        // REMOVE INFORMATION BAR (HOVER)
+        props.setweaponHovered(null) 
     }
 
     return (

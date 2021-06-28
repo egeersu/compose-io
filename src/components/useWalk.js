@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {map_height, map_width} from '../config'
 
 export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX, mapY, setmapY) => {
     
@@ -23,7 +24,9 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
             array_copy.splice(index, 1)
         }
         setheldDirections(array_copy)
-        
+        if (heldDirections.length > 2) {
+            setheldDirections([])
+        }
     }
 
     const move = (check_reachable) => {
@@ -39,8 +42,8 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
 
         var new_x = playerX + velocity[0]
         var new_y = playerY + velocity[1]        
-        const max_x = 1950 // map width (-border)
-        const max_y = 1950 // map height (-border)
+        const max_x = map_width - 80 // map width (-border)
+        const max_y = map_height - 80// map height (-border)
 
         var new_map_x = mapX - velocity[0]
         var new_map_y = mapY - velocity[1]
