@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {memo, useState} from 'react'
 import {map_height, map_width, num_zombies} from '../../config'
 
 export const useZombie = () => {
@@ -6,14 +6,13 @@ export const useZombie = () => {
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
 
-
     const aggroRange = 250
-
 
     const initZombieList = (maxX, maxY, numZombie) => {
         /*
         Initialize Food list.
         */
+        var memory_init = {}
         var zombie_dict = {}
         var i = 1
         for (i; i<numZombie+1; i++){
@@ -46,7 +45,27 @@ export const useZombie = () => {
     }
 
     const updateZombieDistance = (playerX, playerY) => {
+
         var zombies_copy = {...zombies}
+
+       // Move the zombies
+       Object.entries(zombies).map(([zombie_key, zombie]) => {
+        if (zombie.aggro) {
+            const degree = Math.atan((playerY-zombie.y)/(playerX-zombie.x)) * (180/Math.PI)
+            dx = Math.cos(degree)
+            dy = Math.sin(degree)
+            const new_x = zombie.x + dx
+            const new_y = zombie.y + dy                
+            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
+   
+        }
+        else {
+            var dx = [1,-1,0,0,0][Math.floor(Math.random()*5)];
+            var dy = [1,-1,0,0,0][Math.floor(Math.random()*5)];
+            const new_x = zombie.x + dx
+            const new_y = zombie.y + dy
+            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
+        }
 
         // Update Distance
         Object.entries(zombies).map(([zombie_key, zombie]) => {
@@ -68,21 +87,8 @@ export const useZombie = () => {
                     
         })
 
-        // Move the zombies
-        Object.entries(zombies).map(([zombie_key, zombie]) => {
-            if (zombie.aggro) {
-                const new_x = zombie.x + 1
-                const new_y = zombie.y 
-                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-            }
-            else {
-                const new_x = zombie.x + 1
-                const new_y = zombie.y 
-                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-            }
+            setzombies(zombies_copy)
         })
-
-        setzombies(zombies_copy)
     }
 
 

@@ -29,7 +29,7 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
         }
     }
 
-    const move = (check_reachable) => {
+    const move = () => {
 
         const top_key = heldDirections[0]
        
@@ -57,7 +57,8 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
         setplayerY(new_y)
         setmapX(new_map_x)
         setmapY(new_map_y)
-        check_reachable(playerX, playerY)
+
+        return 'moved!'
     }    
 
     return [addDirection, removeDirection, move]

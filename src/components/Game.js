@@ -54,9 +54,9 @@ const Game = () => {
     
     useEffect(() => {
         const gameTimerId = setInterval(() => {
-            move(check_reachable) 
+            move()
             updateZombieDistance(playerX, playerY)
-            // enemies act here
+            check_reachable()
           },13)
         
         return () => {
