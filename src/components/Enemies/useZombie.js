@@ -5,6 +5,7 @@ export const useZombie = () => {
 
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
+    const chase_speed = 3
 
     const aggroRange = 250
 
@@ -23,8 +24,10 @@ export const useZombie = () => {
                 x: random_x, 
                 y:random_y, 
                 health: 100, 
-                aggro: false,
-                distance: 1e6}
+                aggro: true,
+                distance: 1e6,
+                dx: 0,
+                dy: 0}
             zombie_dict[i] = new_zombie
         }
         return zombie_dict
@@ -44,28 +47,29 @@ export const useZombie = () => {
         return zombies_in_range
     }
 
-    const updateZombieDistance = (playerX, playerY) => {
-
+    const updateZombieDistance = (playerX, playerY, takeDamage) => {
         var zombies_copy = {...zombies}
-
        // Move the zombies
        Object.entries(zombies).map(([zombie_key, zombie]) => {
         if (zombie.aggro) {
-            const degree = Math.atan((playerY-zombie.y)/(playerX-zombie.x)) * (180/Math.PI)
-            dx = Math.cos(degree)
-            dy = Math.sin(degree)
-            const new_x = zombie.x + dx
-            const new_y = zombie.y + dy                
-            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-   
+            
+            const diff_x = playerX - zombie.x
+            const diff_y = playerY - zombie.y
+            const vector_length = Math.sqrt((diff_x**2 + diff_y**2))
+            const dx = (diff_x/vector_length) * chase_speed
+            const dy = diff_y/vector_length * chase_speed
+            
+            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: zombie.x + dx, ['y']: zombie.y + dy}
         }
         else {
-            var dx = [1,-1,0,0,0][Math.floor(Math.random()*5)];
-            var dy = [1,-1,0,0,0][Math.floor(Math.random()*5)];
+            var dx = [0,0,0,0,0][Math.floor(Math.random()*5)];
+            var dy = [0,0,0,0,0][Math.floor(Math.random()*5)];
             const new_x = zombie.x + dx
             const new_y = zombie.y + dy
-            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
+            //zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
         }
+
+        setzombies(zombies_copy)
 
         // Update Distance
         Object.entries(zombies).map(([zombie_key, zombie]) => {
@@ -87,7 +91,16 @@ export const useZombie = () => {
                     
         })
 
-            setzombies(zombies_copy)
+        setzombies(zombies_copy)
+
+        //attack zombies
+        Object.entries(zombies).map(([zombie_key, zombie]) => {
+            if (zombie.aggro && zombie.distance < 50){
+                takeDamage(1)
+            }                    
+        })
+    
+
         })
     }
 
@@ -115,6 +128,5 @@ export const useZombie = () => {
         setzombies(zombies_copy)
     }
 
-
-    return [zombies, updateZombieDistance, moveZombies, getZombiesInRange]
+    return [zombies, setzombies, updateZombieDistance, moveZombies, getZombiesInRange]
 }

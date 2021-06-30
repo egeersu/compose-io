@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {map_height, map_width, num_food, num_weapon, weapons} from '../../config'
 
-export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, get_zombies_in_range, playerX, playerY) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY) => {
 
     const food_max_x = map_width - 50
     const food_max_y = map_height - 50
@@ -103,16 +103,16 @@ export const useItem = (inventory, setInventory, playerHunger, setplayerHunger, 
         const clicked_food = e.target.id
         if (inventory[clicked_food] > 0){
             if (clicked_food === 'food1') {
-                setplayerHunger(hunger => hunger + 10)
+                eat(10,10)
             }
             if (clicked_food === 'food2') {
-                setplayerHunger(hunger => hunger + 20)
+                eat(20,20)
             }
             if (clicked_food === 'food3') {
-                setplayerHunger(hunger => hunger + 40)
+                eat(40,40)
             }
             if (clicked_food === 'food4') {
-                setplayerHunger(hunger => hunger + 100)
+                eat(100,100)
             }
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
         }

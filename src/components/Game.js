@@ -10,6 +10,7 @@ import {useZombie} from './Enemies/useZombie'
 import {useKeyPress} from './useKeyPress'
 import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
+import {usePlayer} from './usePlayer'
 
 import {map_height, map_width} from '../config'
 
@@ -23,24 +24,22 @@ const Game = () => {
     const [phase, setPhase] = useState('game')
 
     // Initialize Player
-    const [playerHealth, setplayerHealth] = useState(100)
-    const [playerHunger, setplayerHunger] = useState(100)
-    const [playerX, setplayerX] = useState(0)
-    const [playerY, setplayerY] = useState(0)
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
     
+    const [playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
+
     // Initialize Inventory
     const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
 
     // Movement
-    const [addDirection, removeDirection, move] = useWalk(playerX, playerY, setplayerX, setplayerY, mapX, setmapX, mapY, setmapY)
+    const [addDirection, removeDirection, move, playerX, playerY, setplayerX, setplayerY] = useWalk(mapX, setmapX, mapY, setmapY)
    
     // Zombies
-    const [zombies, updateZombieDistance, moveZombies, get_zombies_in_range] = useZombie()
+    const [zombies, setzombies, updateZombieDistance, moveZombies, get_zombies_in_range] = useZombie()
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, playerHunger, setplayerHunger, get_zombies_in_range, playerX, playerY)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY)
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -54,10 +53,10 @@ const Game = () => {
     
     useEffect(() => {
         const gameTimerId = setInterval(() => {
-            move()
-            updateZombieDistance(playerX, playerY)
-            check_reachable()
-          },13)
+            move(zombies, setzombies)
+            check_reachable(playerX, playerY)
+            updateZombieDistance(playerX, playerY, takeDamage)
+        },20)
         
         return () => {
             clearInterval(gameTimerId)

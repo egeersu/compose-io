@@ -1,11 +1,15 @@
 import {useState} from 'react'
 import {map_height, map_width} from '../config'
 
-export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX, mapY, setmapY) => {
+export const useWalk = (mapX, setmapX, mapY, setmapY) => {
     
     const [heldDirections, setheldDirections] = useState([])
-    const [playerSpeed, setplayerSpeed] = useState(10)
+    const [playerSpeed, setplayerSpeed] = useState(12)
     const [velocity, setvelocity] = useState([0,0])
+
+    const [playerX, setplayerX] = useState(0)
+    const [playerY, setplayerY] = useState(0)
+
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
@@ -29,11 +33,11 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
         }
     }
 
-    const move = () => {
+    const move = (zombies, setzombies) => {
 
         const top_key = heldDirections[0]
        
-        if (!heldDirections.length){setvelocity([0,0]); return}
+        if (!heldDirections.length){setvelocity([0,0]);}
         if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed])}
         if (top_key === 'KeyS' || top_key === 'ArrowDown'){setvelocity([0,playerSpeed])}
         if (top_key === 'KeyA' || top_key === 'ArrowLeft'){setvelocity([-playerSpeed, 0])}
@@ -57,9 +61,17 @@ export const useWalk = (playerX, playerY, setplayerX, setplayerY, mapX, setmapX,
         setplayerY(new_y)
         setmapX(new_map_x)
         setmapY(new_map_y)
-
-        return 'moved!'
-    }    
-
-    return [addDirection, removeDirection, move]
+        
+        /*
+        var zombies_copy = {...zombies}
+        Object.entries(zombies).map(([zombie_key, zombie]) => {
+            console.log(zombie.dx)
+            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: zombie.x + zombie.dx, ['y']: zombie.y + zombie.dy}
+        })
+        setzombies(zombies_copy)
+        */
+    }
+    
+    
+    return [addDirection, removeDirection, move, playerX, playerY, setplayerX, setplayerY]
 }
