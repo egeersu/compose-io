@@ -5,9 +5,10 @@ export const useZombie = () => {
 
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
-    const chase_speed = 3
+    const chase_speed = 1.5
 
     const aggroRange = 250
+    const frame_lag = 3
 
     const initZombieList = (maxX, maxY, numZombie) => {
         /*
@@ -19,13 +20,19 @@ export const useZombie = () => {
         for (i; i<numZombie+1; i++){
             const random_x = Math.floor(Math.random()*maxX)+1
             const random_y = Math.floor(Math.random()*maxY)+1           
+
             const new_zombie = {
                 id: i, 
                 x: random_x, 
                 y:random_y, 
                 health: 100, 
+                alive: true,
                 aggro: true,
                 distance: 1e6,
+                idleState: 0,
+                runState: 0,
+                frameCounter: 0,
+                direction: 'left',
                 dx: 0,
                 dy: 0}
             zombie_dict[i] = new_zombie
@@ -39,27 +46,52 @@ export const useZombie = () => {
     const getZombiesInRange = (range) => { 
         var zombies_in_range = []
         Object.entries(zombies).map(([zombie_key, zombie]) => {
-            if (zombie.distance < range - 80) {
-                console.log(zombie.distance)
+            if (zombie.distance < range - 80 && zombie.alive) {
                 zombies_in_range.push(zombie)
             }
         })
         return zombies_in_range
     }
 
-    const updateZombieDistance = (playerX, playerY, takeDamage) => {
+    const updateZombieDistance = (playerX, playerY, takeDamage, setframe) => {
         var zombies_copy = {...zombies}
        // Move the zombies
        Object.entries(zombies).map(([zombie_key, zombie]) => {
+        if (!zombie.alive) {
+            return
+        }
+        
         if (zombie.aggro) {
-            
             const diff_x = playerX - zombie.x
             const diff_y = playerY - zombie.y
             const vector_length = Math.sqrt((diff_x**2 + diff_y**2))
             const dx = (diff_x/vector_length) * chase_speed
             const dy = diff_y/vector_length * chase_speed
-            
-            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: zombie.x + dx, ['y']: zombie.y + dy}
+
+            var new_runState = zombie.runState
+            var new_frameCounter = zombie.frameCounter
+            var new_direction = zombie.direction
+
+            if (zombie.frameCounter % frame_lag === 0) {
+                new_runState += 1
+            }
+            new_frameCounter += 1
+
+            if (playerX > zombie.x){
+                new_direction = 'right'
+            }
+            else {
+                new_direction = 'left'
+            }
+
+            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], 
+                ['x']: zombie.x + dx, 
+                ['y']: zombie.y + dy, 
+                ['frameCounter']: new_frameCounter,
+                ['runState']: new_runState,
+                ['direction']: new_direction
+            }
+
         }
         else {
             var dx = [0,0,0,0,0][Math.floor(Math.random()*5)];
@@ -67,9 +99,7 @@ export const useZombie = () => {
             const new_x = zombie.x + dx
             const new_y = zombie.y + dy
             //zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-        }
-
-        setzombies(zombies_copy)
+        }})
 
         // Update Distance
         Object.entries(zombies).map(([zombie_key, zombie]) => {
@@ -92,41 +122,15 @@ export const useZombie = () => {
         })
 
         setzombies(zombies_copy)
-
+        
+    
         //attack zombies
         Object.entries(zombies).map(([zombie_key, zombie]) => {
-            if (zombie.aggro && zombie.distance < 50){
+            if (zombie.aggro && zombie.distance < 50 && zombie.alive){
                 takeDamage(1)
             }                    
         })
-    
-
-        })
     }
 
-
-
-
-    const moveZombies = (playerX, playerY) => {
-        // if aggro: chase
-        // else: move randomly
-
-        var zombies_copy = {...zombies}
-
-        Object.entries(zombies).map(([zombie_key, zombie]) => {
-            if (zombie.aggro) {
-                const new_x = zombie.x + 1
-                const new_y = zombie.y 
-                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-            }
-            else {
-                const new_x = zombie.x + 1
-                const new_y = zombie.y 
-                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
-            }
-        })
-        setzombies(zombies_copy)
-    }
-
-    return [zombies, setzombies, updateZombieDistance, moveZombies, getZombiesInRange]
+    return [zombies, setzombies, updateZombieDistance, getZombiesInRange]
 }

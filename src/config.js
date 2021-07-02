@@ -42,7 +42,7 @@ const map_height = 1500
 const map_width = 1500
 const num_food = 5
 const num_weapon = 5
-const num_zombies = 15
+const num_zombies = 10
 
 
 // Crafting System

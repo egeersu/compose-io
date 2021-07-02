@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import {map_height, map_width, num_food, num_weapon, weapons} from '../../config'
+import {map_height, map_width, num_food, num_weapon, weapons, foods} from '../../config'
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies) => {
 
     const food_max_x = map_width - 50
     const food_max_y = map_height - 50
@@ -102,18 +102,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const consumeFood = (e) => {
         const clicked_food = e.target.id
         if (inventory[clicked_food] > 0){
-            if (clicked_food === 'food1') {
-                eat(10,10)
-            }
-            if (clicked_food === 'food2') {
-                eat(20,20)
-            }
-            if (clicked_food === 'food3') {
-                eat(40,40)
-            }
-            if (clicked_food === 'food4') {
-                eat(100,100)
-            }
+            eat(foods[clicked_food].health,foods[clicked_food].hunger)
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
         }
         else {
@@ -127,11 +116,21 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         const weapon_damage = weapons[clicked_weapon]['damage']
         const weapon_range = weapons[clicked_weapon]['range']
 
+
         if (inventory[clicked_weapon] > 0){
             const zombies_in_range = get_zombies_in_range(weapon_range)
-            console.log(zombies_in_range)
-            for (var i = 0; i<zombies_in_range.length; i++) {
-                zombies_in_range[i].health = Math.max(0, zombies_in_range[i].health - weapon_damage)
+            var zombies_copy = {...zombies}
+
+            for (var i = 0; i<zombies_in_range.length; i++){
+                const the_id = zombies_in_range[i].id
+                const new_health = Math.max(zombies_copy[the_id].health - weapon_damage, 0)
+                if (new_health <= 0) {
+                    zombies_copy[the_id] = {...zombies_copy[the_id], ['alive']: false, ['health']: 0}
+                }
+                else {
+                    zombies_copy[the_id] = {...zombies_copy[the_id], ['health']: new_health}
+                }
+                setzombies(zombies_copy)
             }
             setInventory({...inventory, [clicked_weapon]: inventory[clicked_weapon]-1})
         }

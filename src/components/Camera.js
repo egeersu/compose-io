@@ -16,6 +16,8 @@ const Camera = (props) => {
                 zombies={props.zombies}
                 playerX={props.playerX} 
                 playerY={props.playerY}
+                direction={props.direction}
+                frame={props.frame}
                 mapX = {props.mapX}
                 mapY = {props.mapY}
                 somethingReachable={props.somethingReachable}

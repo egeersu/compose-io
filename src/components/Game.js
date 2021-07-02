@@ -12,8 +12,6 @@ import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
-import {map_height, map_width} from '../config'
-
 const Game = () => {
 
     // Browser Specific Adjustments
@@ -33,13 +31,13 @@ const Game = () => {
     const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
 
     // Movement
-    const [addDirection, removeDirection, move, playerX, playerY, setplayerX, setplayerY] = useWalk(mapX, setmapX, mapY, setmapY)
+    const [addDirection, removeDirection, move, playerX, playerY, direction, frame] = useWalk(mapX, setmapX, mapY, setmapY)
    
     // Zombies
-    const [zombies, setzombies, updateZombieDistance, moveZombies, get_zombies_in_range] = useZombie()
+    const [zombies, setzombies, updateZombieDistance, get_zombies_in_range] = useZombie()
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies)
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -53,10 +51,10 @@ const Game = () => {
     
     useEffect(() => {
         const gameTimerId = setInterval(() => {
-            move(zombies, setzombies)
+            move()
             check_reachable(playerX, playerY)
             updateZombieDistance(playerX, playerY, takeDamage)
-        },20)
+        },12)
         
         return () => {
             clearInterval(gameTimerId)
@@ -100,6 +98,8 @@ const Game = () => {
                     zombies={zombies}
                     playerX={playerX} 
                     playerY={playerY}
+                    direction={direction}
+                    frame={frame}
                     mapX = {mapX}
                     mapY = {mapY}
                     somethingReachable={somethingReachable}

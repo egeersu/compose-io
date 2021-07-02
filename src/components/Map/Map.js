@@ -20,7 +20,8 @@ const Map = (props) => {
     return (
         <div>
             <div className='map' style={map_style}>
-            <Bunker />
+                <Bunker />
+                <Player position_x={props.playerX} position_y={props.playerY} direction={props.direction} frame={props.frame} weaponHovered={props.weaponHovered} foodHovered={props.foodHovered}/>
                 {props.food_list.map((food)=> {return <FoodComp x={food.x} y={food.y} reachable={food.reachable} itemType={food.itemType} key={food.id}/>})}
                 {props.weapon_list.map((weapon)=> {return <WeaponComp x={weapon.x} y={weapon.y} reachable={weapon.reachable} itemType={weapon.itemType} key={weapon.id}/>})}
                 {Object.entries(props.zombies).map(([zombie_key, zombie_value]) => {return <ZombieComp zombie={zombie_value} />})}
@@ -30,7 +31,6 @@ const Map = (props) => {
                     somethingReachable={props.somethingReachable}
                     reachableItem={props.reachableItem}
                 />
-                <Player position_x={props.playerX} position_y={props.playerY} weaponHovered={props.weaponHovered} foodHovered={props.foodHovered}/>
             </div>
         </div>
     )

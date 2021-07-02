@@ -4,12 +4,17 @@ import {map_height, map_width} from '../config'
 export const useWalk = (mapX, setmapX, mapY, setmapY) => {
     
     const [heldDirections, setheldDirections] = useState([])
-    const [playerSpeed, setplayerSpeed] = useState(12)
+    const [playerSpeed, setplayerSpeed] = useState(8)
     const [velocity, setvelocity] = useState([0,0])
 
     const [playerX, setplayerX] = useState(0)
     const [playerY, setplayerY] = useState(0)
 
+    const [direction, setdirection] = useState('right')
+    const [frame, setframe] = useState(['idle', 0])
+
+    const frameLag = 1
+    const [lagCounter, setlagCounter] = useState(0)
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
@@ -33,16 +38,15 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
         }
     }
 
-    const move = (zombies, setzombies) => {
+    const move = () => {
 
         const top_key = heldDirections[0]
        
-        if (!heldDirections.length){setvelocity([0,0]);}
-        if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed])}
-        if (top_key === 'KeyS' || top_key === 'ArrowDown'){setvelocity([0,playerSpeed])}
-        if (top_key === 'KeyA' || top_key === 'ArrowLeft'){setvelocity([-playerSpeed, 0])}
-        if (top_key === 'KeyD' || top_key === 'ArrowRight'){setvelocity([playerSpeed, 0])}
-
+        if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1])}
+        if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
+        if (top_key === 'KeyS' || top_key === 'ArrowDown'){setvelocity([0,playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
+        if (top_key === 'KeyA' || top_key === 'ArrowLeft'){setvelocity([-playerSpeed, 0]); setdirection('left'); setframe((prev)=>['run', prev[1]+1])}
+        if (top_key === 'KeyD' || top_key === 'ArrowRight'){setvelocity([playerSpeed, 0]); setdirection('right'); setframe((prev)=>['run', prev[1]+1])}
 
         var new_x = playerX + velocity[0]
         var new_y = playerY + velocity[1]        
@@ -61,17 +65,8 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
         setplayerY(new_y)
         setmapX(new_map_x)
         setmapY(new_map_y)
-        
-        /*
-        var zombies_copy = {...zombies}
-        Object.entries(zombies).map(([zombie_key, zombie]) => {
-            console.log(zombie.dx)
-            zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: zombie.x + zombie.dx, ['y']: zombie.y + zombie.dy}
-        })
-        setzombies(zombies_copy)
-        */
     }
     
     
-    return [addDirection, removeDirection, move, playerX, playerY, setplayerX, setplayerY]
+    return [addDirection, removeDirection, move, playerX, playerY, direction, frame]
 }
