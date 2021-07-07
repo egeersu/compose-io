@@ -5,8 +5,10 @@ import React from 'react'
 
 const FoodComp = (props) => {
 
-    const reachable = props.reachable ? '5px' : '0px'
 
+    const reachable = props.reachable ? '5px' : '2px'
+    const border_color = props.reachable ? 'white' : 'black'
+    
     const food_style = {
         position: 'absolute',
         backgroundImage: `url(${food_png})`,
@@ -14,14 +16,14 @@ const FoodComp = (props) => {
         top: props.y,
         backgroundSize: 'cover',
         borderColor: 'rgb(219, 240, 31)',
-        backgroundColor: 'rgb(10,10,10,0.7)',      
-        height: '60px',
-        width: '60px',
+        backgroundColor: 'rgb(10, 99, 158, 0.7)',      
+        height: '65px',
+        width: '65px',
         scale: '20%',
         borderStyle: 'solid',
         borderWidth: reachable,
-        borderColor: 'white',
-        borderRadius: '30%'          
+        borderColor: border_color,
+        borderRadius: '40%'          
     }
 
     return (
@@ -30,5 +32,7 @@ const FoodComp = (props) => {
         </div>
     )
 }
+
+
 
 export default FoodComp

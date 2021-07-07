@@ -5,7 +5,8 @@ export const useZombie = () => {
 
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
-    const chase_speed = 1.5
+    const chase_speed = 1.9
+    const idle_speed = 0.5
 
     const aggroRange = 250
     const frame_lag = 3
@@ -27,11 +28,13 @@ export const useZombie = () => {
                 y:random_y, 
                 health: 100, 
                 alive: true,
-                aggro: true,
+                aggro: false,
                 distance: 1e6,
                 idleState: 0,
                 runState: 0,
                 frameCounter: 0,
+                reachedTarget: true,
+                idleTarget: [0,0],
                 direction: 'left',
                 dx: 0,
                 dy: 0}
@@ -62,7 +65,7 @@ export const useZombie = () => {
         }
         
         if (zombie.aggro) {
-            const diff_x = playerX - zombie.x
+            const diff_x = playerX - zombie.x 
             const diff_y = playerY - zombie.y
             const vector_length = Math.sqrt((diff_x**2 + diff_y**2))
             const dx = (diff_x/vector_length) * chase_speed
@@ -91,14 +94,53 @@ export const useZombie = () => {
                 ['runState']: new_runState,
                 ['direction']: new_direction
             }
-
         }
         else {
-            var dx = [0,0,0,0,0][Math.floor(Math.random()*5)];
-            var dy = [0,0,0,0,0][Math.floor(Math.random()*5)];
-            const new_x = zombie.x + dx
-            const new_y = zombie.y + dy
-            //zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['x']: new_x, ['y']: new_y}
+            if (zombie.reachedTarget) {
+                const new_target = [Math.floor(Math.random() * map_width) + 1, zombie.y]
+                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], 
+                    ['idleTarget']: new_target,
+                    ['reachedTarget']: false,
+                }
+            }
+            else {
+                const diff_x =  zombie.idleTarget[0] - zombie.x
+                const diff_y = zombie.idleTarget[1] - zombie.y
+
+                var new_reachedTarget = false
+                if (Math.abs(diff_x) < 10 && Math.abs(diff_y) < 10) {
+                    new_reachedTarget = true;
+                }
+
+                const vector_length = Math.sqrt((diff_x**2 + diff_y**2))
+                const dx = (diff_x/vector_length) * idle_speed
+                const dy = (diff_y/vector_length) * idle_speed
+
+                var new_runState = zombie.runState
+                var new_frameCounter = zombie.frameCounter
+                var new_direction = zombie.direction
+
+                if (zombie.frameCounter % frame_lag === 0) {
+                    new_runState += 1
+                }
+                new_frameCounter += 1
+
+                if (zombie.x < zombie.idleTarget[0]){
+                    new_direction = 'right'
+                }
+                else {
+                    new_direction = 'left'
+                }
+
+                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], 
+                    ['x']: zombie.x + dx, 
+                    ['y']: zombie.y + dy, 
+                    ['frameCounter']: new_frameCounter,
+                    ['runState']: new_runState,
+                    ['direction']: new_direction,
+                    ['reachedTarget']: new_reachedTarget,
+                }
+            }
         }})
 
         // Update Distance
@@ -116,18 +158,16 @@ export const useZombie = () => {
 
             //update aggro
             if (distance < aggroRange + 40) {
-                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['aggro']: true}
-            } 
-                    
+                zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['aggro']: true} //change back to true
+            }     
         })
 
         setzombies(zombies_copy)
-        
     
         //attack zombies
         Object.entries(zombies).map(([zombie_key, zombie]) => {
             if (zombie.aggro && zombie.distance < 50 && zombie.alive){
-                takeDamage(1)
+                takeDamage(0.3)
             }                    
         })
     }

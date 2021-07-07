@@ -23,6 +23,31 @@ const food3 = {health: 40, hunger: 40, image: food3_png}
 const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
+
+const day1 = {
+    duration: '3:00',
+    map_height: 3500,
+    map_width: 3500,
+    input_size: 3,
+    output_size: 3,
+    num_weapon: 5,
+    num_zombies: 5,
+    num_items: 20,
+    loot_table: {
+        food1: 0.5,
+        food2: 0,
+        food3: 0,
+        food4: 0,
+        weapon1: 0.5,
+        weapon2: 0,
+        weapon3: 0,
+        weapon4: 0     
+    }
+}
+
+const experiment_setup = [day1]
+
+
 const images = {
     food1: food1_png,
     food2: food2_png,
@@ -34,15 +59,29 @@ const images = {
     weapon4: weapon4_png,
 }
 
+const loot_table = {
+    // specify the probability
+    food1: 0.5,
+    food2: 0,
+    food3: 0,
+    food4: 0,
+    weapon1: 0.5,
+    weapon2: 0,
+    weapon3: 0,
+    weapon4: 0
+}
+
 
 // TODO: Customizable days
 // {Day1: {...}, Day2: {...}}
 
-const map_height = 1500
-const map_width = 1500
+const map_height = 3500
+const map_width = 3500
 const num_food = 5
 const num_weapon = 5
-const num_zombies = 10
+const num_items = 20
+const num_zombies = 15
+
 
 
 // Crafting System
@@ -73,4 +112,4 @@ const flexible = [
 const rules = flexible
 
 
-export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules}
+export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items}

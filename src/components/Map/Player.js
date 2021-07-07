@@ -1,7 +1,6 @@
 import WeaponRange from "./WeaponRange"
 
 import {useState} from 'react'
-import {run_animations} from './PlayerImages'
 
 import run1 from '../../assets/cyber/Run/01.png'
 import run2 from '../../assets/cyber/Run/02.png'

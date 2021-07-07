@@ -34,12 +34,6 @@ const running_animations = {
     8: run9
 }
 
-const walking_animations = {
-    0: walk4,
-    1: walk5,
-    2: walk6
-}
-
 const ZombieComp = (props) => {
 
     const following = false //props
@@ -66,22 +60,60 @@ const ZombieComp = (props) => {
         transform: zombie.direction === 'right' ? null : 'rotateY(180deg)',
     }
 
-    const health_bar_style = {
+
+    const healthDiv_style = {
+        display: 'flex',
         position: 'relative',
-        top: "-50px",
-        left: "0",
-        height: '30px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        top: '-50px',
         width: '100%',
         textAlign: 'center',
-        backgroundColor: zombie.aggro ? 'red' : 'bladck'
+        width: '100%',
+        height: '60px',
     }
 
+    const healthBar_style = {
+        position: 'relative',
+        display: 'inline-block',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '50%',
+        backgroundColor: 'gray',
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: '5px',
+        transform: zombie.direction === 'right' ? null : 'rotateY(180deg)',
+    }
 
+    const healthFluid_style = {
+        position: 'absolute',
+        width: zombie.health + '%',
+        height: '100%',
+        backgroundColor: zombie.aggro ? 'red' : 'gray',
+
+    }
+
+    const healthText_style = {
+        position: 'absolute',
+        fontSize: '30px',
+        fontWeight: '600',
+        color: 'black',
+        width: '100%',
+        alignItems: 'center',
+    }
     
-
     return (
         <div style={zombie_style}>
-            {zombie.health > 0 ? <h1 style={health_bar_style}>{zombie.health}</h1> : null}
+            {zombie.health > 0 ? 
+            <div style={healthDiv_style}>
+                <div style={healthBar_style}>
+                    <div style={healthFluid_style}></div>
+                    <div style={healthText_style}>{Math.floor(zombie.health)}</div>
+                </div>
+            </div> 
+        : null}
         </div>
     )
 }

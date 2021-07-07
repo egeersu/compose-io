@@ -29,14 +29,13 @@ const ControlScreen = (props) => {
 
     return (
         <div className='control-screen' style={control_screen_style}>
-            <HungerBar hunger={props.playerHunger}/> 
-            <HealthBar health={props.playerHealth}/> 
             <Inventory 
                 inventory={props.inventory} 
                 consumeFood={props.consumeFood} 
                 consumeWeapon={props.consumeWeapon}
                 setweaponHovered={props.setweaponHovered}
                 setfoodHovered={props.setfoodHovered}
+                setitemHovered={props.setitemHovered}
             />
         </div>
     )

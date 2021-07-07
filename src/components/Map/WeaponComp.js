@@ -5,7 +5,8 @@ import React from 'react'
 
 const WeaponComp = (props) => {
 
-    const reachable = props.reachable ? '5px' : '0px'
+    const reachable = props.reachable ? '5px' : '2px'
+    const border_color = props.reachable ? 'white' : 'black'
     var weapon_asset = ''
 
     const weapon_style = {
@@ -16,14 +17,14 @@ const WeaponComp = (props) => {
         top: props.y,
         backgroundSize: 'cover',
         borderColor: 'rgb(219, 240, 31)',
-        backgroundColor: 'rgb(10,10,10,0.7)',      
-        height: '60px',
-        width: '60px',
+        backgroundColor: 'rgb(228, 51, 160, 0.7)',      
+        height: '65px',
+        width: '65px',
         scale: '0%',
         borderStyle: 'solid',
         borderWidth: reachable,
-        borderColor: 'white',
-        borderRadius: '30%'          
+        borderColor: border_color,
+        borderRadius: '40%'          
     }
 
     return (

@@ -33,6 +33,7 @@ const CraftingScreen = (props) => {
                 <Materials inventory={props.inventory} addItem={addItem}/>
             </div>
             <Instructions hoverState={hoverState}/>
+            {/* enter world button  */}
         </div>
     )
 }   

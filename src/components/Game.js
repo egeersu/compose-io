@@ -54,6 +54,7 @@ const Game = () => {
             move()
             check_reachable(playerX, playerY)
             updateZombieDistance(playerX, playerY, takeDamage)
+            starve(0.03)
         },12)
         
         return () => {

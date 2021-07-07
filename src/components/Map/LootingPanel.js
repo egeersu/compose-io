@@ -61,7 +61,7 @@ const LootingPanel = (props) => {
             <div style={panel_style}>
                 {/* <div style={icon_style}></div> */}
                 <h1 style={button_style}>F</h1>
-                <h1 style={name_style}>{props.reachableItem ? item_text[props.reachableItem.itemType] : 'no'}</h1>
+                <h1 style={name_style}>{props.reachableItem ? item_text[props.reachableItem.itemName] : 'no'}</h1>
             </div>
         </div>
     )

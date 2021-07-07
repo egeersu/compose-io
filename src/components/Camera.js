@@ -2,11 +2,16 @@ import {map_width, map_height} from '../config'
 import Map from './Map/Map'
 import ControlScreen from './Map/ControlScreen'
 import {useState} from 'react'
+import HealthBar from './Map/HealthBar'
+import HungerBar from './Map/HungerBar'
+import Information from './Map/Information'
 
 const Camera = (props) => {
 
     const [weaponHovered, setweaponHovered] = useState()
     const [foodHovered, setfoodHovered] = useState()
+
+    const [itemHovered, setitemHovered] = useState(null)
 
     return (
         <div className='camera'>
@@ -25,6 +30,9 @@ const Camera = (props) => {
                 weaponHovered={weaponHovered}
                 foodHovered={foodHovered}
             />
+            <HealthBar playerHealth={props.playerHealth}/>
+            <HungerBar playerHunger={props.playerHunger}/>
+            <Information itemHovered={itemHovered}/>
             <ControlScreen 
                 playerHealth={props.playerHealth} 
                 playerHunger={props.playerHunger} 
@@ -32,7 +40,9 @@ const Camera = (props) => {
                 consumeWeapon={props.consumeWeapon} 
                 inventory={props.inventory}
                 setfoodHovered={setfoodHovered}
-                setweaponHovered={setweaponHovered}/> 
+                setweaponHovered={setweaponHovered}
+                itemHovered={itemHovered}
+                setitemHovered={setitemHovered}/> 
         </div>
     )
 }

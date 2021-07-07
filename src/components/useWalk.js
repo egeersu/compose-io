@@ -4,7 +4,7 @@ import {map_height, map_width} from '../config'
 export const useWalk = (mapX, setmapX, mapY, setmapY) => {
     
     const [heldDirections, setheldDirections] = useState([])
-    const [playerSpeed, setplayerSpeed] = useState(8)
+    const [playerSpeed, setplayerSpeed] = useState(12)
     const [velocity, setvelocity] = useState([0,0])
 
     const [playerX, setplayerX] = useState(0)
