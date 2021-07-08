@@ -7,23 +7,26 @@ export const usePlayer = () => {
     const [health, sethealth] = useState(100)
     const [hunger, sethunger] = useState(100)
 
+    const hungerDamage = 0.05
+
     const takeDamage = (value) => {
-        if (health - value < 0){
+        sethealth(Math.max(health-value, 0))
+        if (health === 0){
             setalive(false)
         }
-        sethealth(health - value)
     }
 
     const starve = (value) => {
-        if (hunger-value < 0) {
-            setalive(false)
+        sethunger(Math.max(hunger-value, 0))
+        if (hunger === 0) {
+            takeDamage(0.05)
         }
-        sethunger(hunger-value)
+
     }
     const eat = (foodHealth, foodHunger) => {
         sethealth(Math.min(health+foodHealth, 100))
         sethunger(Math.min(hunger+foodHunger, 100))
     }
 
-    return [health, hunger, takeDamage, starve, eat]
+    return [alive, health, hunger, takeDamage, starve, eat]
 }

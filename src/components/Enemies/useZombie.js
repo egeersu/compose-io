@@ -37,7 +37,8 @@ export const useZombie = () => {
                 idleTarget: [0,0],
                 direction: 'left',
                 dx: 0,
-                dy: 0}
+                dy: 0
+            }
             zombie_dict[i] = new_zombie
         }
         return zombie_dict

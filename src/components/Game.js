@@ -25,7 +25,7 @@ const Game = () => {
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
     
-    const [playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
+    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
 
     // Initialize Inventory
     const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})

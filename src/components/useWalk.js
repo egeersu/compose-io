@@ -50,8 +50,8 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
 
         var new_x = playerX + velocity[0]
         var new_y = playerY + velocity[1]        
-        const max_x = map_width - 80 // map width (-border)
-        const max_y = map_height - 80// map height (-border)
+        const max_x = map_width - 110 // map width (-border)
+        const max_y = map_height - 150// map height (-border)
 
         var new_map_x = mapX - velocity[0]
         var new_map_y = mapY - velocity[1]

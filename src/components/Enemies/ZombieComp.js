@@ -1,6 +1,3 @@
-import zombie_standing from "../../assets/zombie/animation/Hurt5.png"
-import zombie_dead from "../../assets/zombie/animation/Dead5.png"
-
 import run1 from "../../assets/zomb/Zombie_walk/Zombie_Walk1.png"
 import run2 from "../../assets/zomb/Zombie_walk/Zombie_Walk2.png"
 import run3 from "../../assets/zomb/Zombie_walk/Zombie_Walk3.png"
@@ -12,12 +9,7 @@ import run8 from "../../assets/zomb/Zombie_walk/Zombie_Walk8.png"
 import run9 from "../../assets/zomb/Zombie_walk/Zombie_Walk9.png"
 
 
-import walk2 from "../../assets/zombie/animation/Walk2.png"
-import walk3 from "../../assets/zombie/animation/Walk3.png"
-import walk4 from "../../assets/zombie/animation/Walk4.png"
-import walk5 from "../../assets/zombie/animation/Walk5.png"
-import walk6 from "../../assets/zombie/animation/Walk6.png"
-
+import skull from "../../assets/skull.png"
 
 
 import React from 'react'
@@ -49,12 +41,12 @@ const ZombieComp = (props) => {
     const zombie_style = {
         position: 'absolute',
         display: 'flex',
-        backgroundImage: zombie.alive ? `url(${zombieBackground})` : `url(${run1})`,
+        backgroundImage: zombie.alive ? `url(${zombieBackground})` : `url(${skull})`,
         left: zombie.x,
         top: zombie.y,
         backgroundSize: 'cover',
-        height: zombie.health > 0 ? zombie_height : zombie_width,
-        width: zombie.health > 0 ? zombie_width : zombie_height,
+        height: zombie.alive ? zombie_height : 80,
+        width: zombie.alive > 0 ? zombie_width : 80,
         opacity: zombie.health > 0 ? '1.0' : '0.7',
         scale: '15%',
         transform: zombie.direction === 'right' ? null : 'rotateY(180deg)',
