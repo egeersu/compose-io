@@ -19,7 +19,7 @@ const Game = () => {
     // Game Settings
     const [days, setDays] = useState(0) //
     const [gameTime, setgameTime] = useState(0) // use this to keep track of time
-    const [phase, setPhase] = useState('game')
+    const [phase, setPhase] = useState('crafting')
 
     // Initialize Player
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2

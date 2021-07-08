@@ -58,6 +58,23 @@ export const useCraft = (inventory) => {
         }
     }
 
+    const submitCourse = async (e) => {
+        if (e) {e.preventDefault()}
+        try {
+            await fetch('/api/crafting_export', {
+                method: 'POST',
+                body: JSON.stringify({
+                    inputList,
+                    outputList,
+                    success,
+                }),
+            });
+        } catch (err) {
+            console.log('oh no!')
+            console.error(err);
+        }
+    };
+
     const craft = (e) => {
         check_uncollected()
         var rule_found = false
@@ -81,6 +98,7 @@ export const useCraft = (inventory) => {
             }, 4000);
             // TODO: Fail animation
         }
+        submitCourse()
     }
 
     return [inputList, outputList, success, addItem, removeItem, collectItem, craft]
