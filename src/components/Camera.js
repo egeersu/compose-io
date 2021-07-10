@@ -5,6 +5,8 @@ import {useState} from 'react'
 import HealthBar from './Map/HealthBar'
 import HungerBar from './Map/HungerBar'
 import Information from './Map/Information'
+import GameTimer from './GameTimer'
+
 
 const Camera = (props) => {
 
@@ -43,6 +45,7 @@ const Camera = (props) => {
                 setweaponHovered={setweaponHovered}
                 itemHovered={itemHovered}
                 setitemHovered={setitemHovered}/> 
+            <GameTimer gameTime={props.gameTime}/>
         </div>
     )
 }

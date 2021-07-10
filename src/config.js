@@ -81,7 +81,7 @@ const num_food = 5
 const num_weapon = 5
 const num_items = 20
 const num_zombies = 15
-
+const game_duration = 10
 
 
 // Crafting System
@@ -112,4 +112,4 @@ const flexible = [
 const rules = flexible
 
 
-export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items}
+export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items, game_duration}

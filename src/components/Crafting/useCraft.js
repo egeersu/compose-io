@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {input_size, output_size, images, rules} from '../../config'
 
-export const useCraft = (inventory) => {
+export const useCraft = (inventory, experimentID, group, day) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
@@ -57,23 +57,25 @@ export const useCraft = (inventory) => {
             setoutputList([])
         }
     }
-
-    const submitCourse = async (e) => {
-        if (e) {e.preventDefault()}
-        try {
-            await fetch('/api/crafting_export', {
-                method: 'POST',
-                body: JSON.stringify({
-                    inputList,
-                    outputList,
-                    success,
-                }),
-            });
-        } catch (err) {
-            console.log('oh no!')
-            console.error(err);
-        }
-    };
+    
+    var Airtable = require('airtable');
+    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');
+    
+    const postAttempt = (experiment, group, day, attempt, success) => {
+        base('crafting').create({
+            "Experiment": experiment,
+            "Group": group,
+            "Day": day,
+            "Attempt": attempt,
+            "Success": success ? 1 : 0,
+          }, function(err, record) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            console.log(record.getId());
+          });
+    }
 
     const craft = (e) => {
         check_uncollected()
@@ -98,7 +100,7 @@ export const useCraft = (inventory) => {
             }, 4000);
             // TODO: Fail animation
         }
-        submitCourse()
+        postAttempt(experimentID, group, day, "here is an attempt", success)
     }
 
     return [inputList, outputList, success, addItem, removeItem, collectItem, craft]

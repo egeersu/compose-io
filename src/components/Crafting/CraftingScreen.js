@@ -16,7 +16,7 @@ const CraftingScreen = (props) => {
         alignItems: 'center',
     }
 
-    const [inputList, outputList, success, addItem, removeItem, collectItem, craft] = useCraft(props.inventory)
+    const [inputList, outputList, success, addItem, removeItem, collectItem, craft] = useCraft(props.inventory, props.experimentID, props.group, props.day)
 
     return (
         <div className='crafting-screen'>

@@ -12,15 +12,20 @@ import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
+import {game_duration} from '../config'
+
 const Game = () => {
 
     // Browser Specific Adjustments
 
     // Game Settings
-    const [days, setDays] = useState(0) //
-    const [gameTime, setgameTime] = useState(0) // use this to keep track of time
-    const [phase, setPhase] = useState('crafting')
-
+    const [day, setDay] = useState(0) //
+    const [startTime, setstartTime] = useState(() => Date.now())
+    const [gameTime, setgameTime] = useState('NaN') // use this to keep track of time
+    const [phase, setPhase] = useState('game')
+    const [experimentID, setexperimentID] = useState('user1')
+    const [group, setgroup] = useState(1)
+    
     // Initialize Player
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
@@ -55,6 +60,10 @@ const Game = () => {
             check_reachable(playerX, playerY)
             updateZombieDistance(playerX, playerY, takeDamage)
             starve(0.03)
+            setgameTime(game_duration - Math.floor((Date.now() - startTime) / 1000))
+            if (gameTime <= 0) {
+                setPhase('crafting')
+            }
         },12)
         
         return () => {
@@ -82,7 +91,7 @@ const Game = () => {
                 <div className='header'>
                         <h1 className='header-title'>COMPOSE.IO</h1>
                 </div>
-                <CraftingScreen inventory={inventory}/>
+                <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day}/>
             </>
         )
     }
@@ -110,6 +119,7 @@ const Game = () => {
                     consumeFood={consumeFood} 
                     consumeWeapon={consumeWeapon} 
                     inventory={inventory}
+                    gameTime={gameTime}
                 />
          </div>
         )
