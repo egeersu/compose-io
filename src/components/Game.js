@@ -11,6 +11,7 @@ import {useKeyPress} from './useKeyPress'
 import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
+import {Scheduler} from './Scheduler'
 
 import {game_duration} from '../config'
 
@@ -18,18 +19,16 @@ const Game = () => {
 
     // Browser Specific Adjustments
 
-    // Game Settings
-    const [day, setDay] = useState(0) //
-    const [startTime, setstartTime] = useState(() => Date.now())
-    const [gameTime, setgameTime] = useState('NaN') // use this to keep track of time
-    const [phase, setPhase] = useState('game')
-    const [experimentID, setexperimentID] = useState('user1')
-    const [group, setgroup] = useState(1)
+    // Experiment Settings
+    const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
+    const [group, setgroup] = useState(0)
+
+    // Phase scheduling
+    const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
     
     // Initialize Player
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
-    
     const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
 
     // Initialize Inventory
@@ -60,10 +59,7 @@ const Game = () => {
             check_reachable(playerX, playerY)
             updateZombieDistance(playerX, playerY, takeDamage)
             starve(0.03)
-            setgameTime(game_duration - Math.floor((Date.now() - startTime) / 1000))
-            if (gameTime <= 0) {
-                setPhase('crafting')
-            }
+            clockTick()
         },12)
         
         return () => {
@@ -74,12 +70,8 @@ const Game = () => {
     function main_screen() {
         return (
             <>
-                <div className='header'>
-                    <h1 className='header-title'>COMPOSE.IO</h1>
-                </div>
-                <div className='main-screen'>
-                    <MainScreen />
-                </div>
+                <div className='header'></div>
+                <MainScreen nextPhase={nextPhase}/>
             </>
             )
         }

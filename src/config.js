@@ -25,7 +25,7 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 
 const day1 = {
-    duration: '3:00',
+    duration: 20,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
@@ -45,7 +45,28 @@ const day1 = {
     }
 }
 
-const experiment_setup = [day1]
+const day2 = {
+    duration: 30,
+    map_height: 3500,
+    map_width: 3500,
+    input_size: 3,
+    output_size: 3,
+    num_weapon: 5,
+    num_zombies: 5,
+    num_items: 20,
+    loot_table: {
+        food1: 0.5,
+        food2: 0,
+        food3: 0,
+        food4: 0,
+        weapon1: 0.5,
+        weapon2: 0,
+        weapon3: 0,
+        weapon4: 0     
+    }
+}
+
+const experiments = [day1, day2]
 
 
 const images = {
@@ -81,7 +102,7 @@ const num_food = 5
 const num_weapon = 5
 const num_items = 20
 const num_zombies = 15
-const game_duration = 10
+const game_duration = 50
 
 
 // Crafting System
@@ -112,4 +133,4 @@ const flexible = [
 const rules = flexible
 
 
-export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items, game_duration}
+export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items, game_duration, experiments}

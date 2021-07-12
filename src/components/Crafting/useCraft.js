@@ -63,7 +63,7 @@ export const useCraft = (inventory, experimentID, group, day) => {
     
     const postAttempt = (experiment, group, day, attempt, success) => {
         base('crafting').create({
-            "Experiment": experiment,
+            "ExperimentID": experiment,
             "Group": group,
             "Day": day,
             "Attempt": attempt,
@@ -100,7 +100,7 @@ export const useCraft = (inventory, experimentID, group, day) => {
             }, 4000);
             // TODO: Fail animation
         }
-        postAttempt(experimentID, group, day, "here is an attempt", success)
+        postAttempt(experimentID, group, day, inputList.join(), success)
     }
 
     return [inputList, outputList, success, addItem, removeItem, collectItem, craft]
