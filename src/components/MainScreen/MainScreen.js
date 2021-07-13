@@ -18,8 +18,8 @@ const MainScreen = (props) => {
                 <h1 className='consent-title'>CONSENT FORM</h1>
                 <p className='consent-text'> By clicking the START button you are </p>
                 <p className='consent-text'> 1) Consenting to your gameplay data being recorded and used in data analysis.  </p>
-                <p className='consent-text'> 2) Notified that your personal information such as name/geolocation will NOT be recorded. </p>
-                <p className='consent-text'> 3) That you are 18 years old or older. </p>
+                <p className='consent-text'> 2) Being notified that your personal information such as name/geolocation will NOT be recorded. </p>
+                <p className='consent-text'> 3) Declaring that you are 18 years old or older. </p>
                 <p className='consent-text'>  The experiment should take no longer than 15 minutes. </p>
                 <p className='consent-text'> Title of Study: Studying Compositional Generalization in Virtual Environments </p>
                 <div className='contact-div' 

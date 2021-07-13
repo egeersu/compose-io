@@ -14,6 +14,7 @@ const CraftingScreen = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        height: '15%'
     }
 
     const [inputList, outputList, success, addItem, removeItem, collectItem, craft] = useCraft(props.inventory, props.experimentID, props.group, props.day)
