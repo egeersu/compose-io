@@ -69,10 +69,7 @@ const Game = () => {
 
     function main_screen() {
         return (
-            <>
-                <div className='header'></div>
-                <MainScreen nextPhase={nextPhase}/>
-            </>
+            <MainScreen nextPhase={nextPhase}/>
             )
         }
       

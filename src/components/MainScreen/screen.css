@@ -1,52 +1,148 @@
+@import url("https://use.typekit.net/mbh6xeh.css");
+
+#root {
+    height: 100%;
+}
+
 .main-screen {
     width: 100%;
     height: 100%;
-    background-color: purple;
+    background-color: black;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    /* background-image: url("../../assets/city.jpeg"); */
+    background-size: cover;
+    font-family: din-condensed, Arial, Helvetica, sans-serif;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.title-div {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url("../../assets/bunkerfloor.png");
-    background-size: cover;
-}
-
-#root {
-    background-color: #edf0f2;
-    height: 100%;
-}
-
-button {
-    font-family: 'Odibee Sans', cursive;  
-    background-color: black;
-    color: white;
-    font-size: 30px;
-    flex-wrap: wrap;
-}
-
-
-input {
-    font-family: 'Odibee Sans', cursive;  
-    background-color: black;
-    color: white;
-    font-size: 30px;
-    -webkit-appearance: none;
-    border-width: 1px;
-    border-style: solid;
-    border-color: white;
-}
-
-.break {
-    flex-basis: 100%;
-    height: 0;
+    height: 25%;
+    width: 80%;
+    padding: 0;
+    margin: 0;
 }
 
 .title{
     color: white;
     font-size: 6rem;
     letter-spacing: 0.5rem;
-}
-
-.arrows {
     background-color: black;
+
 }
 
+.zombies-icon {
+    background-image: url('../../assets/zombie-icon.png');
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+    background-color: purple;
+    margin-right: 20px;
+}
+
+.player-icon {
+    background-image: url('../../assets/run.png');
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+    background-color: purple;
+    margin-left: 20px;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+.consent-div {
+    width: 100%;
+    height: 40%;
+    background-color: rgb(59, 59, 59);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.consent-title{
+    color: white;
+    font-size: 2em;
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+
+.consent-text {
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    margin: 0em;
+    padding: 0em;
+    transform: none;
+    text-transform: none;
+}
+
+.contact-div {
+    background-color: purple;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.contact-div:hover{
+    background-color: red;
+    color: black;
+}
+
+.contact-text {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.203);
+    font-size: 1.1em;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    margin: 0em;
+    padding: 0em;
+}
+
+
+/* -------------------------------------------------------------------------------- */
+
+.button-div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+    padding: 0;
+}
+
+.start-button {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: white;
+    color: black;
+    font-size: 30px;
+    flex-wrap: wrap;
+    width: 10em;
+    height: 2em;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+}
+
+.start-button:hover {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: red;
+    color: black;
+    font-size: 30px;
+    flex-wrap: wrap;
+}

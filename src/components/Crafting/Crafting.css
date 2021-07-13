@@ -4,6 +4,7 @@
     border-style: solid;
     border-color: black;
     border-width: 8px;
+    height: 100%;
 }
 
 .expressions-div {
@@ -26,6 +27,25 @@
 
 .compose {
     margin: 0 3rem 0 3rem;
+    font-family: din-condensed, Arial, Helvetica, sans-serif;
+    background-color: red;
+    color: black;
+    width: 12rem;
+    height: 5rem;
+    font-size: 1.7rem;
+    padding: 0;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+.compose:hover {
+    background-color: red;
+    color: black;
+    border-width: 6px;
+    border-style: solid;
+    border-color: black;
+    font-weight: 600;
 }
 
 .instructions-block {
@@ -35,3 +55,4 @@
     align-items: center;
     width: 100%;
 }
+
