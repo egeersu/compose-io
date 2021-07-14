@@ -1,6 +1,10 @@
 @import url("https://use.typekit.net/mbh6xeh.css");
 
-.main-screen {
+#root {
+    height: 100%;
+}
+
+.end-screen {
     width: 100%;
     height: 100%;
     background-color: black;
@@ -16,12 +20,12 @@
 
 /* -------------------------------------------------------------------------------- */
 
-.title-div {
+.end-title-div {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    height: 25%;
+    height: 10%;
     width: 80%;
     padding: 0;
     margin: 0;
@@ -29,7 +33,7 @@
 
 .title{
     color: white;
-    font-size: 6rem;
+    font-size: 4rem;
     letter-spacing: 0.5rem;
     background-color: black;
 
@@ -55,9 +59,9 @@
 
 /* -------------------------------------------------------------------------------- */
 
-.consent-div {
+.thank-div {
     width: 100%;
-    height: 40%;
+    height: 30%;
     background-color: rgb(59, 59, 59);
     display: flex;
     justify-content: center;
@@ -65,14 +69,14 @@
     align-items: center;
 }
 
-.consent-title{
+.thank-title{
     color: white;
     font-size: 2em;
     letter-spacing: 0.2em;
     text-align: center;
 }
 
-.consent-text {
+.thank-text {
     color: white;
     font-size: 1.1em;
     text-align: center;
@@ -82,63 +86,4 @@
     padding: 0em;
     transform: none;
     text-transform: none;
-}
-
-.contact-div {
-    background-color: purple;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0.5em;
-}
-
-.contact-div:hover{
-    background-color: red;
-    color: black;
-}
-
-.contact-text {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.203);
-    font-size: 1.1em;
-    text-align: center;
-    word-wrap: break-word;
-    width: 100%;
-    margin: 0em;
-    padding: 0em;
-}
-
-
-/* -------------------------------------------------------------------------------- */
-
-.button-div {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    height: 25%;
-    width: 100%;
-    padding: 0;
-}
-
-.start-button {
-    font-family: 'Odibee Sans', cursive;  
-    background-color: white;
-    color: black;
-    font-size: 30px;
-    flex-wrap: wrap;
-    width: 10em;
-    height: 2em;
-    font-weight: 600;
-    letter-spacing: 0.3rem;
-}
-
-.start-button:hover {
-    font-family: 'Odibee Sans', cursive;  
-    background-color: red;
-    color: black;
-    font-size: 30px;
-    flex-wrap: wrap;
 }

@@ -124,3 +124,35 @@
     border-color: white;
     color: white;
   }
+
+  /* ----------------------------------------------------- */
+
+  .div-enter-world {
+      width: 100%;
+      height: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .enter-world {
+    margin: 0 3rem 0 3rem;
+    font-family: din-condensed, Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+    width: 12rem;
+    height: 5rem;
+    font-size: 1.7rem;
+    padding: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+  }
+
+  .enter-world:hover {
+    background-color: rgb(61, 60, 60);
+    color: white;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white;
+  }

@@ -1,7 +1,5 @@
 import WeaponRange from "./WeaponRange"
 
-import {useState} from 'react'
-
 import run1 from '../../assets/cyber/Run/01.png'
 import run2 from '../../assets/cyber/Run/02.png'
 import run3 from '../../assets/cyber/Run/03.png'
@@ -23,13 +21,6 @@ import run18 from '../../assets/cyber/Run/18.png'
 import run19 from '../../assets/cyber/Run/19.png'
 import run20 from '../../assets/cyber/Run/20.png'
 import run21 from '../../assets/cyber/Run/21.png'
-
-import idle1 from '../../assets/cyber/Idle/01.png'
-import idle2 from '../../assets/cyber/Idle/02.png'
-import idle3 from '../../assets/cyber/Idle/03.png'
-import idle4 from '../../assets/cyber/Idle/04.png'
-import idle5 from '../../assets/cyber/Idle/05.png'
-import idle6 from '../../assets/cyber/Idle/06.png'
 
 const Player = (props) => {
 

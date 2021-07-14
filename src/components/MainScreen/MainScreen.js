@@ -4,8 +4,13 @@ import './screen.css';
 
 const MainScreen = (props) => {
 
+    const style1 = {
+        height: window.innerHeight,
+        width: window.innerWidth
+    }
+
     return (
-        <div className='main-screen'>
+        <div className='main-screen' style={style1}>
             
             <div className='title-div'>
                 <div className='zombies-icon'></div>

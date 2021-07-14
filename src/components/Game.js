@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react'
 import CraftingScreen from './Crafting/CraftingScreen'
+
 import MainScreen from './MainScreen/MainScreen'
+import EndScreen from './EndScreen/EndScreen'
+
 import MessageBox from './MessageBox'
 
 import Camera from './Camera'
@@ -13,11 +16,11 @@ import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 import {Scheduler} from './Scheduler'
 
+import {Level} from './Level'
+
 import {game_duration} from '../config'
 
 const Game = () => {
-
-    // Browser Specific Adjustments
 
     // Experiment Settings
     const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
@@ -25,23 +28,13 @@ const Game = () => {
 
     // Phase scheduling
     const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
-    
-    // Initialize Player
-    const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
-    const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
-    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
 
-    // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
-
-    // Movement
-    const [addDirection, removeDirection, move, playerX, playerY, direction, frame] = useWalk(mapX, setmapX, mapY, setmapY)
-   
-    // Zombies
-    const [zombies, setzombies, updateZombieDistance, get_zombies_in_range] = useZombie()
-
-    // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies)
+    const [mapX, setmapX, mapY, setmapY, 
+        playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, 
+        inventory, setInventory, 
+        addDirection, removeDirection, move, playerX, playerY, direction, frame, 
+        zombies, setzombies, updateZombieDistance, get_zombies_in_range,
+        food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = Level(phase, day)
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -53,18 +46,21 @@ const Game = () => {
         removeDirection(e)
     })
     
+
     useEffect(() => {
-        const gameTimerId = setInterval(() => {
-            move()
-            check_reachable(playerX, playerY)
-            updateZombieDistance(playerX, playerY, takeDamage)
-            starve(0.03)
-            clockTick()
-        },12)
-        
-        return () => {
-            clearInterval(gameTimerId)
-        }    
+        if (phase === 'game') {
+            const gameTimerId = setInterval(() => {
+                move()
+                check_reachable(playerX, playerY)
+                updateZombieDistance(playerX, playerY, takeDamage)
+                starve(0.03)
+                clockTick()
+            },12)
+            
+            return () => {
+                clearInterval(gameTimerId)
+            }                
+        }
       })
 
     function main_screen() {
@@ -80,8 +76,14 @@ const Game = () => {
                 <div className='header'>
                         <h1 className='header-title'>COMPOSE.IO</h1>
                 </div>
-                <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day}/>
+                <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day} nextPhase={nextPhase}/>
             </>
+        )
+    }
+
+    function end_screen() {
+        return (
+            <EndScreen />
         )
     }
 
@@ -119,6 +121,7 @@ const Game = () => {
         {phase === 'game' ? game_ui() : null }
         {phase === 'crafting' ? crafting_ui() : null}
         {phase === 'main' ? main_screen(): null}
+        {phase === 'end' ? end_screen(): null}
         </>
     )
 }

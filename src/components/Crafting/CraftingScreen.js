@@ -16,11 +16,16 @@ const CraftingScreen = (props) => {
         alignItems: 'center',
         height: '15%'
     }
+    
+    const style1 = {
+        height: window.innerHeight,
+        width: window.innerWidth
+    }
 
     const [inputList, outputList, success, addItem, removeItem, collectItem, craft] = useCraft(props.inventory, props.experimentID, props.group, props.day)
 
     return (
-        <div className='crafting-screen'>
+        <div className='crafting-screen' style={style1}>
             <div className='expressions-div'>
                 <div className='inputs-box'>
                     <Inputs inventory={props.inventory} inputList={inputList} removeItem={removeItem}/>
@@ -32,6 +37,9 @@ const CraftingScreen = (props) => {
             </div>
             <div style={inventory_div_style}> 
                 <Materials inventory={props.inventory} addItem={addItem}/>
+            </div>
+            <div className='div-enter-world'>
+                <button className='enter-world' onClick={()=>props.nextPhase()}>ENTER WORLD</button>
             </div>
             <Instructions hoverState={hoverState}/>
             {/* enter world button  */}

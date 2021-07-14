@@ -6,11 +6,11 @@ export const Scheduler = () => {
     const [phase, setphase] = useState(() => 'main')
     const [day, setday] = useState(() => 1)
     const [startTime, setstartTime] = useState(() => Date.now())
-    const [gameTime, setgameTime] = useState(() => 'NaN')
-    const [numPhases, setnumPhases] = useState(() => experiments.length)
+    const [gameTime, setgameTime] = useState(0)
+    const [numDays, setnumDays] = useState(() => experiments.length)
 
     const clockTick = () => {
-        const game_duration = experiments[day].game_duration
+        const game_duration = experiments[day-1].duration
         setgameTime(game_duration - Math.floor((Date.now() - startTime) / 1000))    
         if (gameTime <= 0) {
             nextPhase()
@@ -21,16 +21,21 @@ export const Scheduler = () => {
         switch(phase) {
             case 'crafting':
                 setphase('game')
-                setstartTime(Date.now())              
+                setstartTime(Date.now())            
+                setgameTime(experiments[day-1].duration)
+                console.log(experiments[day-1].duration)
                 break;
             case 'game':
-                if (phase === numPhases) {
+                if (day === numDays) {
                     setphase('end')
-                    console.log('Experiment Ended!')
+                    console.log('Experiment Ended!') 
+                    break;
                 }
-                setphase('crafting')
-                setday(day + 1)              
-                break;
+                else {
+                    setphase('crafting')
+                    setday(day + 1)              
+                    break;    
+                }
             case 'main':
                 setphase('crafting')
                 break;
