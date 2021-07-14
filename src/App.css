@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 
 body {
-  font-family: 'Odibee Sans', cursive;  
+  font-family: din-condensed, Arial, Helvetica, sans-serif;
   background-color:gray;
   color: white;
   opacity: 0.8;

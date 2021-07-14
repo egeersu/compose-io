@@ -11,8 +11,8 @@ const WeaponRange = (props) => {
     
     const range_style = {
         position: 'absolute',
-        left: props.x - (weapon_range-80)/2, 
-        top: props.y - (weapon_range-80)/2,
+        left: props.x - (weapon_range-130)/2, 
+        top: props.y - (weapon_range-130)/2,
         width: weapon_range + 'px',
         height: weapon_range + 'px',
         backgroundColor: 'rgb(27, 26, 26, 0.7)',

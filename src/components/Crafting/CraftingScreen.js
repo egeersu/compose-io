@@ -38,10 +38,10 @@ const CraftingScreen = (props) => {
             <div style={inventory_div_style}> 
                 <Materials inventory={props.inventory} addItem={addItem}/>
             </div>
+            <Instructions hoverState={hoverState}/>
             <div className='div-enter-world'>
                 <button className='enter-world' onClick={()=>props.nextPhase()}>ENTER WORLD</button>
             </div>
-            <Instructions hoverState={hoverState}/>
             {/* enter world button  */}
         </div>
     )

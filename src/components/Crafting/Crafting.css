@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/mbh6xeh.css");
+
 .crafting-screen {
     background-color: gray;
     padding: 3rem;
@@ -19,12 +21,6 @@
     width: 100%;
 }
 
-.instruction-line {
-    font-size: 1.4em;  
-    color: white;
-    padding: 1rem;
-    width: 100%
-}
 
 .compose {
     margin: 0 3rem 0 3rem;
@@ -51,11 +47,21 @@
 
 .instructions-block {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     text-align: center;
     justify-content: center;
+    flex-direction: row;
     align-items: center;
-    width: 100%;
     height: 60%;
+}
+
+.instruction-line {
+  font-size: 1.4em;  
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  font-family: din-condensed, Arial, Helvetica, sans-serif;
 }
 
 .material-food {
