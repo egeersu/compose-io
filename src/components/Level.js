@@ -11,7 +11,7 @@ import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
 
-export const Level = (day) => {
+export const Level = (day, group, experimentID) => {
 
     // init shit based on props.day and config experiments 
     /*
@@ -22,6 +22,8 @@ export const Level = (day) => {
     * repopulate food_list, weapon_list
     * new zombies
     */
+
+    console.log("level group: ", group)
 
     const resetLevel = () => {
         setmapX(window.innerWidth/2 - 80)

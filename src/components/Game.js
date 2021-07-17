@@ -4,30 +4,20 @@ import CraftingScreen from './Crafting/CraftingScreen'
 import MainScreen from './MainScreen/MainScreen'
 import EndScreen from './EndScreen/EndScreen'
 
-import MessageBox from './MessageBox'
-
 import Camera from './Camera'
-
-import {useItem} from './Map/useItem'
-import {useZombie} from './Enemies/useZombie'
 import {useKeyPress} from './useKeyPress'
 import {useKeyUp} from './useKeyUp'
-import {useWalk} from './useWalk'
-import {usePlayer} from './usePlayer'
 import {Scheduler} from './Scheduler'
 
 import {Level} from './Level'
 
 import {game_duration} from '../config'
 
-const Game = () => {
-
-    // Experiment Settings
-    const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
-    const [group, setgroup] = useState(0)
+const Game = (props) => {
 
     const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
-    
+
+    console.log('game group: ', props.group)
 
     const [mapX, setmapX, 
         mapY, setmapY, 
@@ -36,7 +26,8 @@ const Game = () => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel] = Level(day)
+        resetLevel] = Level(day, props.group, props.experimentID)        
+
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -69,11 +60,11 @@ const Game = () => {
     }
       
     function crafting_ui(){
-        return <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day} nextPhase={nextPhase} resetLevel={resetLevel}/>
+        return <CraftingScreen inventory={inventory} experimentID={props.experimentID} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel}/>
     }
 
     function end_screen() {
-        return <EndScreen />
+        return <EndScreen group={props.group}/>
     }
 
     function game_ui() {

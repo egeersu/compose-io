@@ -1,9 +1,57 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './endscreen.css';
 
 const EndScreen = (props) => {
 
+    const [dataSaved, setdataSaved] = useState(false)
+
+    useEffect(()=>{
+        var Airtable = require('airtable');
+        var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');    
+
+        const read_promise = new Promise((resolve, reject) => {
+            base('experimentTracker').select({
+                view: 'Grid view'
+            }).firstPage(function(err, records) {
+                if (err) { console.error(err); return; }
+                records.forEach(function(record) {
+                    const group1_airtable = record.get('Group1');
+                    const group2_airtable = record.get('Group2');
+                    resolve([group1_airtable, group2_airtable])
+                });
+              })
+
+        })
+
+        read_promise.then((res)=>{
+            console.log('then res: ', res)
+            const group1_airtable = res[0]
+            const group2_airtable = res[1]
+            console.log(group1_airtable)
+            console.log(group2_airtable)
+
+            base('experimentTracker').update([
+                {
+                  "id": "rechb4FV3hdZ1QwZn",
+                  "fields": {
+                    "Group1": props.group === 1 ? group1_airtable + 1 : group1_airtable,
+                    "Group2": props.group === 2 ? group2_airtable + 1 : group2_airtable
+                  }
+                }
+              ], function(err, records) {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+                records.forEach(function(record) {
+                  console.log(record.get('Group1'));
+                });
+              });
+        })
+
+
+    }, [])
 
     const style1 = {
         height: window.innerHeight,

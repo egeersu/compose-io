@@ -25,11 +25,8 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         const food_arr = []
         const weapon_arr = []
 
-        console.log(random_items)
-
         // Bunker Items
         const bunker_items = Array.apply(null, Array(6)).map(() => sampler.get())//returns array => [0]
-        console.log(bunker_items)
         for (var i = 0; i<bunker_items.length; i++){
             if (bunker_items[i][0] === 'f') {
                 food_arr.push({itemType: 'food', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})

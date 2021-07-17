@@ -63,12 +63,9 @@ export const useCraft = (inventory, experimentID, group, day) => {
     
     var Airtable = require('airtable');
     var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');
+
     
     const postAttempt = (experiment, group, day, attempt) => {
-
-        
-        
-
 
     }
 

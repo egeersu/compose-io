@@ -25,7 +25,7 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 
 const day1 = {
-    duration: 120,
+    duration: 3,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
@@ -87,7 +87,7 @@ const day3 = {
     }
 }
 
-const experiments = [day1, day2, day3]
+const experiments = [day1]
 
 const images = {
     food1: food1_png,
