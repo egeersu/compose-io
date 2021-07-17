@@ -12,6 +12,9 @@ const Bunker = () => {
         height: '600px',
         backgroundColor: 'Black',
         backgroundImage: `url(${bunker_floor})`,
+        borderWidth: '15px',
+        borderColor: 'rgba(63, 68, 68, 0.904)',
+        borderStyle: 'solid'
     }
 
 

@@ -26,15 +26,17 @@ const Game = () => {
     const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
     const [group, setgroup] = useState(0)
 
-    // Phase scheduling
     const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
+    
 
-    const [mapX, setmapX, mapY, setmapY, 
+    const [mapX, setmapX, 
+        mapY, setmapY, 
         playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, 
         inventory, setInventory, 
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
-        food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = Level(phase, day)
+        food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
+        resetLevel] = Level(day)
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -45,7 +47,6 @@ const Game = () => {
     useKeyUp((e)=> {
         removeDirection(e)
     })
-    
 
     useEffect(() => {
         if (phase === 'game') {
@@ -64,35 +65,20 @@ const Game = () => {
       })
 
     function main_screen() {
-        return (
-            <MainScreen nextPhase={nextPhase}/>
-            )
-        }
+        return <MainScreen nextPhase={nextPhase}/>
+    }
       
-
     function crafting_ui(){
-        return (
-            <>
-                <div className='header'>
-                        <h1 className='header-title'>COMPOSE.IO</h1>
-                </div>
-                <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day} nextPhase={nextPhase}/>
-            </>
-        )
+        return <CraftingScreen inventory={inventory} experimentID={experimentID} group={group} day={day} nextPhase={nextPhase} resetLevel={resetLevel}/>
     }
 
     function end_screen() {
-        return (
-            <EndScreen />
-        )
+        return <EndScreen />
     }
 
     function game_ui() {
         return(
             <div className='game'>
-                <div className='header'>
-                    <h1 className='header-title'>COMPOSE.IO</h1>
-                </div>
                 <Camera 
                     food_list={food_list}
                     weapon_list={weapon_list}

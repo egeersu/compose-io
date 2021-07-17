@@ -1,24 +1,19 @@
 import React from 'react'
 import {foods, weapons} from '../../config'
 
-const Information = (props) => {
+const ItemInfo = (props) => {
 
     const information_div = {
         display: 'flex',
-        position: 'absolute',
         alignItems: 'center',
         justifyContent: 'center',
-        top: window.innerHeight/1.7,
-        width: '100%',
         textAlign: 'center',
         width: '100%',
-        height: '3%',
     }
 
     const information_style = {
         width: '100%',
         textAlign: 'center',
-        width: '350px',
         height: '100%',
         backgroundColor: 'black',
         opacity: '0.92'
@@ -78,4 +73,4 @@ const Information = (props) => {
     )
 }
 
-export default Information
+export default ItemInfo

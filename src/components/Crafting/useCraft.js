@@ -6,6 +6,8 @@ export const useCraft = (inventory, experimentID, group, day) => {
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
     const [success, setSuccess] = useState('null')
+    const [craftingSuccess, setcraftingSuccess] = useState()
+    const [itemHovered, setitemHovered] = useState(null)
 
     const addItem = (item) => {
         if (inputList.length < input_size){
@@ -35,6 +37,7 @@ export const useCraft = (inventory, experimentID, group, day) => {
             setinputList(inputList_copy)
         }
     }
+   
 
     const collectItem = (e) => {
         const box_number = e.target.id[3]
@@ -61,20 +64,12 @@ export const useCraft = (inventory, experimentID, group, day) => {
     var Airtable = require('airtable');
     var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');
     
-    const postAttempt = (experiment, group, day, attempt, success) => {
-        base('crafting').create({
-            "ExperimentID": experiment,
-            "Group": group,
-            "Day": day,
-            "Attempt": attempt,
-            "Success": success ? 1 : 0,
-          }, function(err, record) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            console.log(record.getId());
-          });
+    const postAttempt = (experiment, group, day, attempt) => {
+
+        
+        
+
+
     }
 
     const craft = (e) => {
@@ -88,20 +83,44 @@ export const useCraft = (inventory, experimentID, group, day) => {
                 setoutputList(rule_outputs)
                 setinputList([])
                 setSuccess('success')
+                setcraftingSuccess(true)
             }
         })
         if (!rule_found) {
             setoutputList([])
             setinputList([])
             setSuccess('fail')
-            var clear_fail_alert = setInterval(function(){ 
-                setSuccess('null') 
-                clearInterval(clear_fail_alert)
-            }, 4000);
-            // TODO: Fail animation
+            setcraftingSuccess(false)
         }
-        postAttempt(experimentID, group, day, inputList.join(), success)
+        
+        var currentdate = new Date(); 
+        var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() 
+
+        base('crafting').create({
+            "ExperimentID": experimentID,
+            "Date": datetime,
+            "Group": group,
+            "Day": day,
+            "Attempt": inputList.join(),
+            "Success": rule_found ? 1 : 0,
+          }, function(err, record) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            console.log(record.getId());
+          });
+        
+          var clear_fail_alert = setInterval(function(){ 
+            setSuccess('null') 
+            clearInterval(clear_fail_alert)
+        }, 4000);
+
     }
 
-    return [inputList, outputList, success, addItem, removeItem, collectItem, craft]
+    return [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered]
 }

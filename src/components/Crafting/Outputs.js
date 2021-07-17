@@ -35,7 +35,9 @@ const Outputs = (props) => {
                 style={{backgroundImage: `url(${background_image})`}} 
                 key={i}
                 id={'box'+i}
-                onClick={props.collectItem}>
+                onClick={props.collectItem}
+                onMouseEnter={(e) => props.setitemHovered(props.outputList[e.target.id[3]])} 
+                onMouseLeave={()=>props.setitemHovered(null)}>
             </div>
         )
     }

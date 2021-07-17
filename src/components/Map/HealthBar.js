@@ -10,7 +10,7 @@ const HealthBar = (props) => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        top: '0',
+        top: '50px',
         width: '100%',
         textAlign: 'center',
         width: '100%',

@@ -66,7 +66,14 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
         setmapX(new_map_x)
         setmapY(new_map_y)
     }
+
+    const resetMovement = () => {
+        setplayerX(0)
+        setplayerY(0)
+        setvelocity([0,0])
+        setheldDirections([])
+    }
     
     
-    return [addDirection, removeDirection, move, playerX, playerY, direction, frame]
+    return [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement]
 }

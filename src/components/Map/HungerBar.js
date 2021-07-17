@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 import hungerLogo from '../../assets/hunger.png'
@@ -11,7 +10,7 @@ const HealthBar = (props) => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        top: '60px',
+        top: '110px',
         width: '100%',
         textAlign: 'center',
         width: '100%',

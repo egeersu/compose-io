@@ -8,13 +8,11 @@ import './Crafting.css'
 
 const CraftingScreen = (props) => {
 
-    const [hoverState, sethoverState] = useState('none')
-
     const inventory_div_style= {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '15%'
+        height: '25%'
     }
     
     const style1 = {
@@ -22,27 +20,29 @@ const CraftingScreen = (props) => {
         width: window.innerWidth
     }
 
-    const [inputList, outputList, success, addItem, removeItem, collectItem, craft] = useCraft(props.inventory, props.experimentID, props.group, props.day)
+    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentID, props.group, props.day)
 
     return (
         <div className='crafting-screen' style={style1}>
+            <div className='header'>
+                    <h1 className='header-title'>COMPOSE.IO</h1>
+            </div>
             <div className='expressions-div'>
                 <div className='inputs-box'>
-                    <Inputs inventory={props.inventory} inputList={inputList} removeItem={removeItem}/>
+                    <Inputs inventory={props.inventory} inputList={inputList} removeItem={removeItem} setitemHovered={setitemHovered}/>
                 </div>
                 <button className='compose' onClick={()=>craft()}>COMPOSE</button>
                 <div className='inputs-box'>
-                    <Outputs inventory={props.inventory} outputList={outputList} collectItem={collectItem} success={success}/>
+                    <Outputs inventory={props.inventory} outputList={outputList} collectItem={collectItem} success={success} setitemHovered={setitemHovered}/>
                 </div>
             </div>
             <div style={inventory_div_style}> 
-                <Materials inventory={props.inventory} addItem={addItem}/>
+                <Materials inventory={props.inventory} addItem={addItem} setitemHovered={setitemHovered}/>
             </div>
-            <Instructions hoverState={hoverState}/>
+            <Instructions itemHovered={itemHovered}/>
             <div className='div-enter-world'>
-                <button className='enter-world' onClick={()=>props.nextPhase()}>ENTER WORLD</button>
+                <button className='enter-world' onClick={()=>{props.nextPhase(); props.resetLevel()}}>ENTER WORLD</button>
             </div>
-            {/* enter world button  */}
         </div>
     )
 }   

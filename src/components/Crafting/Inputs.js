@@ -14,7 +14,8 @@ const Inputs = (props) => {
         borderColor: 'black',
         borderRadius: '1px'
     }
-    const boxes = []
+    
+    var boxes = []
 
     for (var i=0; i<input_size; i++) {
         var background_image = null
@@ -35,7 +36,9 @@ const Inputs = (props) => {
                 style={box_style} 
                 key={i}
                 id={'box'+i}
-                onClick={(e) => props.removeItem(e)}>
+                onClick={(e) => props.removeItem(e)}
+                onMouseEnter={(e) => props.setitemHovered(props.inputList[e.target.id[3]])} 
+                onMouseLeave={()=>props.setitemHovered(null)}>
             </div>
         )
     }

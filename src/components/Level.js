@@ -11,27 +11,44 @@ import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
 
-export const Level = (props) => {
+export const Level = (day) => {
 
     // init shit based on props.day and config experiments 
+    /*
+    * reset mapX, mapY
+    * reset playerHealth, playerHunger
+    * new hunger 
+    * reset playerX, playerY
+    * repopulate food_list, weapon_list
+    * new zombies
+    */
+
+    const resetLevel = () => {
+        setmapX(window.innerWidth/2 - 80)
+        setmapY(window.innerHeight/2 - 100)
+        resetPlayer()
+        resetMovement()
+        resetItems()
+        resetZombies()
+    }
 
     // Initialize Player
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
 
-    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat] = usePlayer()
-
     // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:10, food2:10, food3:10, food4:10, weapon1:15, weapon2:10, weapon3:10, weapon4:10})
+    const [inventory, setInventory] = useState({food1:10, food2:0, food3:0, food4:0, weapon1:0, weapon2:0, weapon3:0, weapon4:0})
+
+    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer()
 
     // Movement
-    const [addDirection, removeDirection, move, playerX, playerY, direction, frame] = useWalk(mapX, setmapX, mapY, setmapY)
+    const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement] = useWalk(mapX, setmapX, mapY, setmapY)
 
     // Zombies
-    const [zombies, setzombies, updateZombieDistance, get_zombies_in_range] = useZombie()
+    const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day)
 
     return [mapX, setmapX, 
         mapY, setmapY, 
@@ -39,6 +56,6 @@ export const Level = (props) => {
         inventory, setInventory, 
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
-        food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon]
-
+        food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
+        resetLevel]
 }

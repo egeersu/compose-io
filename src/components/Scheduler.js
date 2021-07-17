@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {experiments} from '../config'
 
-export const Scheduler = () => {
+export const Scheduler = (props) => {
 
     const [phase, setphase] = useState(() => 'main')
     const [day, setday] = useState(() => 1)

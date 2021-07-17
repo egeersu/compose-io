@@ -28,5 +28,10 @@ export const usePlayer = () => {
         sethunger(Math.min(hunger+foodHunger, 100))
     }
 
-    return [alive, health, hunger, takeDamage, starve, eat]
+    const resetPlayer = () => {
+        sethealth(100)
+        sethunger(100)
+    }
+
+    return [alive, health, hunger, takeDamage, starve, eat, resetPlayer]
 }

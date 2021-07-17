@@ -11,34 +11,34 @@ import food4_png from "./assets/foods/food4.png"
 
 
 const weapon1 = {damage: 10, range: 200, image: weapon1_png}
-const weapon2 = {damage: 20, range: 300, image: weapon2_png}
-const weapon3 = {damage: 30, range: 400, image: weapon3_png}
-const weapon4 = {damage: 50, range: 500, image: weapon4_png}
+const weapon2 = {damage: 25, range: 300, image: weapon2_png}
+const weapon3 = {damage: 40, range: 400, image: weapon3_png}
+const weapon4 = {damage: 80, range: 700, image: weapon4_png}
 const weapons = {weapon1: weapon1, weapon2: weapon2, weapon3: weapon3, weapon4: weapon4}
 
 
 const food1 = {health: 10, hunger: 10, image: food1_png}
-const food2 = {health: 20, hunger: 20, image: food2_png}
-const food3 = {health: 40, hunger: 40, image: food3_png}
+const food2 = {health: 30, hunger: 30, image: food2_png}
+const food3 = {health: 50, hunger: 50, image: food3_png}
 const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 
 const day1 = {
-    duration: 60,
+    duration: 120,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
     output_size: 3,
     num_weapon: 5,
-    num_zombies: 5,
-    num_items: 20,
+    num_zombies: 1,
+    num_items: 50,
     loot_table: {
-        food1: 0.5,
-        food2: 0,
+        food1: 0.35,
+        food2: 0.15,
         food3: 0,
         food4: 0,
-        weapon1: 0.5,
+        weapon1: 0.6,
         weapon2: 0,
         weapon3: 0,
         weapon4: 0     
@@ -46,7 +46,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 60,
+    duration: 15,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
@@ -66,8 +66,28 @@ const day2 = {
     }
 }
 
-const experiments = [day1, day2]
+const day3 = {
+    duration: 15,
+    map_height: 3500,
+    map_width: 3500,
+    input_size: 3,
+    output_size: 3,
+    num_weapon: 5,
+    num_zombies: 50,
+    num_items: 20,
+    loot_table: {
+        food1: 0.5,
+        food2: 0,
+        food3: 0,
+        food4: 0,
+        weapon1: 0.5,
+        weapon2: 0,
+        weapon3: 0,
+        weapon4: 0     
+    }
+}
 
+const experiments = [day1, day2, day3]
 
 const images = {
     food1: food1_png,

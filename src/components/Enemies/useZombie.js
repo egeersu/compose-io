@@ -1,15 +1,18 @@
 import {memo, useState} from 'react'
-import {map_height, map_width, num_zombies} from '../../config'
+import {map_height, map_width, experiments} from '../../config'
 
-export const useZombie = () => {
+
+export const useZombie = (day) => {
 
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
+
     const chase_speed = 1.9
     const idle_speed = 0.5
-
     const aggroRange = 250
     const frame_lag = 3
+
+    const num_zombies = experiments[day-1].num_zombies
 
     const initZombieList = (maxX, maxY, numZombie) => {
         /*
@@ -45,8 +48,7 @@ export const useZombie = () => {
     }
 
     const [zombies, setzombies] = useState(()=>initZombieList(zombie_max_x,zombie_max_y,num_zombies)) 
-
-
+    
     const getZombiesInRange = (range) => { 
         var zombies_in_range = []
         Object.entries(zombies).map(([zombie_key, zombie]) => {
@@ -173,5 +175,9 @@ export const useZombie = () => {
         })
     }
 
-    return [zombies, setzombies, updateZombieDistance, getZombiesInRange]
+    const resetZombies = () => {
+        setzombies(initZombieList(zombie_max_x,zombie_max_y,num_zombies))
+    }
+
+    return [zombies, setzombies, updateZombieDistance, getZombiesInRange, resetZombies]
 }

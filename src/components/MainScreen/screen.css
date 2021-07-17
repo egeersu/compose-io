@@ -57,7 +57,7 @@
 
 .consent-div {
     width: 100%;
-    height: 40%;
+    height: 50%;
     background-color: rgb(59, 59, 59);
     display: flex;
     justify-content: center;
@@ -70,15 +70,17 @@
     font-size: 2em;
     letter-spacing: 0.2em;
     text-align: center;
+    height: 10%;
 }
 
 .consent-text {
     color: white;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     text-align: center;
     word-wrap: break-word;
     width: 100%;
     margin: 0em;
+    height: 8%;
     padding: 0em;
     transform: none;
     text-transform: none;
@@ -88,6 +90,8 @@
 .contact-div {
     background-color: purple;
     width: 100%;
+    height: 25%;
+    font-size: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,9 +107,10 @@
 .contact-text {
     color: white;
     background-color: rgba(0, 0, 0, 0.203);
-    font-size: 1.1em;
     text-align: center;
     word-wrap: break-word;
+    font-size: auto;
+    height: 25%;
     width: 100%;
     margin: 0em;
     padding: 0em;
@@ -142,4 +147,7 @@
     color: black;
     font-size: 30px;
     flex-wrap: wrap;
+    border-color: rgb(85, 3, 3);
+    border-style: solid;
+    border-width: 4px;
 }

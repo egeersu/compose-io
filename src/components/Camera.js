@@ -12,7 +12,6 @@ const Camera = (props) => {
 
     const [weaponHovered, setweaponHovered] = useState()
     const [foodHovered, setfoodHovered] = useState()
-
     const [itemHovered, setitemHovered] = useState(null)
 
     return (
@@ -46,6 +45,9 @@ const Camera = (props) => {
                 itemHovered={itemHovered}
                 setitemHovered={setitemHovered}/> 
             <GameTimer gameTime={props.gameTime}/>
+            <div className='header'>
+                <h1 className='header-title'>COMPOSE.IO</h1>
+            </div>
         </div>
     )
 }

@@ -1,59 +1,71 @@
 import {useState} from 'react'
 import {WeightedSampler} from './WeightedSampler'
-import {map_height, map_width, num_food, num_weapon, weapons, foods, loot_table, num_items} from '../../config'
+import {map_height, map_width, num_food, num_weapon, weapons, foods, num_items, experiments} from '../../config'
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day) => {
 
-    const food_max_x = map_width - 50
-    const food_max_y = map_height - 50
-
-    const weapon_max_x = map_width - 50
-    const weapon_max_y = map_height - 50
+    const item_max_x = map_width - 50
+    const item_max_y = map_height - 50
+    const item_min_x = 600
+    const item_min_y = 600
 
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
+    const num_items = experiments[day-1].num_items
 
-    const initFoodList = (maxX, maxY, numFood) => {
-        /*
-        Initialize Food list.
-        */
-        var food_arr = []
-        var i = 1
-        for (i; i<numFood+1; i++){
-            const random_x = Math.floor(Math.random()*maxX)+1
-            const random_y = Math.floor(Math.random()*maxY)+1
-            const new_food = {itemType: 'food', itemName:"food1", id: i, x: random_x, y:random_y, reachable: false}
-            food_arr.push(new_food)
-        }
-        return food_arr
-    }
+    const loot_table = experiments[day-1].loot_table 
 
     const initItems = () => {
         var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
         var weights = [loot_table['food1'], loot_table['food2'], loot_table['food3'], loot_table['food4'], loot_table['weapon1'], loot_table['weapon2'], loot_table['weapon3'], loot_table['weapon4']]
         const sampler = new WeightedSampler(items, weights);
         const random_items = Array.apply(null, Array(num_items)).map(() => sampler.get())//returns array => [0]
+
+        const food_arr = []
+        const weapon_arr = []
+
         console.log(random_items)
-    }
 
-    const initWeaponList = (maxX, maxY, numWeapon) => {
-        /*
-        Initialize Food list.
-        */
-        var weapon_arr = []
-        var i = 1
-        for (i; i<numWeapon+1; i++){
-            const random_x = Math.floor(Math.random()*maxX)+1
-            const random_y = Math.floor(Math.random()*maxY)+1
-            const new_weapon = {itemType: 'weapon', itemName: "weapon1", id: i, x: random_x, y:random_y, reachable: false}
-            weapon_arr.push(new_weapon)
+        // Bunker Items
+        const bunker_items = Array.apply(null, Array(6)).map(() => sampler.get())//returns array => [0]
+        console.log(bunker_items)
+        for (var i = 0; i<bunker_items.length; i++){
+            if (bunker_items[i][0] === 'f') {
+                food_arr.push({itemType: 'food', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})
+            }   
+            else {
+                weapon_arr.push({itemType: 'food', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})
+            }         
         }
-        return weapon_arr
+
+        for (var i = 0; i<random_items.length; i++) {
+            const random_item = random_items[i]
+            const random_x = Math.floor(Math.random() * (item_max_x - item_min_x) + item_min_x)
+            const random_y = Math.floor(Math.random() * (item_max_y - item_min_y) + item_min_y)
+            if (['food1', 'food2', 'food3', 'food4'].includes(random_item)){
+                const new_food = {itemType: 'food', itemName:"food1", id: i, x: random_x, y:random_y, reachable: false}
+                food_arr.push(new_food)
+            }
+            if (['weapon1', 'weapon2', 'weapon3', 'weapon4'].includes(random_item)){
+                const new_weapon = {itemType: 'weapon', itemName: "weapon1", id: i, x: random_x, y:random_y, reachable: false}
+                weapon_arr.push(new_weapon)
+            }
+        }
+
+        return [food_arr, weapon_arr]
     }
 
-    const [food_list, set_food_list] = useState(()=>initFoodList(food_max_x,food_max_y,num_food)) 
-    const [weapon_list, set_weapon_list] = useState(()=>initWeaponList(weapon_max_x, weapon_max_y, num_weapon))    
+    const resetItems = () => {
+        set_item_list(initItems())
+        set_food_list(item_list[0])
+        set_weapon_list(item_list[1])
+    }
+
+    const [item_list, set_item_list] = useState(() => initItems())
+    const [food_list, set_food_list] = useState(() => item_list[0])
+    const [weapon_list, set_weapon_list] = useState(() => item_list[1])
+
 
     const add_weapon = (weapon) => {
         set_weapon_list(prev => [...prev, weapon])
@@ -170,5 +182,5 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
 
     }
 
-    return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon]
+    return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems]
 }
