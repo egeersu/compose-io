@@ -90,7 +90,7 @@
 
 .contact-div {
     width: 30vw;
-    height: 6vh;
+    height: 8vh;
     background-color: gray;
     display: flex;
     justify-content: center;
@@ -123,7 +123,7 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    height: 20vh;
+    height: 30vh;
     width: 100%;
     padding: 0;
 }
