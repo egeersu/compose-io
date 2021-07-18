@@ -25,7 +25,7 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 
 const day1 = {
-    duration: 10,
+    duration: 45,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
@@ -46,7 +46,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 10,
+    duration: 45,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
