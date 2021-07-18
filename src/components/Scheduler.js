@@ -25,6 +25,10 @@ export const Scheduler = (props) => {
         }
     }
 
+    const die = () => {
+        setphase('dead')
+    }
+
     const nextPhase = () => {
         switch(phase) {
             case 'crafting':
@@ -52,5 +56,5 @@ export const Scheduler = (props) => {
           }
     }
 
-    return [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted]
+    return [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die]
 }

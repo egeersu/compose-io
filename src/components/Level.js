@@ -11,7 +11,7 @@ import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
 
-export const Level = (day, group, experimentID) => {
+export const Level = (day, group, experimentID, die) => {
 
     // init shit based on props.day and config experiments 
     /*
@@ -39,7 +39,7 @@ export const Level = (day, group, experimentID) => {
     // Initialize Inventory
     const [inventory, setInventory] = useState({food1:10, food2:0, food3:0, food4:0, weapon1:0, weapon2:0, weapon3:0, weapon4:0})
 
-    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer()
+    const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer(die)
 
     // Movement
     const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement] = useWalk(mapX, setmapX, mapY, setmapY)

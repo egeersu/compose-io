@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {map_height, map_width} from '../config'
 
-export const usePlayer = () => {
+export const usePlayer = (die) => {
     
     const [alive, setalive] = useState(true)
     const [health, sethealth] = useState(100)
@@ -13,6 +13,7 @@ export const usePlayer = () => {
         sethealth(Math.max(health-value, 0))
         if (health === 0){
             setalive(false)
+            die()
         }
     }
 

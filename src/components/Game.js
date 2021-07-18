@@ -3,6 +3,7 @@ import CraftingScreen from './Crafting/CraftingScreen'
 
 import MainScreen from './MainScreen/MainScreen'
 import EndScreen from './EndScreen/EndScreen'
+import DeadScreen from './DeadScreen/DeadScreen'
 
 import Camera from './Camera'
 import {useKeyPress} from './useKeyPress'
@@ -16,7 +17,7 @@ import {game_duration} from '../config'
 
 const Game = (props) => {
 
-    const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted] = Scheduler()
+    const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die] = Scheduler()
 
     const [mapX, setmapX, 
         mapY, setmapY, 
@@ -25,7 +26,7 @@ const Game = (props) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel] = Level(day, props.group, props.experimentID)        
+        resetLevel] = Level(day, props.group, props.experimentID, die)        
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -47,6 +48,7 @@ const Game = (props) => {
                     starve(0.03)    
                 }
                 clockTick()    
+                
             },12)
             
             return () => {
@@ -65,6 +67,10 @@ const Game = (props) => {
 
     function end_screen() {
         return <EndScreen group={props.group}/>
+    }
+
+    function dead_screen() {
+        return <DeadScreen />
     }
 
     function game_ui() {
@@ -102,6 +108,8 @@ const Game = (props) => {
         {phase === 'crafting' ? crafting_ui() : null}
         {phase === 'main' ? main_screen(): null}
         {phase === 'end' ? end_screen(): null}
+        {phase === 'dead' ? dead_screen(): null}
+
         </>
     )
 }
