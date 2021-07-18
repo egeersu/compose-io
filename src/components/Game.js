@@ -13,9 +13,10 @@ import {Level} from './Level'
 
 import {game_duration} from '../config'
 
+
 const Game = (props) => {
 
-    const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
+    const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted] = Scheduler()
 
     const [mapX, setmapX, 
         mapY, setmapY, 
@@ -25,7 +26,6 @@ const Game = (props) => {
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
         resetLevel] = Level(day, props.group, props.experimentID)        
-
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -40,11 +40,13 @@ const Game = (props) => {
     useEffect(() => {
         if (phase === 'game') {
             const gameTimerId = setInterval(() => {
-                move()
-                check_reachable(playerX, playerY)
-                updateZombieDistance(playerX, playerY, takeDamage)
-                starve(0.03)
-                clockTick()
+                if (!frozen) {
+                    move()
+                    check_reachable(playerX, playerY)
+                    updateZombieDistance(playerX, playerY, takeDamage)
+                    starve(0.03)    
+                }
+                clockTick()    
             },12)
             
             return () => {
@@ -86,6 +88,9 @@ const Game = (props) => {
                     consumeWeapon={consumeWeapon} 
                     inventory={inventory}
                     gameTime={gameTime}
+                    setfrozen={setfrozen}
+                    tutorialCompleted={tutorialCompleted}
+                    settutorialCompleted={settutorialCompleted}
                 />
          </div>
         )

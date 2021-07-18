@@ -8,12 +8,20 @@ export const Scheduler = (props) => {
     const [startTime, setstartTime] = useState(() => Date.now())
     const [gameTime, setgameTime] = useState(0)
     const [numDays, setnumDays] = useState(() => experiments.length)
+    const [frozen, setfrozen] = useState(true)
+    const [tutorialCompleted, settutorialCompleted] = useState(false)
+
 
     const clockTick = () => {
-        const game_duration = experiments[day-1].duration
-        setgameTime(game_duration - Math.floor((Date.now() - startTime) / 1000))    
-        if (gameTime <= 0) {
-            nextPhase()
+        if (frozen) {
+            setstartTime(Date.now())
+        }
+        else {
+            const game_duration = experiments[day-1].duration
+            setgameTime(game_duration - Math.floor((Date.now() - startTime) / 1000))    
+            if (gameTime <= 0) {
+                nextPhase()
+            }                
         }
     }
 
@@ -44,5 +52,5 @@ export const Scheduler = (props) => {
           }
     }
 
-    return [phase, gameTime, day, clockTick, nextPhase]
+    return [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted]
 }

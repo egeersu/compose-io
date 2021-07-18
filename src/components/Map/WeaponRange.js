@@ -1,5 +1,4 @@
 import React from 'react'
-import target_image from "../../assets/target.png"
 import {weapons} from "../../config"
 
 const WeaponRange = (props) => {

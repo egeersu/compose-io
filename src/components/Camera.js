@@ -6,6 +6,7 @@ import HealthBar from './Map/HealthBar'
 import HungerBar from './Map/HungerBar'
 import Information from './Map/Information'
 import GameTimer from './GameTimer'
+import MessageBox from './MessageBox'
 
 
 const Camera = (props) => {
@@ -48,6 +49,7 @@ const Camera = (props) => {
             <div className='header'>
                 <h1 className='header-title'>COMPOSE.IO</h1>
             </div>
+            <MessageBox setfrozen={props.setfrozen} tutorialCompleted={props.tutorialCompleted} settutorialCompleted={props.settutorialCompleted}/>
         </div>
     )
 }
