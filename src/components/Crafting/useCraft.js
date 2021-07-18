@@ -9,6 +9,8 @@ export const useCraft = (inventory, experimentID, group, day) => {
     const [craftingSuccess, setcraftingSuccess] = useState()
     const [itemHovered, setitemHovered] = useState(null)
 
+    const ruleset = rules[group]
+
     const addItem = (item) => {
         if (inputList.length < input_size){
             if (inventory[item] > 0){
@@ -70,9 +72,10 @@ export const useCraft = (inventory, experimentID, group, day) => {
     }
 
     const craft = (e) => {
+        console.log('group: ', group)
         check_uncollected()
         var rule_found = false
-        rules.forEach((rule)=>{
+        ruleset.forEach((rule)=>{
             const rule_inputs = rule[0]
             if (inputList.toString() === rule_inputs.toString()) {
                 const rule_outputs = rule[1]

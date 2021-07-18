@@ -147,8 +147,26 @@ const flexible_to_strict = [
     [['weapon2', 'weapon2'], ['weapon4']],
 ]
 
+const strict_to_flexible = [
+    [['food1', 'food1'], ['food2']],
+    [['food1', 'food1', 'food1'], ['food3']],
+    [['food2', 'food2'], ['food4']],
+    [['weapon1', 'weapon1'], ['weapon2']],
+    [['weapon1', 'food1', 'food1'], ['food3']],
+    [['weapon1', 'weapon2'], ['weapon3']],
+    [['weapon2', 'weapon1'], ['weapon3']],
+    [['weapon2', 'weapon2'], ['weapon4']],
+    [['weapon1', 'weapon3'], ['weapon4']],
+    [['weapon3', 'weapon1'], ['weapon4']],
+    [['weapon1', 'weapon2', 'weapon1'], ['weapon4']],
+    [['weapon2', 'weapon1', 'weapon1'], ['weapon4']],
+    [['weapon1', 'weapon1', 'weapon2'], ['weapon4']],    
+]
 
-const rules = flexible_to_strict
 
+const rules = {
+    1: flexible_to_strict,
+    2: strict_to_flexible
+}
 
 export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items, game_duration, experiments}

@@ -26,8 +26,8 @@ function App() {
             group1 = record.get('Group1');
             group2 = record.get('Group2');
         });
-        if (group2 >= group1) {setgroup(1); console.log('set to', group )}
-        else {setgroup(2); console.log('set to', group)}
+        if (group2 >= group1) {setgroup(1)}
+        else {setgroup(2)}
         if (group === 1 || group === 2) {setfetched(true)}
       })
   }, [fetched])
