@@ -30,10 +30,10 @@ const MainScreen = (props) => {
             </div>
 
             <div className='contact-div' onClick={()=> window.open("https://egeersu.github.io/", "_blank")}>
-                    <p className='contact-text'> Principal Investigator</p>
+                    <p className='contact-text'>Principal Investigator</p>
                     <p className='contact-text'>EGE ERSÜ</p> 
-                    <p className='contact-text'> The University of Edinburgh, School of Informatics </p>
-                    <p className='contact-text'> contact: s2124950@ed.ac.uk</p>
+                    <p className='contact-text'>The University of Edinburgh, School of Informatics </p>
+                    <p className='contact-text'>contact: s2124950@ed.ac.uk</p>
             </div>
 
             <div className='button-div'>

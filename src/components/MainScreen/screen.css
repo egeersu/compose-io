@@ -94,6 +94,8 @@
     align-items: center;
     text-align: center;
     padding: 1em;
+    flex: 1;
+    flex-wrap: wrap;
 }
 
 .contact-div:hover{
@@ -106,11 +108,7 @@
     font-size: 1rem;
     text-align: center;
     word-wrap: break-word;
-    width: 100%;
-    margin: 0em;
-    padding: 0em;
-    transform: none;
-    text-transform: none;
+    width: 100vw;
 }
 
 
@@ -121,7 +119,7 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    height: 20vh;
+    height: 2vh;
     width: 100%;
     padding: 0;
 }
