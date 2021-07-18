@@ -27,22 +27,22 @@ const MainScreen = (props) => {
                 <p className='consent-text'> 3) Declaring that you are 18 years old or older. </p>
                 <p className='consent-text'>  The experiment should take no longer than 15 minutes. </p>
                 <p className='consent-text'> Title of Study: Studying Compositional Generalization in Virtual Environments </p>
-                <div className='contact-div' 
-                    onClick={()=> window.open("https://egeersu.github.io/", "_blank")}>
+            </div>
+
+            <div className='contact-div' onClick={()=> window.open("https://egeersu.github.io/", "_blank")}>
                     <p className='contact-text'> Principal Investigator</p>
                     <p className='contact-text'>EGE ERSÜ</p> 
                     <p className='contact-text'> The University of Edinburgh, School of Informatics </p>
                     <p className='contact-text'> contact: s2124950@ed.ac.uk</p>
-                </div>
             </div>
 
             <div className='button-div'>
                 <button className='start-button' 
-                onClick={props.nextPhase} 
-                onMouseEnter={(e)=>{
-                    document.getElementsByClassName('title')[0].style.color="red"
-                }}
-                onMouseLeave={(e)=>{document.getElementsByClassName('title')[0].style.color="white"}}
+                    onClick={props.nextPhase} 
+                    onMouseEnter={(e)=>{
+                        document.getElementsByClassName('title')[0].style.color="red"
+                    }}
+                    onMouseLeave={(e)=>{document.getElementsByClassName('title')[0].style.color="white"}}
                 >START</button>
             </div>
             

@@ -21,7 +21,7 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    height: 25%;
+    height: 20%;
     width: 80%;
     padding: 0;
     margin: 0;
@@ -57,7 +57,7 @@
 
 .consent-div {
     width: 100%;
-    height: 50%;
+    height: 30vh;
     background-color: rgb(59, 59, 59);
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@
     font-size: 2em;
     letter-spacing: 0.2em;
     text-align: center;
-    height: 10%;
+    height: 3vh;
 }
 
 .consent-text {
@@ -80,7 +80,6 @@
     word-wrap: break-word;
     width: 100%;
     margin: 0em;
-    height: 8%;
     padding: 0em;
     transform: none;
     text-transform: none;
@@ -88,15 +87,13 @@
 }
 
 .contact-div {
-    background-color: purple;
+    background-color: red;
     width: 100%;
-    height: 25%;
-    font-size: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0.5em;
+    padding: 1em;
 }
 
 .contact-div:hover{
@@ -106,14 +103,14 @@
 
 .contact-text {
     color: white;
-    background-color: rgba(0, 0, 0, 0.203);
+    font-size: 1rem;
     text-align: center;
     word-wrap: break-word;
-    font-size: auto;
-    height: 25%;
     width: 100%;
     margin: 0em;
     padding: 0em;
+    transform: none;
+    text-transform: none;
 }
 
 
@@ -124,7 +121,7 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    height: 25%;
+    height: 20vh;
     width: 100%;
     padding: 0;
 }

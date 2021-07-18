@@ -84,7 +84,7 @@ export const useCraft = (inventory, experimentID, group, day) => {
             }
         })
         if (!rule_found) {
-            setoutputList([])
+            setoutputList(inputList)
             setinputList([])
             setSuccess('fail')
             setcraftingSuccess(false)

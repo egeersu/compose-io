@@ -31,7 +31,7 @@ const CraftingScreen = (props) => {
                 <div className='inputs-box'>
                     <Inputs inventory={props.inventory} inputList={inputList} removeItem={removeItem} setitemHovered={setitemHovered}/>
                 </div>
-                <button className='compose' onClick={()=>craft()}>COMPOSE</button>
+                <button className='compose' style={{}}onClick={()=>craft()}>CRAFT</button>
                 <div className='inputs-box'>
                     <Outputs inventory={props.inventory} outputList={outputList} collectItem={collectItem} success={success} setitemHovered={setitemHovered}/>
                 </div>

@@ -31,24 +31,31 @@
 .compose {
     margin: 0 3rem 0 3rem;
     font-family: din-condensed, Arial, Helvetica, sans-serif;
-    background-color: rgb(201, 29, 29);
-    color: black;
-    width: 12rem;
-    height: 5rem;
+    background-color: black;
+    color: white;
+    width: 120px;
+    height: 120px;
     font-size: 1.7rem;
     padding: 0;
     border-width: 3px;
     border-style: solid;
-    border-color: black;
-}
+    border-color: rgb(209, 209, 209);
+    background-size: cover;
+    font-weight: 600;
+    background-image: url('../../assets/hammer.png');
+  }
 
 .compose:hover {
-    background-color: red;
-    color: black;
-    border-width: 6px;
+    background-color: black;
+    color: white;
+    width: 120px;
+    height: 120px;
     border-style: solid;
-    border-color: black;
+    border-color: white;
     font-weight: 600;
+    border-width: 7px;
+    background-image: url('../../assets/hammer.png');
+    background-size: cover;
 }
 
 .instruction-line {

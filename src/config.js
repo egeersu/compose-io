@@ -25,13 +25,13 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 
 const day1 = {
-    duration: 3,
+    duration: 45,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
     output_size: 3,
     num_weapon: 5,
-    num_zombies: 1,
+    num_zombies: 5,
     num_items: 50,
     loot_table: {
         food1: 0.35,
@@ -46,13 +46,13 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 15,
+    duration: 45,
     map_height: 3500,
     map_width: 3500,
     input_size: 3,
     output_size: 3,
     num_weapon: 5,
-    num_zombies: 5,
+    num_zombies: 30,
     num_items: 20,
     loot_table: {
         food1: 0.5,
@@ -87,7 +87,7 @@ const day3 = {
     }
 }
 
-const experiments = [day1]
+const experiments = [day1, day2]
 
 const images = {
     food1: food1_png,
@@ -131,26 +131,24 @@ const output_size = 3
 const primitives_enabled = false
 
 // TODO: RULES
-const flexible = [
-    [['food1'], ['food1']],
-    [['food2'], ['food2']],
-    [['food3'], ['food3']],
+const flexible_to_strict = [
     [['food1', 'food1'], ['food2']],
-    [['weapon1'], ['weapon1']],
-    [['weapon2'], ['weapon2']],
-    [['weapon3'], ['weapon3']],
     [['food1', 'food1', 'food1'], ['food3']],
     [['food1', 'food2'], ['food3']],
     [['food2', 'food1'], ['food3']],
     [['food2', 'food2'], ['food4']],
+    [['food1', 'food3'], ['food4']],
+    [['food3', 'food1'], ['food4']],
+    [['food1', 'food2', 'food1'], ['food4']],
+    [['food2', 'food1', 'food1'], ['food4']],
+    [['food1', 'food1', 'food2'], ['food4']],    
+    [['weapon1', 'weapon1'], ['weapon1']],
     [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
-    [['weapon2', 'weapon1'], ['weapon3']],
-    [['weapon1', 'weapon2'], ['weapon3']],
-    [['food3', 'food3'], ['food3', 'food3']]
+    [['weapon2', 'weapon2'], ['weapon4']],
 ]
 
 
-const rules = flexible
+const rules = flexible_to_strict
 
 
 export {map_height, map_width, num_food, num_weapon, num_zombies, weapons, foods, input_size, output_size, images, rules, loot_table, num_items, game_duration, experiments}
