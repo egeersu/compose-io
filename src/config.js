@@ -158,7 +158,7 @@ const strict_to_flexible = [
     [['weapon2', 'weapon2'], ['weapon4']],
     [['weapon1', 'weapon3'], ['weapon4']],
     [['weapon3', 'weapon1'], ['weapon4']],
-    [['weapon1', 'weapon1', 'weapon1'], ['weapon4']],
+    [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
     [['weapon1', 'weapon2', 'weapon1'], ['weapon4']],
     [['weapon2', 'weapon1', 'weapon1'], ['weapon4']],
     [['weapon1', 'weapon1', 'weapon2'], ['weapon4']],    
