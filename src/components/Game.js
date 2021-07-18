@@ -17,8 +17,6 @@ const Game = (props) => {
 
     const [phase, gameTime, day, clockTick, nextPhase] = Scheduler()
 
-    console.log('game group: ', props.group)
-
     const [mapX, setmapX, 
         mapY, setmapY, 
         playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, 

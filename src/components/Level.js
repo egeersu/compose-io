@@ -23,8 +23,6 @@ export const Level = (day, group, experimentID) => {
     * new zombies
     */
 
-    console.log("level group: ", group)
-
     const resetLevel = () => {
         setmapX(window.innerWidth/2 - 80)
         setmapY(window.innerHeight/2 - 100)
