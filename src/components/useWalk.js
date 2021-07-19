@@ -12,9 +12,13 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
 
     const [direction, setdirection] = useState('right')
     const [frame, setframe] = useState(['idle', 0])
+    const [lastAdd, setlastAdd] = useState(()=>Date.now())
 
     const frameLag = 1
     const [lagCounter, setlagCounter] = useState(0)
+
+
+
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
@@ -23,7 +27,7 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
         if (index === -1 && walking_keys.includes(e.code)) {
             setheldDirections([e.code, ...heldDirections])
         }
-        //console.log(heldDirections)
+        setlastAdd(Date.now())
     }
 
     const removeDirection = (e) =>{
@@ -33,14 +37,16 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
             array_copy.splice(index, 1)
         }
         setheldDirections(array_copy)
-        if (heldDirections.length > 2) {
-            setheldDirections([])
-        }
     }
 
     const move = () => {
 
+        if (Date.now() - lastAdd > 3000){
+            setheldDirections([])
+        }
+
         const top_key = heldDirections[0]
+        //console.log(heldDirections)
        
         if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1])}
         if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed]); setframe((prev)=>['run', prev[1]+1])}

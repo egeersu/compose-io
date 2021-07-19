@@ -25,11 +25,8 @@ const EndScreen = (props) => {
         })
 
         read_promise.then((res)=>{
-            console.log('then res: ', res)
             const group1_airtable = res[0]
             const group2_airtable = res[1]
-            console.log(group1_airtable)
-            console.log(group2_airtable)
 
             base('experimentTracker').update([
                 {
