@@ -37,7 +37,7 @@ export const Level = (day, group, experimentID, die) => {
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
 
     // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:10, food2:0, food3:0, food4:0, weapon1:0, weapon2:0, weapon3:0, weapon4:0})
+    const [inventory, setInventory] = useState({food1:12, food2:0, food3:0, food4:0, weapon1:0, weapon2:0, weapon3:0, weapon4:0})
 
     const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer(die)
 
