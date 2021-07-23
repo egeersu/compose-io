@@ -18,15 +18,15 @@ const MainScreen = (props) => {
                 <div className='player-icon'></div>
             </div>
             
-            
             <div className='consent-div'>
                 <h1 className='consent-title'>CONSENT FORM</h1>
-                <p className='consent-text'> By clicking the START button you are </p>
-                <p className='consent-text'> 1) Consenting to your gameplay data being recorded and used in data analysis.  </p>
-                <p className='consent-text'> 2) Being notified that your personal information such as name/geolocation will NOT be recorded. </p>
-                <p className='consent-text'> 3) Declaring that you are 18 years old or older. </p>
-                <p className='consent-text'>  The experiment should take no longer than 15 minutes. </p>
+                <p className='consent-text'> By clicking the START button you agree that:</p>
+                <p className='consent-text'> (1) I have read and understood the Participant Information Sheet for this study, that I have had the opportunity to ask questions to the Principal Investigator via email, and that any questions I had were answered to my satisfaction.</p>
+                <p className='consent-text'> (2) My participation is voluntary, and that I can withdraw at any time without giving a reason. Withdrawing will not affect any of my rights. </p>
+                <p className='consent-text'> (3) I consent to my anonymised data being used in academic publications and presentations.  </p>
+                <p className='consent-text'> (4) I am 18 years of age or older. </p>
                 <p className='consent-text'> Title of Study: Studying Compositional Generalization in Virtual Environments </p>
+                <p className='consent-text'> The experiment should take no longer than 15 minutes. </p>
             </div>
 
             <div className='contact-div' onClick={()=> window.open("https://egeersu.github.io/", "_blank")}>
