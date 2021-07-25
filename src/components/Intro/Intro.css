@@ -1,0 +1,149 @@
+.intro-screen {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: black;
+}
+
+.title-compose {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.title{
+    color: white;
+    font-size: auto;
+    letter-spacing: 0.5rem;
+    background-color: black;
+
+}
+
+.zombies-icon {
+    background-image: url('../../assets/zombie-icon.png');
+    background-size: cover;
+    background-color: purple;
+    margin-right: 20px;
+}
+
+.player-icon {
+    background-image: url('../../assets/run.png');
+    background-size: cover;
+
+    background-color: purple;
+    margin-left: 20px;
+}
+
+.text-blocks {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+}
+
+.project-information {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(24, 23, 23);
+}
+
+.project-information2 {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(46, 44, 44);
+}
+
+
+.consent-title {
+    width: 100%;
+    margin: 1rem auto;
+    font-size: 2.5rem;    
+}
+
+.consent-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(71, 66, 66);
+}
+
+.consent-text2 {
+    width: 100%;
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 0;
+}
+
+.consent-text3 {
+    width: 100%;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.div-button2 {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 15%;
+    flex-wrap: wrap;
+}
+
+.starter-button {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: white;
+    color: black;
+    font-size: 30px;
+    flex-wrap: wrap;
+    width: 10em;
+    height: 2em;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.starter-button:hover {
+    font-family: 'Odibee Sans', cursive;  
+    background-color: red;
+    color: black;
+    font-size: 30px;
+    flex-wrap: wrap;
+    border-color: rgb(85, 3, 3);
+    border-style: solid;
+    border-width: 4px;
+}
+
+a {
+    color:white;
+    text-decoration: underline;
+}

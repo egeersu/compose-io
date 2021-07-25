@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import CraftingScreen from './Crafting/CraftingScreen'
 
-import MainScreen from './MainScreen/MainScreen'
+import Intro from './Intro/Intro'
 import EndScreen from './EndScreen/EndScreen'
 import DeadScreen from './DeadScreen/DeadScreen'
 
@@ -58,7 +58,7 @@ const Game = (props) => {
       })
 
     function main_screen() {
-        return <MainScreen nextPhase={nextPhase}/>
+        return <Intro nextPhase={nextPhase}/>
     }
       
     function crafting_ui(){
