@@ -4,7 +4,7 @@ import {map_height, map_width} from '../config'
 export const useWalk = (mapX, setmapX, mapY, setmapY) => {
     
     const [heldDirections, setheldDirections] = useState([])
-    const [playerSpeed, setplayerSpeed] = useState(9)
+    const [playerSpeed, setplayerSpeed] = useState(7)
     const [velocity, setvelocity] = useState([0,0])
 
     const [playerX, setplayerX] = useState(0)
@@ -16,9 +16,6 @@ export const useWalk = (mapX, setmapX, mapY, setmapY) => {
 
     const frameLag = 1
     const [lagCounter, setlagCounter] = useState(0)
-
-
-
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
