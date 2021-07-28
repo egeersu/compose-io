@@ -75,11 +75,11 @@ const day3 = {
     num_zombies: 60,
     num_items: 10,
     loot_table: {
-        food1: 1.0,
+        food1: 0.5,
         food2: 0,
         food3: 0,
         food4: 0,
-        weapon1: 0,
+        weapon1: 0.5,
         weapon2: 0,
         weapon3: 0,
         weapon4: 0     
