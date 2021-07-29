@@ -45,7 +45,7 @@ const Game = (props) => {
                     move()
                     check_reachable(playerX, playerY)
                     updateZombieDistance(playerX, playerY, takeDamage)
-                    starve(0.03)    
+                    starve(0.06)    
                 }
                 clockTick()    
                 
