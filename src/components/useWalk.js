@@ -1,11 +1,13 @@
 import {useState} from 'react'
-import {map_height, map_width, experiments} from '../config'
+import {experiments} from '../config'
 
 export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
     
     const [heldDirections, setheldDirections] = useState([])
-    // const [playerSpeed, setplayerSpeed] = useState(experiments[day-1]['playerSpeed'])
-    const playerSpeed = experiments[day-1]['playerSpeed']
+    const playerSpeed = experiments[day-1].playerSpeed
+    const map_height = experiments[day-1].map_height
+    const map_width = experiments[day-1].map_width
+
 
     const [velocity, setvelocity] = useState([0,0])
 

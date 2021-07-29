@@ -5,8 +5,6 @@ import {experiments} from '../config'
 
 import {useItem} from './Map/useItem'
 import {useZombie} from './Enemies/useZombie'
-import {useKeyPress} from './useKeyPress'
-import {useKeyUp} from './useKeyUp'
 import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 

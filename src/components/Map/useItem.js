@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {WeightedSampler} from './WeightedSampler'
-import {map_height, map_width, num_food, num_weapon, weapons, foods, num_items, experiments} from '../../config'
+import {weapons, foods, experiments} from '../../config'
 
 export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day) => {
 
@@ -14,7 +14,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const item_max_y = map_height - 50
     const item_min_x = 600
     const item_min_y = 600
-    
+
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()

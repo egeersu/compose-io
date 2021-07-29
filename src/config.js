@@ -22,9 +22,6 @@ const food3 = {health: 50, hunger: 50, image: food3_png}
 const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
-const map_height = 3500
-const map_width = 3500
-
 const day1 = {
     duration: 20,
     map_height: 4000,
@@ -156,4 +153,4 @@ const rules = {
     2: strict_to_flexible 
 }
 
-export {map_height, map_width, weapons, foods, input_size, output_size, images, rules, experiments}
+export {weapons, foods, input_size, output_size, images, rules, experiments}

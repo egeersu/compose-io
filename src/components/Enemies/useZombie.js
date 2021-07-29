@@ -1,5 +1,5 @@
 import {memo, useState} from 'react'
-import {map_height, map_width, experiments} from '../../config'
+import {experiments} from '../../config'
 
 
 export const useZombie = (day) => {

@@ -5,7 +5,6 @@ import WeaponComp from './WeaponComp'
 import ZombieComp from '../Enemies/ZombieComp'
 import LootingPanel from './LootingPanel'
 import Bunker from './Bunker/Bunker'
-import {map_width, map_height} from '../../config'
 
 import {experiments} from '../../config'
 
