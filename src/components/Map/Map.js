@@ -7,13 +7,15 @@ import LootingPanel from './LootingPanel'
 import Bunker from './Bunker/Bunker'
 import {map_width, map_height} from '../../config'
 
+import {experiments} from '../../config'
+
 const Map = (props) => {
 
     const map_style = {
         top: props.mapY,
         left: props.mapX,
-        width: String(map_width) + 'px',
-        height: String(map_height) + 'px'
+        width: String(experiments[props.day-1]['map_width']) + 'px',
+        height:String(experiments[props.day-1]['map_height']) + 'px'
     }
 
     return (

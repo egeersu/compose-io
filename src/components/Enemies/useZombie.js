@@ -4,15 +4,21 @@ import {map_height, map_width, experiments} from '../../config'
 
 export const useZombie = (day) => {
 
+    const num_zombies = experiments[day-1].num_zombies
+    const map_height = experiments[day-1].map_height
+    const map_width = experiments[day-1].map_width
+    const chase_speed = experiments[day-1].zombieSpeedAttack
+    const idle_speed = experiments[day-1].zombieSpeedIdle
+    const aggroRange = experiments[day-1].zombieAggro
+
+
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
 
-    const chase_speed = 2.1
-    const idle_speed = 0.6
-    const aggroRange = 250
+    // const chase_speed = 2.1
+    // const idle_speed = 0.6
+    // const aggroRange = 250
     const frame_lag = 3
-
-    const num_zombies = experiments[day-1].num_zombies
 
     const initZombieList = (maxX, maxY, numZombie) => {
         /*

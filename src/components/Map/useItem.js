@@ -4,18 +4,20 @@ import {map_height, map_width, num_food, num_weapon, weapons, foods, num_items, 
 
 export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day) => {
 
+
+    const num_items = experiments[day-1].num_items
+    const loot_table = experiments[day-1].loot_table     
+    const map_height = experiments[day-1].map_height
+    const map_width = experiments[day-1].map_width
+
     const item_max_x = map_width - 50
     const item_max_y = map_height - 50
     const item_min_x = 600
     const item_min_y = 600
-
+    
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
-    
-
-    const num_items = experiments[day-1].num_items
-    const loot_table = experiments[day-1].loot_table     
 
     const initItems = () => {
         console.log('init items!', day)

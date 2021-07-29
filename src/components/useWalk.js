@@ -9,8 +9,6 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
 
     const [velocity, setvelocity] = useState([0,0])
 
-    console.log(playerSpeed)
-
     const [playerX, setplayerX] = useState(0)
     const [playerY, setplayerY] = useState(0)
 

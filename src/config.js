@@ -26,14 +26,17 @@ const map_height = 3500
 const map_width = 3500
 
 const day1 = {
-    duration: 60,
+    duration: 20,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
     output_size: 3,
-    num_zombies: 7,
+    num_zombies: 17,
     num_items: 25,
     playerSpeed: 8,
+    zombieSpeedIdle: 0.6,
+    zombieSpeedAttack: 2.1,
+    zombieAggro: 250,
     loot_table: {
         food1: 1.0,
         food2: 0,
@@ -47,14 +50,17 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 100,
+    duration: 10,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
     output_size: 3,
-    num_zombies: 10,
+    num_zombies: 12,
     num_items: 30,
     playerSpeed: 8,
+    zombieSpeedIdle: 0.9,
+    zombieSpeedAttack: 2.3,
+    zombieAggro: 250,
     loot_table: {
         food1: 0,
         food2: 0,
@@ -69,14 +75,17 @@ const day2 = {
 
 const day3 = {
     duration: 120,
-    map_height: 2000,
-    map_width: 2000,
+    map_height: 4000,
+    map_width: 4000,
     input_size: 3,
     output_size: 3,
     num_weapon: 5,
     num_zombies: 60,
     num_items: 0,
     playerSpeed: 11,
+    zombieSpeedIdle: 1.5,
+    zombieSpeedAttack: 2.4,
+    zombieAggro: 150,
     loot_table: {
         food1: 0,
         food2: 0.5,

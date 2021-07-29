@@ -1,4 +1,3 @@
-import {map_width, map_height} from '../config'
 import Map from './Map/Map'
 import ControlScreen from './Map/ControlScreen'
 import {useState} from 'react'
@@ -31,6 +30,7 @@ const Camera = (props) => {
                 reachableItem={props.reachableItem}
                 weaponHovered={weaponHovered}
                 foodHovered={foodHovered}
+                day={props.day}
             />
             <HealthBar playerHealth={props.playerHealth}/>
             <HungerBar playerHunger={props.playerHunger}/>

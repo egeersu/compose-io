@@ -97,6 +97,7 @@ const Game = (props) => {
                     setfrozen={setfrozen}
                     tutorialCompleted={tutorialCompleted}
                     settutorialCompleted={settutorialCompleted}
+                    day={day}
                 />
          </div>
         )
