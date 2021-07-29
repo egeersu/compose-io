@@ -76,7 +76,7 @@ const day3 = {
     num_weapon: 5,
     num_zombies: 60,
     num_items: 0,
-    playerSpeed: 14,
+    playerSpeed: 12,
     loot_table: {
         food1: 0,
         food2: 0.5,
