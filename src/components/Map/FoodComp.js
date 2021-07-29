@@ -1,5 +1,4 @@
-import food_png from "../../assets/foods/food1.png"
-//import food_png from "../assets/Zombie1/animation/Attack1.png"
+import {images} from '../../config'
 
 import React from 'react'
 
@@ -11,7 +10,7 @@ const FoodComp = (props) => {
     
     const food_style = {
         position: 'absolute',
-        backgroundImage: `url(${food_png})`,
+        backgroundImage: `url(${images[props.itemName]})`,
         left: props.x,
         top: props.y,
         backgroundSize: 'cover',

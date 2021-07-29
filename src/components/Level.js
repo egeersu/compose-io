@@ -24,11 +24,11 @@ export const Level = (day, group, experimentID, die) => {
     */
 
     const resetLevel = () => {
+        resetItems()
         setmapX(window.innerWidth/2 - 80)
         setmapY(window.innerHeight/2 - 100)
         resetPlayer()
         resetMovement()
-        resetItems()
         resetZombies()
     }
 
@@ -42,7 +42,7 @@ export const Level = (day, group, experimentID, die) => {
     const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer(die)
 
     // Movement
-    const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement] = useWalk(mapX, setmapX, mapY, setmapY)
+    const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement] = useWalk(mapX, setmapX, mapY, setmapY, day)
 
     // Zombies
     const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)

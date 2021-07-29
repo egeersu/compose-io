@@ -12,16 +12,16 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
-    const num_items = experiments[day-1].num_items
+    
 
-    const loot_table = experiments[day-1].loot_table 
+    const num_items = experiments[day-1].num_items
+    const loot_table = experiments[day-1].loot_table     
 
     const initItems = () => {
+        console.log('init items!', day)
         var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
         var weights = [loot_table['food1'], loot_table['food2'], loot_table['food3'], loot_table['food4'], loot_table['weapon1'], loot_table['weapon2'], loot_table['weapon3'], loot_table['weapon4']]
         const sampler = new WeightedSampler(items, weights);
-        const random_items = Array.apply(null, Array(num_items)).map(() => sampler.get())//returns array => [0]
-
         const food_arr = []
         const weapon_arr = []
 
@@ -32,20 +32,21 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 food_arr.push({itemType: 'food', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})
             }   
             else {
-                weapon_arr.push({itemType: 'food', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})
+                weapon_arr.push({itemType: 'weapon', itemName:bunker_items[i], id: 100+i, x:30+100*i, y:30, reachable: false})
             }         
         }
 
+        const random_items = Array.apply(null, Array(num_items)).map(() => sampler.get())//returns array => [0]
         for (var i = 0; i<random_items.length; i++) {
             const random_item = random_items[i]
             const random_x = Math.floor(Math.random() * (item_max_x - item_min_x) + item_min_x)
             const random_y = Math.floor(Math.random() * (item_max_y - item_min_y) + item_min_y)
             if (['food1', 'food2', 'food3', 'food4'].includes(random_item)){
-                const new_food = {itemType: 'food', itemName:"food1", id: i, x: random_x, y:random_y, reachable: false}
+                const new_food = {itemType: 'food', itemName:random_item, id: i, x: random_x, y:random_y, reachable: false}
                 food_arr.push(new_food)
             }
             if (['weapon1', 'weapon2', 'weapon3', 'weapon4'].includes(random_item)){
-                const new_weapon = {itemType: 'weapon', itemName: "weapon1", id: i, x: random_x, y:random_y, reachable: false}
+                const new_weapon = {itemType: 'weapon', itemName: random_item, id: i, x: random_x, y:random_y, reachable: false}
                 weapon_arr.push(new_weapon)
             }
         }
@@ -54,15 +55,16 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     }
 
     const resetItems = () => {
-        set_item_list(initItems())
-        set_food_list(item_list[0])
-        set_weapon_list(item_list[1])
+        console.log('reset items!')
+        var [food_arr, weapon_arr] = initItems()
+        set_food_list(food_arr)
+        set_weapon_list(weapon_arr)
+
     }
 
     const [item_list, set_item_list] = useState(() => initItems())
     const [food_list, set_food_list] = useState(() => item_list[0])
     const [weapon_list, set_weapon_list] = useState(() => item_list[1])
-
 
     const add_weapon = (weapon) => {
         set_weapon_list(prev => [...prev, weapon])
