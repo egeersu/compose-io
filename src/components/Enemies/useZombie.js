@@ -176,7 +176,7 @@ export const useZombie = (day) => {
         //attack zombies
         Object.entries(zombies).map(([zombie_key, zombie]) => {
             if (zombie.aggro && zombie.distance < 50 && zombie.alive){
-                takeDamage(0.3)
+                takeDamage(0.5)
             }                    
         })
     }
