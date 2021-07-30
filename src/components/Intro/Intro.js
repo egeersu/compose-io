@@ -127,7 +127,7 @@ const Intro = (props) => {
 
             <div className='div-button2'>
                 {stage === 0 ? <button className='starter-button' onClick={()=>setStage(1)}>NEXT</button> : null}
-                {stage === 1 ? <button className='starter-button' onClick={()=>props.nextPhase()}>START</button> : null}                
+                {stage === 1 ? <button className='starter-button' onClick={()=>props.nextPhase()}>I CONSENT</button> : null}                
             </div>
 
         </div>
