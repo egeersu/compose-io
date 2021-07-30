@@ -48,7 +48,6 @@ const ZombieComp = (props) => {
         height: zombie.alive ? zombie_height : 80,
         width: zombie.alive > 0 ? zombie_width : 80,
         opacity: zombie.health > 0 ? '1.0' : '0.7',
-        scale: '15%',
         transform: zombie.direction === 'right' ? null : 'rotateY(180deg)',
     }
 

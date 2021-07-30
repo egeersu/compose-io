@@ -18,7 +18,6 @@ const FoodComp = (props) => {
         backgroundColor: 'rgb(10, 99, 158, 0.7)',      
         height: '65px',
         width: '65px',
-        scale: '20%',
         borderStyle: 'solid',
         borderWidth: reachable,
         borderColor: border_color,

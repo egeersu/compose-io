@@ -18,7 +18,6 @@ const WeaponComp = (props) => {
         backgroundColor: 'rgb(228, 51, 160, 0.7)',      
         height: '65px',
         width: '65px',
-        scale: '0%',
         borderStyle: 'solid',
         borderWidth: reachable,
         borderColor: border_color,

@@ -25,8 +25,6 @@ import run21 from '../../assets/cyber/Run/21.png'
 const Player = (props) => {
 
     const numFrames = 21
-    const avatarHeight = '140px'
-    const avatarWidth = '140px'
 
     const avatarBasics = {
         backgroundRepeat: 'no-repeat',
