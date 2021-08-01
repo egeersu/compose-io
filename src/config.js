@@ -24,7 +24,7 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 const day1 = {
     // duration: 90,
-    duration: 90,
+    duration: 5,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -49,7 +49,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 90,
+    duration: 5,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -74,7 +74,7 @@ const day2 = {
 }
 
 const day3 = {
-    duration: 90,
+    duration: 5,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
