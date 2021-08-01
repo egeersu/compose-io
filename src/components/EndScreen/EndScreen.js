@@ -27,7 +27,7 @@ const EndScreen = (props) => {
               })
 
         })
-
+        
         read_promise.then((res)=>{
             const group1_airtable = res[0]
             const group2_airtable = res[1]
@@ -48,24 +48,24 @@ const EndScreen = (props) => {
                 records.forEach(function(record) {
                   console.log(record.get('Group1'));
                 });
-              });
-
-              base('winners').update([
-                {
-                  "id": "rechb4FV3hdZ1QwZn",
-                  "fields": {
-                    "ID": 'randomid'
-                  }
+              })
+        }).then((res)=>{
+            base('winners').update([
+              {
+                "id": "rechb4FV3hdZ1QwZn",
+                "fields": {
+                  "ID": 'randomid'
                 }
-              ], function(err, records) {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
-                records.forEach(function(record) {
-                  console.log(record.get('Group1'));
-                });
+              }
+            ], function(err, records) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+              records.forEach(function(record) {
+                console.log(record.get('Group1'));
               });
+            });
         })
 
 
