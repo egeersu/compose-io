@@ -87,6 +87,16 @@ const MessageBox = (props) => {
                     </div>
                 </div>
                 <p style={{width: '100%'}}>Zombies will start chasing you if you get too close. If they catch you they will damage your health. <br />They are only dangerous if it's a large group. You can kill them with weapons. </p>
+                <button className='next' style={{width: '50%'}} onClick={()=>setMessage('tutorial')}>NEXT</button>
+            </div>
+            )
+    }
+
+    function tutorial_tutorial() {
+        return (
+            <div style={box_style}>
+                <h1 style={{width: '100%'}}>TUTORIAL</h1>
+                <p style={{width: '100%'}}> The first level serves as a tutorial. <br /> Just focus on picking up resources while avoiding zombies.</p>
                 <button className='next' style={{width: '50%'}} onClick={()=>{setMessage('none'); props.setfrozen(false); props.settutorialCompleted(true)}}>DONE</button>
             </div>
             )
@@ -99,6 +109,7 @@ const MessageBox = (props) => {
                 {message === 'looting' ? tutorial_loot() : null}
                 {message === 'health' ? tutorial_health() : null}
                 {message === 'enemies' ? tutorial_enemy() : null}
+                {message === 'tutorial' ? tutorial_tutorial() : null}
             </div>
         )       
     }
