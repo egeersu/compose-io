@@ -10,7 +10,7 @@ export const useZombie = (day) => {
     const chase_speed = experiments[day-1].zombieSpeedAttack
     const idle_speed = experiments[day-1].zombieSpeedIdle
     const aggroRange = experiments[day-1].zombieAggro
-
+    const zombieHealth = experiments[day-1].zombieHealth
 
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
@@ -35,7 +35,8 @@ export const useZombie = (day) => {
                 id: i, 
                 x: random_x, 
                 y:random_y, 
-                health: 100, 
+                health: zombieHealth, 
+                maxHealth: zombieHealth,
                 alive: true,
                 aggro: false,
                 distance: 1e6,

@@ -23,6 +23,7 @@ const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 const day1 = {
+    // duration: 90,
     duration: 90,
     map_height: 4000,
     map_width: 4000,
@@ -33,6 +34,7 @@ const day1 = {
     playerSpeed: 8,
     zombieSpeedIdle: 0.6,
     zombieSpeedAttack: 2.1,
+    zombieHealth: 20,
     zombieAggro: 250,
     loot_table: {
         food1: 1.0,
@@ -53,10 +55,11 @@ const day2 = {
     input_size: 3,
     output_size: 3,
     num_zombies: 12,
-    num_items: 40,
+    num_items: 45,
     playerSpeed: 8,
     zombieSpeedIdle: 0.9,
     zombieSpeedAttack: 2.3,
+    zombieHealth: 40,
     zombieAggro: 250,
     loot_table: {
         food1: 0,
@@ -81,7 +84,8 @@ const day3 = {
     num_items: 0,
     playerSpeed: 11,
     zombieSpeedIdle: 2.4,
-    zombieSpeedAttack: 6.5,
+    zombieSpeedAttack: 5,
+    zombieHealth: 200,
     zombieAggro: 900,
     loot_table: {
         food1: 1.0,

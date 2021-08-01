@@ -80,7 +80,7 @@ const ZombieComp = (props) => {
 
     const healthFluid_style = {
         position: 'absolute',
-        width: zombie.health + '%',
+        width: (zombie.health/zombie.maxHealth)*100 + '%',
         height: '100%',
         backgroundColor: zombie.aggro ? 'red' : 'gray',
 
@@ -88,6 +88,9 @@ const ZombieComp = (props) => {
 
     const healthText_style = {
         position: 'absolute',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         fontSize: '30px',
         fontWeight: '600',
         color: 'black',
