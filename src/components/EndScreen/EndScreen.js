@@ -6,9 +6,13 @@ const EndScreen = (props) => {
 
     const [dataSaved, setdataSaved] = useState(false)
 
+    const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
+    const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
+
+
     useEffect(()=>{
         var Airtable = require('airtable');
-        var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');    
+        var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);    
 
         const read_promise = new Promise((resolve, reject) => {
             base('experimentTracker').select({
