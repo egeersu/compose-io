@@ -58,7 +58,7 @@ const MessageBox = (props) => {
                 <div style={{width: '100px', height: '100px', backgroundImage: `url(${fkey})`, backgroundSize: 'cover'}}></div>
                     <div style={{width: '100px', height: '100px', backgroundImage: `url(${food})`, backgroundSize: 'cover'}}></div>
                 </div>
-                <p style={{width: '100%'}}>Pick up items that are near you. They will appear on the action bar below. </p>
+                <p style={{width: '100%'}}>You can pick up items from the floor by pressing F. <br /> Once picked up, they will appear on the action bar below. </p>
                 <button className='next' style={{width: '50%'}} onClick={()=>setMessage('health')}>NEXT</button>
             </div>
             )
@@ -72,7 +72,7 @@ const MessageBox = (props) => {
                     <div style={{width: '50px', height: '50px', backgroundImage: `url(${health})`, backgroundSize: 'cover'}}></div>
                     <div style={{width: '50px', height: '50px', backgroundImage: `url(${hunger})`, backgroundSize: 'cover'}}></div>
                 </div>
-                <p style={{width: '100%'}}>The bars on top of the screen show your current health and hunger points. <br/> If your hunger drops to 0, you start losing health points. If your health drops to 0, you die. <br/> You can restore health and hunger points using food items. </p>
+                <p style={{width: '100%'}}>The bars on top of the screen show your current Health and Hunger points. <br/> If your Hunger drops to 0, you start losing Health points. If your Health drops to 0, you die. <br/> You can restore Health and Hunger points by clicking on your food items. </p>
                 <button className='next' style={{width: '50%'}} onClick={()=>setMessage('enemies')}>NEXT</button>
             </div>
             )
@@ -86,13 +86,13 @@ const MessageBox = (props) => {
                     <div style={{width: '100px', height: '150px', backgroundImage: `url(${enemy})`, backgroundSize: 'cover'}}>
                     </div>
                 </div>
-                <p style={{width: '100%'}}>Zombies will start chasing you if you get too close. If they catch you they will damage your health. <br />They are only dangerous if it's a large group. You can kill them with weapons. </p>
-                <button className='next' style={{width: '50%'}} onClick={()=>setMessage('tutorial')}>NEXT</button>
+                <p style={{width: '100%'}}>If you get too close to zombies, they will start chasing you. <br />They will start damaging your health once they catch you. <br />You can damage nearby zombies by clicking on your weapon items. </p>
+                <button className='next' style={{width: '50%'}} onClick={()=>setMessage('tutorial-level1')}>NEXT</button>
             </div>
             )
     }
 
-    function tutorial_tutorial() {
+    function tutorial_level1() {
         return (
             <div style={box_style}>
                 <h1 style={{width: '100%'}}>TUTORIAL</h1>
@@ -109,7 +109,7 @@ const MessageBox = (props) => {
                 {message === 'looting' ? tutorial_loot() : null}
                 {message === 'health' ? tutorial_health() : null}
                 {message === 'enemies' ? tutorial_enemy() : null}
-                {message === 'tutorial' ? tutorial_tutorial() : null}
+                {message === 'tutorial-level1' ? tutorial_level1() : null}
             </div>
         )       
     }
