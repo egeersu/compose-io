@@ -49,6 +49,23 @@ const EndScreen = (props) => {
                   console.log(record.get('Group1'));
                 });
               });
+
+              base('winners').update([
+                {
+                  "id": "rechb4FV3hdZ1QwZn",
+                  "fields": {
+                    "ID": props.experimentID
+                  }
+                }
+              ], function(err, records) {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+                records.forEach(function(record) {
+                  console.log(record.get('Group1'));
+                });
+              });
         })
 
 

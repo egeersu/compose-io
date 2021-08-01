@@ -66,7 +66,7 @@ const Game = (props) => {
     }
 
     function end_screen() {
-        return <EndScreen group={props.group}/>
+        return <EndScreen group={props.group} ID={props.experimentID}/>
     }
 
     function dead_screen() {
