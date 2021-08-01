@@ -11,6 +11,12 @@ export const useCraft = (inventory, experimentID, group, day) => {
 
     const ruleset = rules[group]
 
+    const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
+    const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
+
+    console.log('api key: ', AIRTABLE_API_KEY)
+    console.log('base id: ', AIRTABLE_BASE_ID)
+
     const addItem = (item) => {
         if (inputList.length < input_size){
             if (inventory[item] > 0){
@@ -64,15 +70,9 @@ export const useCraft = (inventory, experimentID, group, day) => {
     }
     
     var Airtable = require('airtable');
-    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');
-
-    
-    const postAttempt = (experiment, group, day, attempt) => {
-
-    }
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
 
     const craft = (e) => {
-        console.log('group: ', group)
         check_uncollected()
         var rule_found = false
         ruleset.forEach((rule)=>{
