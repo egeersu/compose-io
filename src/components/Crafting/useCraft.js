@@ -14,9 +14,6 @@ export const useCraft = (inventory, experimentID, group, day) => {
     const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
     const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
 
-    console.log('api key: ', AIRTABLE_API_KEY)
-    console.log('base id: ', AIRTABLE_BASE_ID)
-
     const addItem = (item) => {
         if (inputList.length < input_size){
             if (inventory[item] > 0){
