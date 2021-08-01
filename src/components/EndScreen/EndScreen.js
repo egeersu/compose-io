@@ -54,7 +54,7 @@ const EndScreen = (props) => {
                 {
                   "id": "rechb4FV3hdZ1QwZn",
                   "fields": {
-                    "ID": props.experimentID
+                    "ID": 'randomid'
                   }
                 }
               ], function(err, records) {
