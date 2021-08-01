@@ -50,22 +50,20 @@ const EndScreen = (props) => {
                 });
               })
         }).then((res)=>{
-            base('winners').update([
-              {
-                "id": "rechb4FV3hdZ1QwZn",
-                "fields": {
-                  "ID": 'randomid'
-                }
+          base('winners').create(
+            {
+              "fields": {
+                "ID": props.experimentID
               }
-            ], function(err, records) {
-              if (err) {
-                console.error(err);
-                return;
-              }
-              records.forEach(function(record) {
-                console.log(record.get('Group1'));
-              });
+            }, function(err, records) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            records.forEach(function (record) {
+              console.log(record.getId());
             });
+          });
         })
 
 
