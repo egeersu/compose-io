@@ -101,7 +101,9 @@ const Intro = (props) => {
                     <p className='consent-text3'> (6) I allow my data to be used in future ethically approved research.</p>
 
                     <p className='consent-text3'> Title of Study: Studying Compositional Generalization in Virtual Environments </p>
-                    <p className='consent-text3'> The experiment should take no longer than 15 minutes. </p>                
+                    <p className='consent-text3'> The experiment should take no longer than 10 minutes. </p>                
+                    <p className='consent-text3'> We recommend using Google Chrome or Safari for a smooth experience.</p>                
+
                 </div>
             </>
         )
