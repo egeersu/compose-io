@@ -4,69 +4,83 @@ import './endscreen.css';
 
 const EndScreen = (props) => {
 
-    const [dataSaved, setdataSaved] = useState(false)
+    const [] = useState(false)
 
     const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
     const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
 
+    var Airtable = require('airtable');
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);   
 
-    useEffect(()=>{
-        var Airtable = require('airtable');
-        var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);    
-
-        const read_promise = new Promise((resolve, reject) => {
-            base('experimentTracker').select({
-                view: 'Grid view'
-            }).firstPage(function(err, records) {
-                if (err) { console.error(err); return; }
-                records.forEach(function(record) {
-                    const group1_airtable = record.get('Group1');
-                    const group2_airtable = record.get('Group2');
-                    resolve([group1_airtable, group2_airtable])
-                });
-              })
-
+    const getGroupCounts = () => {
+      return new Promise((resolve, reject)=> {
+        base('experimentTracker').select({
+          view: 'Grid view'
+         }).firstPage(function(err, records) {
+           if (err) { console.error(err); return; }
+           records.forEach(function(record) {
+             const group1_airtable = record.get('Group1');
+             const group2_airtable = record.get('Group2');
+             resolve([group1_airtable, group2_airtable])
+          });
         })
-        
-        read_promise.then((res)=>{
-            const group1_airtable = res[0]
-            const group2_airtable = res[1]
+      })
+    }
 
-            base('experimentTracker').update([
-                {
-                  "id": "rechb4FV3hdZ1QwZn",
-                  "fields": {
-                    "Group1": props.group === 1 ? group1_airtable + 1 : group1_airtable,
-                    "Group2": props.group === 2 ? group2_airtable + 1 : group2_airtable
-                  }
-                }
-              ], function(err, records) {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
-                records.forEach(function(record) {
-                  console.log(record.get('Group1'));
-                });
-              })
-        }).then((res)=>{
-          base('winners').create(
+    const writeGroupCounts = (groupCounts) => {
+
+      return new Promise((resolve, reject)=>{
+        const group1_airtable = groupCounts[0]
+        const group2_airtable = groupCounts[1]
+
+        base('experimentTracker').update([
             {
+              "id": "rechb4FV3hdZ1QwZn",
               "fields": {
-                "ID": props.experimentID
+                "Group1": props.group === 1 ? group1_airtable + 1 : group1_airtable,
+                "Group2": props.group === 2 ? group2_airtable + 1 : group2_airtable
               }
-            }, function(err, records) {
+            }
+          ], function(err, records) {
             if (err) {
               console.error(err);
               return;
             }
-            records.forEach(function (record) {
-              console.log(record.getId());
+            records.forEach(function(record) {
+              console.log(record.get('Group1'));
             });
+          })
+          resolve('done! hehe')  
+      })
+    }
+
+    const writeWinner = () => {
+      return new Promise((resolve, reject)=>{
+        base('winners').create([
+          {
+            "fields": {
+              "experimentID": props.experimentID
+            }
+          }
+        ], function(err, records) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          records.forEach(function (record) {
+            console.log(record.getId());
           });
+        });
+        resolve('winner done')
+      })      
+    }
+
+    useEffect(()=>{
+      writeWinner().then(res1 => {
+        getGroupCounts().then(res2 => {
+          writeGroupCounts(res2)
         })
-
-
+      })
     }, [])
 
     const style1 = {

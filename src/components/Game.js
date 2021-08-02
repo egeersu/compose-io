@@ -17,6 +17,9 @@ import {game_duration} from '../config'
 
 const Game = (props) => {
 
+    // console.log('Experiment ID: ', props.experimentID)
+    // console.log('Group: ', props.group)
+
     const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die] = Scheduler()
 
     const [mapX, setmapX, 
@@ -66,7 +69,7 @@ const Game = (props) => {
     }
 
     function end_screen() {
-        return <EndScreen group={props.group} ID={props.experimentID}/>
+        return <EndScreen group={props.group} experimentID={props.experimentID}/>
     }
 
     function dead_screen() {

@@ -5,16 +5,17 @@ import {useState, useEffect} from 'react'
 
 function App() {
 
+  const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
+  const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
+
   const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
-    
 
   const [group, setgroup] = useState(0)
   const [fetched, setfetched] = useState(false)
 
   useEffect(()=>{
-    console.log('fetched!')
     var Airtable = require('airtable');
-    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('appv563aHMzdGQPAi');    
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);    
     var group1 = 0
     var group2 = 0
 
@@ -30,6 +31,7 @@ function App() {
         else {setgroup(2)}
         if (group === 1 || group === 2) {setfetched(true)}
       })
+  
   }, [fetched])
   
 

@@ -20,7 +20,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const [reachableItem, setreachableItem] = useState()
 
     const initItems = () => {
-        console.log('init items!', day)
         var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
         var weights = [loot_table['food1'], loot_table['food2'], loot_table['food3'], loot_table['food4'], loot_table['weapon1'], loot_table['weapon2'], loot_table['weapon3'], loot_table['weapon4']]
         const sampler = new WeightedSampler(items, weights);
@@ -57,7 +56,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     }
 
     const resetItems = () => {
-        console.log('reset items!')
         var [food_arr, weapon_arr] = initItems()
         set_food_list(food_arr)
         set_weapon_list(weapon_arr)
@@ -133,9 +131,9 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
             eat(foods[clicked_food].health,foods[clicked_food].hunger)
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
         }
-        else {
-            console.log('NOT ENOUGH!')
-        }
+        // else {
+        //     console.log('NOT ENOUGH!')
+        // }
     }
 
     const consumeWeapon = (e) => {
