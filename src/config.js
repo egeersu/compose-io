@@ -139,7 +139,6 @@ const strict_to_flexible = [
     [['food1', 'food1', 'food1'], ['food3']],
     [['food2', 'food2'], ['food4']],
     [['weapon1', 'weapon1'], ['weapon2']],
-    [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
     [['weapon1', 'weapon2'], ['weapon3']],
     [['weapon2', 'weapon1'], ['weapon3']],
     [['weapon2', 'weapon2'], ['weapon4']],
