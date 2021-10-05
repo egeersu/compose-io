@@ -2,6 +2,12 @@ import {useState} from 'react'
 import {WeightedSampler} from './WeightedSampler'
 import {weapons, foods, experiments} from '../../config'
 
+import useSound from 'use-sound'
+import explosion from '../../assets/sound/explosion.wav'
+import eating from '../../assets/sound/eat.wav'
+import looting from '../../assets/sound/loot.wav'
+
+
 export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day) => {
 
 
@@ -9,6 +15,8 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const loot_table = experiments[day-1].loot_table     
     const map_height = experiments[day-1].map_height
     const map_width = experiments[day-1].map_width
+
+
 
     const item_max_x = map_width - 50
     const item_max_y = map_height - 50
@@ -18,6 +26,12 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const looting_distance = 100;
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
+
+
+    const [play_explosion] = useSound(explosion)
+    const [play_eat] = useSound(eating)
+    const [play_loot] = useSound(looting)
+
 
     const initItems = () => {
         var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
@@ -81,6 +95,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 const reachable_food = reachable_food_list[0]
                 setInventory({...inventory, [reachable_food.itemName]: inventory[reachable_food.itemName] + 1})
                 set_food_list(food_list.filter((food)=>food !== reachable_food))
+                play_loot()
             }
         }
     }
@@ -92,6 +107,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 const reachable_weapon = reachable_weapon_list[0]
                 setInventory({...inventory, [reachable_weapon.itemName]: inventory[reachable_weapon.itemName] + 1})
                 set_weapon_list(weapon_list.filter((weapon)=>weapon !== reachable_weapon))
+                play_loot()
             }
         }
     }
@@ -128,12 +144,13 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const consumeFood = (e) => {
         const clicked_food = e.target.id
         if (inventory[clicked_food] > 0){
+            play_eat()
             eat(foods[clicked_food].health,foods[clicked_food].hunger)
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
         }
-        // else {
-        //     console.log('NOT ENOUGH!')
-        // }
+        else {
+             console.log('NOT ENOUGH!')
+        }
     }
 
     const consumeWeapon = (e) => {
@@ -146,6 +163,8 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         if (inventory[clicked_weapon] > 0){
             const zombies_in_range = get_zombies_in_range(weapon_range)
             var zombies_copy = {...zombies}
+
+            play_explosion()            
 
             for (var i = 0; i<zombies_in_range.length; i++){
                 const the_id = zombies_in_range[i].id

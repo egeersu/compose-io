@@ -2,11 +2,14 @@ import React, {useState, useEffect} from 'react'
 
 import './Intro.css';
 
+import useSound from 'use-sound'
+import env_sound from '../../assets/sound/env.wav'
+
+
 const Intro = (props) => {
 
     const [h, seth] = useState(window.innerHeight) 
     const [w, setw] = useState(window.innerWidth)
-
 
     const [stage, setStage] = useState(0)
 
@@ -24,6 +27,7 @@ const Intro = (props) => {
         width: w
     }
 
+    const [play] = useSound(env_sound)
 
     const page0 = () => {
         return (
@@ -127,7 +131,7 @@ const Intro = (props) => {
                 
 
             <div className='div-button2'>
-                {stage === 0 ? <button className='starter-button' onClick={()=>setStage(1)}>NEXT</button> : null}
+                {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1); play()}}>NEXT</button> : null}
                 {stage === 1 ? <button className='starter-button' onClick={()=>props.nextPhase()}>I CONSENT</button> : null}                
             </div>
 

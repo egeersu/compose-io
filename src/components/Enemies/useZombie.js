@@ -1,6 +1,8 @@
 import {memo, useState} from 'react'
 import {experiments} from '../../config'
 
+import useSound from 'use-sound'
+import aggro_sound from '../../assets/sound/aggro.wav'
 
 export const useZombie = (day) => {
 
@@ -19,6 +21,8 @@ export const useZombie = (day) => {
     // const idle_speed = 0.6
     // const aggroRange = 250
     const frame_lag = 3
+
+    const [play_aggro] = useSound(aggro_sound)
 
     const initZombieList = (maxX, maxY, numZombie) => {
         /*
@@ -161,14 +165,15 @@ export const useZombie = (day) => {
             const center_i_y = top_i + 60
             const player_x = playerX + 40
             const player_y = playerY + 40
-
+            const zomb_aggro = zombie.aggro
             // update distance to player
             const distance = Math.sqrt((player_x - center_i_x)**2 + (player_y - center_i_y)**2)
             zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['distance']: distance}
 
             //update aggro
-            if (distance < aggroRange + 40) {
+            if (distance < aggroRange + 40 && !zomb_aggro) {
                 zombies_copy[zombie_key] = {...zombies_copy[zombie_key], ['aggro']: true} //change back to true
+                play_aggro()
             }     
         })
 
@@ -177,6 +182,7 @@ export const useZombie = (day) => {
         //attack zombies
         Object.entries(zombies).map(([zombie_key, zombie]) => {
             if (zombie.aggro && zombie.distance < 50 && zombie.alive){
+                play_aggro()
                 takeDamage(0.5)
             }                    
         })

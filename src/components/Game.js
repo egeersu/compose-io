@@ -14,7 +14,6 @@ import {Level} from './Level'
 
 import {game_duration} from '../config'
 
-
 const Game = (props) => {
 
     // console.log('Experiment ID: ', props.experimentID)
@@ -30,6 +29,7 @@ const Game = (props) => {
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
         resetLevel] = Level(day, props.group, props.experimentID, die)        
+
 
     useKeyPress((e) => {
         addDirection(e) 

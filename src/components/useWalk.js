@@ -1,6 +1,10 @@
 import {useState} from 'react'
 import {experiments} from '../config'
 
+import useSound from 'use-sound'
+import walk_sound from '../assets/sound/step.wav'
+
+
 export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
     
     const [heldDirections, setheldDirections] = useState([])
@@ -23,7 +27,15 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
+    const [play, { stop }] = useSound(
+        walk_sound,
+        { volume: 0.8 }
+
+      );
     const addDirection = (e) => {
+        if (heldDirections.length == 0) {
+            play()
+        }
         const index = heldDirections.indexOf(e.code)
         if (index === -1 && walking_keys.includes(e.code)) {
             setheldDirections([e.code, ...heldDirections])
@@ -49,7 +61,7 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
         const top_key = heldDirections[0]
         //console.log(heldDirections)
        
-        if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1])}
+        if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1]); stop()}
         if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
         if (top_key === 'KeyS' || top_key === 'ArrowDown'){setvelocity([0,playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
         if (top_key === 'KeyA' || top_key === 'ArrowLeft'){setvelocity([-playerSpeed, 0]); setdirection('left'); setframe((prev)=>['run', prev[1]+1])}
@@ -72,6 +84,7 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
         setplayerY(new_y)
         setmapX(new_map_x)
         setmapY(new_map_y)
+
     }
 
     const resetMovement = () => {
