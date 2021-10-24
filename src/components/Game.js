@@ -19,7 +19,7 @@ const Game = (props) => {
     // console.log('Experiment ID: ', props.experimentID)
     // console.log('Group: ', props.group)
 
-    const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die] = Scheduler()
+    const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die, dataSaved, setdataSaved] = Scheduler()
 
     const [mapX, setmapX, 
         mapY, setmapY, 
@@ -28,7 +28,7 @@ const Game = (props) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel] = Level(day, props.group, props.experimentID, die)        
+        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.experimentID, die, dataSaved, setdataSaved)        
 
 
     useKeyPress((e) => {
@@ -51,7 +51,6 @@ const Game = (props) => {
                     starve(0.05)    
                 }
                 clockTick()    
-                
             },12)
             
             return () => {

@@ -1,5 +1,5 @@
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {experiments} from '../config'
 
 
@@ -12,17 +12,7 @@ import useSound from 'use-sound'
 import env_sound from '../assets/sound/env.wav'
 
 
-export const Level = (day, group, experimentID, die) => {
-
-    // init shit based on props.day and config experiments 
-    /*
-    * reset mapX, mapY
-    * reset playerHealth, playerHunger
-    * new hunger 
-    * reset playerX, playerY
-    * repopulate food_list, weapon_list
-    * new zombies
-    */
+export const Level = (day, group, experimentID, die, dataSaved, setdataSaved) => {
 
     const resetLevel = () => {
         resetItems()
@@ -45,13 +35,51 @@ export const Level = (day, group, experimentID, die) => {
     const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer(die)
 
     // Movement
-    const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement] = useWalk(mapX, setmapX, mapY, setmapY, day)
+    const [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement, distanceCovered] = useWalk(mapX, setmapX, mapY, setmapY, day)
 
     // Zombies
     const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID)
+
+
+    var Airtable = require('airtable');
+    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
+
+    const SaveLevelAnalytics = () => {
+        var currentdate = new Date(); 
+        var datetime = currentdate.getDate() + "-"
+                + (currentdate.getMonth()+1)  + "-" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds()
+
+        base('Day').create({
+            "ExperimentID": experimentID,
+            "Date": datetime,
+            "Group": group,
+            "Day": day,
+            "Food_Collected": food_collected,
+            "Weapon_Collected": weapon_collected,
+            "Distance_Covered": distanceCovered,
+            "Enemies_Killed": enemies_killed
+            }, function(err, record) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(record.getId());
+            });
+    }
+
+    useEffect(() => {
+        if (!dataSaved) {
+            setdataSaved(true)
+            SaveLevelAnalytics()    
+        }
+    }, [dataSaved])
 
     return [mapX, setmapX, 
         mapY, setmapY, 
@@ -60,5 +88,5 @@ export const Level = (day, group, experimentID, die) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel]
+        resetLevel, SaveLevelAnalytics]
 }

@@ -8,15 +8,13 @@ import eating from '../../assets/sound/eat.wav'
 import looting from '../../assets/sound/loot.wav'
 
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID) => {
 
 
     const num_items = experiments[day-1].num_items
     const loot_table = experiments[day-1].loot_table     
     const map_height = experiments[day-1].map_height
     const map_width = experiments[day-1].map_width
-
-
 
     const item_max_x = map_width - 50
     const item_max_y = map_height - 50
@@ -27,11 +25,15 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
     const [somethingReachable, setsomethingReachable] = useState(false)
     const [reachableItem, setreachableItem] = useState()
 
-
     const [play_explosion] = useSound(explosion)
     const [play_eat] = useSound(eating)
     const [play_loot] = useSound(looting)
 
+
+    // analytics
+    const [weapon_collected, set_weapon_collected] = useState(0)
+    const [food_collected, set_food_collected] = useState(0)
+    const [enemies_killed, set_enemies_killed] = useState(0)
 
     const initItems = () => {
         var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
@@ -73,7 +75,9 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         var [food_arr, weapon_arr] = initItems()
         set_food_list(food_arr)
         set_weapon_list(weapon_arr)
-
+        set_food_collected(0)
+        set_weapon_collected(0)
+        set_enemies_killed(0)
     }
 
     const [item_list, set_item_list] = useState(() => initItems())
@@ -96,6 +100,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 setInventory({...inventory, [reachable_food.itemName]: inventory[reachable_food.itemName] + 1})
                 set_food_list(food_list.filter((food)=>food !== reachable_food))
                 play_loot()
+                set_food_collected(food_collected + 1)
             }
         }
     }
@@ -108,6 +113,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 setInventory({...inventory, [reachable_weapon.itemName]: inventory[reachable_weapon.itemName] + 1})
                 set_weapon_list(weapon_list.filter((weapon)=>weapon !== reachable_weapon))
                 play_loot()
+                set_weapon_collected(weapon_collected + 1)
             }
         }
     }
@@ -141,12 +147,38 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         setreachableItem(reachable_item)
     }
 
+
     const consumeFood = (e) => {
         const clicked_food = e.target.id
         if (inventory[clicked_food] > 0){
             play_eat()
             eat(foods[clicked_food].health,foods[clicked_food].hunger)
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
+
+            var Airtable = require('airtable');
+            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
+
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "-"
+                    + (currentdate.getMonth()+1)  + "-" 
+                    + currentdate.getFullYear() + " "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds()
+
+            base('Food').create({
+                "ExperimentID": experimentID,
+                "Date": datetime,
+                "Group": group,
+                "Day": day,
+                "Level": parseInt(clicked_food.slice(-1))
+                }, function(err, record) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(record.getId());
+                });
         }
         else {
              console.log('NOT ENOUGH!')
@@ -170,6 +202,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 const the_id = zombies_in_range[i].id
                 const new_health = Math.max(zombies_copy[the_id].health - weapon_damage, 0)
                 if (new_health <= 0) {
+                    set_enemies_killed(enemies_killed + 1)
                     zombies_copy[the_id] = {...zombies_copy[the_id], ['alive']: false, ['health']: 0}
                     //drop item 
                     var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']
@@ -200,5 +233,5 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
 
     }
 
-    return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems]
+    return [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed]
 }

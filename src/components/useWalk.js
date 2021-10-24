@@ -12,6 +12,8 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
     const map_height = experiments[day-1].map_height
     const map_width = experiments[day-1].map_width
 
+    const [distanceCovered, setdistanceCovered] = useState(0)
+
 
     const [velocity, setvelocity] = useState([0,0])
 
@@ -85,6 +87,8 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
         setmapX(new_map_x)
         setmapY(new_map_y)
 
+        setdistanceCovered(distanceCovered + Math.max(Math.abs(velocity[0]), Math.abs(velocity[1])))
+
     }
 
     const resetMovement = () => {
@@ -92,8 +96,9 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
         setplayerY(0)
         setvelocity([0,0])
         setheldDirections([])
+        setdistanceCovered(0)
     }
     
     
-    return [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement]
+    return [addDirection, removeDirection, move, playerX, playerY, direction, frame, resetMovement, distanceCovered]
 }
