@@ -192,10 +192,11 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         const weapon_range = weapons[clicked_weapon]['range']
 
 
+
         if (inventory[clicked_weapon] > 0){
             const zombies_in_range = get_zombies_in_range(weapon_range)
             var zombies_copy = {...zombies}
-
+        
             play_explosion()            
 
             for (var i = 0; i<zombies_in_range.length; i++){
@@ -226,6 +227,36 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 setzombies(zombies_copy)
             }
             setInventory({...inventory, [clicked_weapon]: inventory[clicked_weapon]-1})
+
+            console.log(zombies_in_range.length)
+
+            var Airtable = require('airtable');
+            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
+
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "-"
+                    + (currentdate.getMonth()+1)  + "-" 
+                    + currentdate.getFullYear() + " "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds()
+
+            base('Weapon').create({
+                "ExperimentID": experimentID,
+                "Date": datetime,
+                "Group": group,
+                "Day": day,
+                "Level": parseInt(clicked_weapon.slice(-1)),
+                "Enemies_Hit": zombies_in_range.length
+                }, function(err, record) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(record.getId());
+                });
+
+
         }
         else {
             console.log('NOT ENOUGH!')

@@ -28,6 +28,7 @@ export const Scheduler = (props) => {
 
     const die = () => {
         setphase('dead')
+        setdataSaved(false)
     }
 
     const nextPhase = () => {

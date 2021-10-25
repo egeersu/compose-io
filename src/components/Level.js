@@ -56,6 +56,8 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved) =>
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds()
 
+        console.log(playerAlive)
+
         base('Day').create({
             "ExperimentID": experimentID,
             "Date": datetime,
@@ -64,7 +66,8 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved) =>
             "Food_Collected": food_collected,
             "Weapon_Collected": weapon_collected,
             "Distance_Covered": distanceCovered,
-            "Enemies_Killed": enemies_killed
+            "Enemies_Killed": enemies_killed,
+            "Completed": playerAlive ? 1 : 0
             }, function(err, record) {
             if (err) {
                 console.error(err);
