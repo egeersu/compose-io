@@ -67,8 +67,8 @@ const day2 = {
         food2: 0,
         food3: 0,
         food4: 0,
-        weapon1: 1.0,
-        weapon2: 0,
+        weapon1: 0.5,
+        weapon2: 0.5,
         weapon3: 0,
         weapon4: 0     
     }
