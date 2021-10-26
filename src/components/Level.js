@@ -1,6 +1,6 @@
 
 import {useState, useEffect} from 'react'
-import {experiments} from '../config'
+import {experiments, inventory_start} from '../config'
 
 
 import {useItem} from './Map/useItem'
@@ -33,7 +33,7 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, ba
     const [mapY, setmapY] = useState(window.innerHeight/2 - 100) //camera/2
 
     // Initialize Inventory
-    const [inventory, setInventory] = useState({food1:12, food2:0, food3:0, food4:0, weapon1:12, weapon2:0, weapon3:0, weapon4:0})
+    const [inventory, setInventory] = useState(inventory_start)
 
     const [playerAlive, playerHealth, playerHunger, takeDamage, starve, eat, resetPlayer] = usePlayer(die)
 
