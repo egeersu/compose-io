@@ -36,11 +36,6 @@ function App() {
         setgroup(target + 1)
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
       })  
-  
-  
-  
-  
-  
     }, [fetched])
   
 

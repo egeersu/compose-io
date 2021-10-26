@@ -112,6 +112,63 @@ const Intro = (props) => {
         )
     }
 
+    var Airtable = require('airtable');
+    const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(props.base_ids[0]);   
+
+    const getGroupCounts = () => {
+        return new Promise((resolve, reject)=> {
+          base('experiment').select({
+            view: 'Grid view'
+           }).firstPage(function(err, records) {
+             if (err) { console.error(err); return; }
+             records.forEach(function(record) {
+               const group1_airtable = record.get('Group1');
+               const group2_airtable = record.get('Group2');
+               const group3_airtable = record.get('Group3');
+               const group4_airtable = record.get('Group4');
+               const target = record.get('Target');
+               resolve([group1_airtable, group2_airtable, group3_airtable, group4_airtable, target])
+            });
+          })
+        })
+      }
+  
+      const writeGroupCounts = (groupCounts) => {
+  
+        return new Promise((resolve, reject)=>{
+          const group1_airtable = groupCounts[0]
+          const group2_airtable = groupCounts[1]
+          const group3_airtable = groupCounts[2]
+          const group4_airtable = groupCounts[3]
+          const target = groupCounts[4]
+  
+          base('experiment').update([
+              {
+                "id": "rec4HXVuTznpyvNRG",
+                "fields": {
+                  "Group1": props.group === 1 ? group1_airtable + 1 : group1_airtable,
+                  "Group2": props.group === 2 ? group2_airtable + 1 : group2_airtable,
+                  "Group3": props.group === 3 ? group3_airtable + 1 : group3_airtable,
+                  "Group4": props.group === 4 ? group4_airtable + 1 : group4_airtable,
+                  "Target": (target + 1) % 4
+                }
+              }
+            ], function(err, records) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+              records.forEach(function(record) {
+                console.log(record.get('Group1'));
+                console.log(record.get('Group2'));
+                console.log(record.get('Group3'));
+                console.log(record.get('Group4'));
+              });
+            })
+            resolve('done! hehe')  
+        })
+      }
 
     return (
         
@@ -128,11 +185,9 @@ const Intro = (props) => {
                 {stage === 1 ? page1() : null}
             </div>
                         
-                
-
             <div className='div-button2'>
                 {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1); play()}}>NEXT</button> : null}
-                {stage === 1 ? <button className='starter-button' onClick={()=>props.nextPhase()}>I CONSENT</button> : null}                
+                {stage === 1 ? <button className='starter-button' onClick={()=>{props.nextPhase(); getGroupCounts().then(res2 => {writeGroupCounts(res2)})}}>I CONSENT</button> : null}                
             </div>
 
         </div>

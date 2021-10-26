@@ -60,7 +60,7 @@ const Game = (props) => {
       })
 
     function main_screen() {
-        return <Intro nextPhase={nextPhase}/>
+        return <Intro nextPhase={nextPhase} group={props.group} base_ids={props.base_ids}/>
     }
       
     function crafting_ui(){
