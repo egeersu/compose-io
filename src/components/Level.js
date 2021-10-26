@@ -14,9 +14,6 @@ import env_sound from '../assets/sound/env.wav'
 
 export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, base_ids) => {
 
-
-    console.log('Group: ', group)
-
     const resetLevel = () => {
         resetItems()
         setmapX(window.innerWidth/2 - 80)
@@ -58,8 +55,6 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, ba
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds()
-
-        console.log(playerAlive)
 
         base('Day').create({
             "ExperimentID": experimentID,
