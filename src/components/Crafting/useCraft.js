@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {input_size, output_size, images, rules} from '../../config'
 
-export const useCraft = (inventory, experimentID, group, day) => {
+export const useCraft = (inventory, experimentID, group, day, base_ids) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
@@ -12,7 +12,6 @@ export const useCraft = (inventory, experimentID, group, day) => {
     const ruleset = rules[group]
 
     const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
-    const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
 
     const addItem = (item) => {
         if (inputList.length < input_size){
@@ -67,7 +66,7 @@ export const useCraft = (inventory, experimentID, group, day) => {
     }
     
     var Airtable = require('airtable');
-    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(base_ids[group]);
 
     const craft = (e) => {
         check_uncollected()
@@ -91,11 +90,12 @@ export const useCraft = (inventory, experimentID, group, day) => {
         }
         
         var currentdate = new Date(); 
-        var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
+        var datetime = currentdate.getDate() + "-"
+                + (currentdate.getMonth()+1)  + "-" 
+                + currentdate.getFullYear() + " "  
                 + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() 
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds()
 
         base('crafting').create({
             "ExperimentID": experimentID,

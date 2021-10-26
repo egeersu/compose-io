@@ -8,7 +8,7 @@ import eating from '../../assets/sound/eat.wav'
 import looting from '../../assets/sound/loot.wav'
 
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID, base_ids) => {
 
 
     const num_items = experiments[day-1].num_items
@@ -156,7 +156,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
 
             var Airtable = require('airtable');
-            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
+            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]);
 
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "-"
@@ -190,7 +190,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
         const clicked_weapon = e.target.id
         const weapon_damage = weapons[clicked_weapon]['damage']
         const weapon_range = weapons[clicked_weapon]['range']
-
 
 
         if (inventory[clicked_weapon] > 0){
@@ -231,7 +230,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
             console.log(zombies_in_range.length)
 
             var Airtable = require('airtable');
-            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
+            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]);
 
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "-"

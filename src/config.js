@@ -23,7 +23,7 @@ const food4 = {health: 100, hunger: 100, image: food4_png}
 const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 
 const day1 = {
-    duration: 5,
+    duration: 10,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -48,7 +48,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 5,
+    duration: 10,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -73,7 +73,7 @@ const day2 = {
 }
 
 const day3 = {
-    duration: 90,
+    duration: 10,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -147,12 +147,46 @@ const strict_to_flexible = [
     [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
     [['weapon1', 'weapon2', 'weapon1'], ['weapon4']],
     [['weapon2', 'weapon1', 'weapon1'], ['weapon4']],
-    [['weapon1', 'weapon1', 'weapon2'], ['weapon4']],    
+    [['weapon1', 'weapon1', 'weapon2'], ['weapon4']]
+]
+
+const strict_to_strict = [
+    [['food1', 'food1'], ['food2']],
+    [['food1', 'food1', 'food1'], ['food3']],
+    [['food2', 'food2'], ['food4']],
+    [['weapon1', 'weapon1'], ['weapon2']],
+    [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
+    [['weapon2', 'weapon2'], ['weapon4']],
+]
+
+const flexible_to_flexible = [
+    [['food1', 'food1'], ['food2']],
+    [['food1', 'food1', 'food1'], ['food3']],
+    [['food1', 'food2'], ['food3']],
+    [['food2', 'food1'], ['food3']],
+    [['food2', 'food2'], ['food4']],
+    [['food1', 'food3'], ['food4']],
+    [['food3', 'food1'], ['food4']],
+    [['food1', 'food2', 'food1'], ['food4']],
+    [['food2', 'food1', 'food1'], ['food4']],
+    [['food1', 'food1', 'food2'], ['food4']],  
+    [['weapon1', 'weapon1'], ['weapon2']],
+    [['weapon1', 'weapon2'], ['weapon3']],
+    [['weapon2', 'weapon1'], ['weapon3']],
+    [['weapon2', 'weapon2'], ['weapon4']],
+    [['weapon1', 'weapon3'], ['weapon4']],
+    [['weapon3', 'weapon1'], ['weapon4']],
+    [['weapon1', 'weapon1', 'weapon1'], ['weapon3']],
+    [['weapon1', 'weapon2', 'weapon1'], ['weapon4']],
+    [['weapon2', 'weapon1', 'weapon1'], ['weapon4']],
+    [['weapon1', 'weapon1', 'weapon2'], ['weapon4']]
 ]
 
 const rules = {
-    1: flexible_to_strict, 
-    2: strict_to_flexible 
+    1: flexible_to_flexible,
+    2: strict_to_strict,
+    3: flexible_to_strict,
+    4: strict_to_flexible
 }
 
 export {weapons, foods, input_size, output_size, images, rules, experiments}

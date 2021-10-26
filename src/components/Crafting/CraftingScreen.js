@@ -20,7 +20,7 @@ const CraftingScreen = (props) => {
         width: window.innerWidth
     }
 
-    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentID, props.group, props.day)
+    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentID, props.group, props.day, props.base_ids)
 
     return (
         <div className='crafting-screen' style={style1}>

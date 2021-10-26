@@ -12,7 +12,10 @@ import useSound from 'use-sound'
 import env_sound from '../assets/sound/env.wav'
 
 
-export const Level = (day, group, experimentID, die, dataSaved, setdataSaved) => {
+export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, base_ids) => {
+
+
+    console.log('Group: ', group)
 
     const resetLevel = () => {
         resetItems()
@@ -41,12 +44,12 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved) =>
     const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID, base_ids)
 
 
     var Airtable = require('airtable');
-    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base('app0kG9ca4YiX9gDG');
-
+    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]); // pick the current group's base.
+ 
     const SaveLevelAnalytics = () => {
         var currentdate = new Date(); 
         var datetime = currentdate.getDate() + "-"
