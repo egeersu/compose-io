@@ -33,7 +33,7 @@ const Intro = (props) => {
         return (
             <>
                 <div className='project-information'>
-                    <h1 className='consent-title'>Project Information</h1>
+                    <h1 className='consent-title'>Participant Information Sheet</h1>
                     <p className='consent-text2'><strong>Project Title: </strong> Compositional Games</p>
                     <p className='consent-text2'><strong>Principal Investigator: </strong> Chris G. Lucas</p>
                     <p className='consent-text2'><strong>Principal Investigator Contact Details: </strong> <a href='c.lucas@ed.ac.uk'>c.lucas@ed.ac.uk</a></p>
@@ -46,7 +46,7 @@ const Intro = (props) => {
                     <p className='consent-text2'></p>
 
                     <p className='consent-text2'><strong>What is the purpose of the study?</strong></p>
-                    <p className='consent-text2'> The research goal is to study how humans compositionally generalize from one rule system to another. The experiment will be conducted in the form of a browser game where the participant has to collect items, fight enemies and craft complex items by combining simpler items together. Crafting attempts will be saved to a database. </p>
+                    <p className='consent-text2'> The research goal is to study human learning and decision-making related to collecting, crafting and using sets of items. </p>
 
                     <p className='consent-text2'><strong>Why have I been asked to take part?</strong></p>
                     <p className='consent-text2'>If you decide to take part, your crafting data will help us test our hypotheses.</p>
@@ -66,10 +66,10 @@ const Intro = (props) => {
 
                 <div className='project-information2'>
                     <p className='consent-text2'><strong>What will happen to the results of this study?</strong></p>
-                    <p className='consent-text2'>The results of this study may be summarised in published articles, reports and presentations. Quotes or key findings will be anonymized: We will remove any information that could, in our assessment, allow anyone to identify you. With your consent, information can also be used for future research. Your data may be archived for a maximum of 4 years. All potentially identifiable data will be deleted within this timeframe if it has not already been deleted as part of anonymization. </p>
+                    <p className='consent-text2'>The results of this study may be summarised in published articles, reports and presentations. Quotes or key findings will be anonymized: We will remove any information that could, in our assessment, allow anyone to identify you. With your consent, information can also be used for future research. Your identifiable data may be archived for a maximum of 4 years. All potentially identifiable data will be deleted within this timeframe if it has not already been deleted as part of anonymization. </p>
 
                     <p className='consent-text2'><strong>Data protection and confidentiality.</strong></p>
-                    <p className='consent-text2'>Your data will be processed in accordance with Data Protection Law.  All information collected about you will be kept strictly confidential. Your data will be referred to by a unique participant number rather than by name Your data will only be viewed by the researcher/research team Christopher Lucas, Simon Valentin and Ege Ersü. </p>
+                    <p className='consent-text2'>Your data will be processed in accordance with Data Protection Law.  All information collected about you will be kept strictly confidential. Your data will be referred to by a unique participant number rather than by name. </p>
                     <p className='consent-text2'>All electronic data will be stored on a password-protected encrypted computer, on the School of Informatics’ secure file servers, or on the University’s secure encrypted cloud storage services (DataShare, ownCloud, or Sharepoint) and all paper records will be stored in a locked filing cabinet in the PI’s office. Your consent information will be kept separately from your responses in order to minimise risk. </p>
                     
                     <p className='consent-text2'><strong>What are my data protection rights?</strong></p>
