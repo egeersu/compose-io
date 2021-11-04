@@ -47,40 +47,38 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, ba
     var Airtable = require('airtable');
     var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]); // pick the current group's base.
  
-    const SaveLevelAnalytics = () => {
-        var currentdate = new Date(); 
-        var datetime = currentdate.getDate() + "-"
-                + (currentdate.getMonth()+1)  + "-" 
-                + currentdate.getFullYear() + " "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds()
-
-        base('Day').create({
-            "ExperimentID": experimentID,
-            "Date": datetime,
-            "Group": group,
-            "Day": day,
-            "Food_Collected": food_collected,
-            "Weapon_Collected": weapon_collected,
-            "Distance_Covered": distanceCovered,
-            "Enemies_Killed": enemies_killed,
-            "Completed": playerAlive ? 1 : 0
-            }, function(err, record) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(record.getId());
-            });
-    }
-
-    useEffect(() => {
-        if (!dataSaved) {
+    const SaveLevelAnalytics = (props) => {
+        if (!dataSaved){
             setdataSaved(true)
-            SaveLevelAnalytics()    
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "-"
+                    + (currentdate.getMonth()+1)  + "-" 
+                    + currentdate.getFullYear() + " "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds()
+
+            base('Day').create({
+                    "ExperimentID": experimentID,
+                    "Date": datetime,
+                    "Group": group,
+                    "Day": day,
+                    "Food_Collected": food_collected,
+                    "Weapon_Collected": weapon_collected,
+                    "Distance_Covered": distanceCovered,
+                    "Enemies_Killed": enemies_killed,
+                    "Completed": playerAlive ? 1 : 0
+                }, function(err, record) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }});
+            }
         }
-    }, [dataSaved])
+
+        useEffect(() => {
+            SaveLevelAnalytics()                                    
+        }, [dataSaved])
 
     return [mapX, setmapX, 
         mapY, setmapY, 
