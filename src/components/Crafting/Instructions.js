@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text } from "react";
 import ItemInfo from './ItemInfo'
 
 const Instructions = (props) => {

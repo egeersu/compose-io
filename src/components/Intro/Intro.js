@@ -115,7 +115,7 @@ const Intro = (props) => {
 
     var Airtable = require('airtable');
     const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
-    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(props.base_ids[0]);   
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(props.airtable_base);   
 
     const getGroupCounts = () => {
         return new Promise((resolve, reject)=> {
@@ -187,7 +187,7 @@ const Intro = (props) => {
             </div>
                         
             <div className='div-button2'>
-                {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1); play()}}>NEXT</button> : null}
+                {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1)}}>NEXT</button> : null}
                 {stage === 1 ? <button className='starter-button' onClick={()=>{props.nextPhase(); getGroupCounts().then(res2 => {writeGroupCounts(res2)})}}>I CONSENT</button> : null}                
             </div>
 

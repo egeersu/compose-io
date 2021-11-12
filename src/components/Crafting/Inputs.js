@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import {input_size, output_size, images} from '../../config'
 
 const Inputs = (props) => {

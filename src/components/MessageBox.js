@@ -15,10 +15,8 @@ const MessageBox = (props) => {
 
     useEffect(() => {
         const handle_resize = (e) => {
-            console.log('resized to: ', window.innerWidth, ', ', window.innerHeight)
             setw(window.innerWidth)  
             seth(window.innerHeight)
-            //TODO: Fix Bar Size
         }
         window.addEventListener('resize', handle_resize)
     }, [window.innerWidth, window.innerHeight])

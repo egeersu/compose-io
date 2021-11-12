@@ -8,7 +8,7 @@ import eating from '../../assets/sound/eat.wav'
 import looting from '../../assets/sound/loot.wav'
 
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID, base_ids) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso) => {
 
 
     const num_items = experiments[day-1].num_items
@@ -155,9 +155,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
             eat(foods[clicked_food].health,foods[clicked_food].hunger)
             setInventory({...inventory, [clicked_food]: inventory[clicked_food]-1})
 
-            var Airtable = require('airtable');
-            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]);
-
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "-"
                     + (currentdate.getMonth()+1)  + "-" 
@@ -166,19 +163,18 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                     + currentdate.getMinutes() + ":"
                     + currentdate.getSeconds()
 
-            base('Food').create({
-                "ExperimentID": experimentID,
-                "Date": datetime,
-                "Group": group,
-                "Day": day,
-                "Level": parseInt(clicked_food.slice(-1))
-                }, function(err, record) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log(record.getId());
-                });
+            const food_data = {
+                "experimentId": experimentId,
+                "sessionId": sessionId,           
+                "table": 'food', 
+                "date": datetime,
+                "group": group,
+                "day": day,
+                "level": parseInt(clicked_food.slice(-1))
+            }
+
+            console.log(food_data)
+            wso.sendChunk(food_data)
         }
         else {
              console.log('NOT ENOUGH!')
@@ -229,9 +225,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
 
             console.log(zombies_in_range.length)
 
-            var Airtable = require('airtable');
-            var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]);
-
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "-"
                     + (currentdate.getMonth()+1)  + "-" 
@@ -240,21 +233,19 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                     + currentdate.getMinutes() + ":"
                     + currentdate.getSeconds()
 
-            base('Weapon').create({
-                "ExperimentID": experimentID,
+            const weapon_data = {
+                "experimentId": experimentId,
+                "sessionId": sessionId,
+                "table": 'weapon',
                 "Date": datetime,
                 "Group": group,
                 "Day": day,
                 "Level": parseInt(clicked_weapon.slice(-1)),
                 "Enemies_Hit": zombies_in_range.length
-                }, function(err, record) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log(record.getId());
-                });
-
+            }
+            
+            console.log(weapon_data)
+            wso.sendChunk(weapon_data)
 
         }
         else {

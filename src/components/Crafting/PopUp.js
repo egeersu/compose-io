@@ -1,19 +1,4 @@
-import React, {useState, useEffect} from 'react'
-
 const PopUp = (props) => {
-
-
-    const [h, seth] = useState(window.innerHeight) 
-    const [w, setw] = useState(window.innerWidth)
-
-    useEffect(() => {
-        const handle_resize = (e) => {
-            console.log('resized to: ', window.innerWidth, ', ', window.innerHeight)
-            setw(window.innerWidth)  
-            seth(window.innerHeight)
-        }
-        window.addEventListener('resize', handle_resize)
-    }, [window.innerWidth, window.innerHeight])
 
     const box_style = {
         width: '600px',
@@ -28,7 +13,7 @@ const PopUp = (props) => {
         flexWrap: 'wrap',
         position: 'absolute',
         top: 200,
-        left: w/2 - 300,
+        left: window.innerWidth/2 - 300,
         alignItems: 'center',
         display: 'flex',
     }

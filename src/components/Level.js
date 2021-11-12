@@ -12,7 +12,18 @@ import useSound from 'use-sound'
 import env_sound from '../assets/sound/env.wav'
 
 
-export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, base_ids) => {
+export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso) => {
+
+    // console.log({
+    //     'day': day,
+    //     'group': group,
+    //     'sessionId': sessionId,
+    //     'experimentId': experimentId,
+    //     'die': die,
+    //     'dataSaved': dataSaved,
+    //     'setdataSaved':setdataSaved,
+    //     'wso': wso
+    // })
 
     const resetLevel = () => {
         resetItems()
@@ -41,11 +52,7 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, ba
     const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentID, base_ids)
-
-
-    var Airtable = require('airtable');
-    var base = new Airtable({apiKey: 'keylhxhzSbFUmspNk'}).base(base_ids[group]); // pick the current group's base.
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso)
  
     const SaveLevelAnalytics = (props) => {
         if (!dataSaved){
@@ -58,23 +65,25 @@ export const Level = (day, group, experimentID, die, dataSaved, setdataSaved, ba
                     + currentdate.getMinutes() + ":"
                     + currentdate.getSeconds()
 
-            base('Day').create({
-                    "ExperimentID": experimentID,
-                    "Date": datetime,
-                    "Group": group,
-                    "Day": day,
-                    "Food_Collected": food_collected,
-                    "Weapon_Collected": weapon_collected,
-                    "Distance_Covered": distanceCovered,
-                    "Enemies_Killed": enemies_killed,
-                    "Completed": playerAlive ? 1 : 0
-                }, function(err, record) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }});
-            }
+            const level_data = {
+                    "experimentId": experimentId,
+                    "sessionId": sessionId,
+                    "table": "level",
+                    "group": group,
+                    "date": datetime,
+                    "day": day,
+                    "food_collected": food_collected,
+                    "weapon_collected": weapon_collected,
+                    "distance_covered": distanceCovered,
+                    "enemies_killed": enemies_killed,
+                    "level_completed": playerAlive ? 1 : 0
+                }
+
+            console.log(level_data)
+            // send level data here
+            wso.sendChunk(level_data)
         }
+    }
 
         useEffect(() => {
             SaveLevelAnalytics()                                    

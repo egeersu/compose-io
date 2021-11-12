@@ -1,17 +1,16 @@
-import {useState, useEffect} from 'react'
-import {input_size, output_size, images, rules} from '../../config'
+import {useState } from 'react'
+import {input_size, rules} from '../../config'
+import {ChunksIncremental} from '../../ChunksIncremental'
 
-export const useCraft = (inventory, experimentID, group, day, base_ids) => {
+export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sendChunk) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
     const [success, setSuccess] = useState('null')
-    const [craftingSuccess, setcraftingSuccess] = useState()
     const [itemHovered, setitemHovered] = useState(null)
 
-    const ruleset = rules[group]
 
-    const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
+    const ruleset = rules[group]
 
     const addItem = (item) => {
         if (inputList.length < input_size){
@@ -65,9 +64,6 @@ export const useCraft = (inventory, experimentID, group, day, base_ids) => {
         }
     }
     
-    var Airtable = require('airtable');
-    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(base_ids[group]);
-
     const craft = (e) => {
         check_uncollected()
         var rule_found = false
@@ -79,14 +75,12 @@ export const useCraft = (inventory, experimentID, group, day, base_ids) => {
                 setoutputList(rule_outputs)
                 setinputList([])
                 setSuccess('success')
-                setcraftingSuccess(true)
             }
         })
         if (!rule_found) {
             setoutputList(inputList)
             setinputList([])
             setSuccess('fail')
-            setcraftingSuccess(false)
         }
         
         var currentdate = new Date(); 
@@ -96,26 +90,30 @@ export const useCraft = (inventory, experimentID, group, day, base_ids) => {
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds()
+     
+        let message = {
+            experimentId: experimentId,
+            sessionId: sessionId,
+            table: 'craft',
+            date: datetime,
+            group: group,
+            day: day,
+            attempt: inputList.join(),
+            success: rule_found ? 1 : 0,
+        }
 
-        base('crafting').create({
-            "ExperimentID": experimentID,
-            "Date": datetime,
-            "Group": group,
-            "Day": day,
-            "Attempt": inputList.join(),
-            "Success": rule_found ? 1 : 0,
-          }, function(err, record) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            console.log(record.getId());
-          });
+        if (inputList.length !== 0) {
+            wso.sendChunk(message)
+        }
         
-          var clear_fail_alert = setInterval(function(){ 
+        
+        var clear_fail_alert = setInterval(function(){ 
             setSuccess('null') 
             clearInterval(clear_fail_alert)
+            wso.sendAll()
         }, 4000);
+
+
 
     }
 

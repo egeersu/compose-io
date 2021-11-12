@@ -1,10 +1,4 @@
-import React, {useState, useEffect} from 'react'
-
 const DeadScreen = (props) => {
-
-    const [dataSaved, setdataSaved] = useState(false)
-
-
 
     const style1 = {
         height: window.innerHeight,

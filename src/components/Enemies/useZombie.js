@@ -1,4 +1,4 @@
-import {memo, useState} from 'react'
+import {useState} from 'react'
 import {experiments} from '../../config'
 
 import useSound from 'use-sound'

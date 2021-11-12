@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import CraftingScreen from './Crafting/CraftingScreen'
 
 import Intro from './Intro/Intro'
@@ -12,12 +12,7 @@ import {Scheduler} from './Scheduler'
 
 import {Level} from './Level'
 
-import {game_duration} from '../config'
-
 const Game = (props) => {
-
-    // console.log('Experiment ID: ', props.experimentID)
-    // console.log('Group: ', props.group)
 
     const [phase, gameTime, day, clockTick, nextPhase, frozen, setfrozen, tutorialCompleted, settutorialCompleted, die, dataSaved, setdataSaved] = Scheduler()
 
@@ -28,8 +23,7 @@ const Game = (props) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.experimentID, die, dataSaved, setdataSaved, props.base_ids)        
-
+        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.sessionId, props.experimentId, die, dataSaved, setdataSaved, props.wso)        
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -60,15 +54,15 @@ const Game = (props) => {
       })
 
     function main_screen() {
-        return <Intro nextPhase={nextPhase} group={props.group} base_ids={props.base_ids}/>
+        return <Intro nextPhase={nextPhase} group={props.group} airtable_base={props.airtable_base}/>
     }
       
     function crafting_ui(){
-        return <CraftingScreen inventory={inventory} experimentID={props.experimentID} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} base_ids={props.base_ids}/>
+        return <CraftingScreen inventory={inventory} sessionId={props.sessionId} experimentId={props.experimentId} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} wso={props.wso}/>
     }
 
     function end_screen() {
-        return <EndScreen group={props.group} experimentID={props.experimentID} base_ids={props.base_ids}/>
+        return <EndScreen group={props.group} sessionId={props.sessionId} experimentId={props.experimentId} airtable_base={props.airtable_base}/>
     }
 
     function dead_screen() {
@@ -107,12 +101,11 @@ const Game = (props) => {
 
     return (
         <>
-        {phase === 'game' ? game_ui() : null }
-        {phase === 'crafting' ? crafting_ui() : null}
-        {phase === 'main' ? main_screen(): null}
-        {phase === 'end' ? end_screen(): null}
-        {phase === 'dead' ? dead_screen(): null}
-
+            {phase === 'game' ? game_ui() : null }
+            {phase === 'crafting' ? crafting_ui() : null}
+            {phase === 'main' ? main_screen(): null}
+            {phase === 'end' ? end_screen(): null}
+            {phase === 'dead' ? dead_screen(): null}
         </>
     )
 }

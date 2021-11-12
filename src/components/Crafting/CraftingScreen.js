@@ -24,7 +24,7 @@ const CraftingScreen = (props) => {
         opacity: display_message ? '20%' : '100%'
     }
 
-    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentID, props.group, props.day, props.base_ids)
+    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentId, props.sessionId, props.group, props.day, props.wso, props.sendChunk)
 
     return (
         <>
@@ -36,7 +36,7 @@ const CraftingScreen = (props) => {
                     <div className='inputs-box'>
                         <Inputs inventory={props.inventory} inputList={inputList} removeItem={removeItem} setitemHovered={setitemHovered}/>
                     </div>
-                    <button className='compose' style={{}}onClick={()=>craft()}>CRAFT</button>
+                    <button className='compose' style={{}}onClick={()=>{inputList !== '' ? craft() : console.log('no inputs')}}>CRAFT</button>
                     <div className='inputs-box'>
                         <Outputs inventory={props.inventory} outputList={outputList} collectItem={collectItem} success={success} setitemHovered={setitemHovered}/>
                     </div>

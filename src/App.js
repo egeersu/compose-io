@@ -1,29 +1,35 @@
 import './App.css';
 import Game from './components/Game'
-import { experiments } from './config';
 import {useState, useEffect} from 'react'
+import { ChunksIncremental } from './ChunksIncremental';
+import('./ChunksIncremental.js')
 
 function App() {
-
   const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
-  const AIRTABLE_BASE_ID=process.env.REACT_APP_BASE_ID
+  const airtable_base = 'appWGnhKcDCqpBUzM'
 
-  const base_experiment = 'appWGnhKcDCqpBUzM'
-  const base1 = 'apphkOxoIQxDvZEh0'
-  const base2 = 'app0kG9ca4YiX9gDG'
-  const base3 = 'appYVcEB6FTlTh6MS'
-  const base4 = 'appvTDwCiVFJkGaLU'
+  const experimentId = 'eersu_game/0.1.0'
 
-  const base_ids = {0:base_experiment, 1:base1, 2:base2, 3:base3, 4:base4}
-
-  const [experimentID, setexperimentID] = useState(Math.floor(Math.random() * 1e6))
+  // 20-digit alphanumeric Id for the participant
+  const sessionId = Math.random().toString(36).substr(2, 10) + Math.random().toString(36).substr(2, 10)
 
   const [group, setgroup] = useState(0)
   const [fetched, setfetched] = useState(false)
 
+  var wso = new ChunksIncremental(
+    "wss://somata.inf.ed.ac.uk/chunks/ws", 
+    (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
+    (e) => {console.log("Encountered error: " + e)})
+
+  if (wso.wso.readyState === 1) {
+    console.log('LETS GO!')
+    wso.sendChunk({experimentId: experimentId, sessionId: sessionId})
+    wso.sendAll()  
+  }
+
   useEffect(()=>{
     var Airtable = require('airtable');
-    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(base_experiment);    
+    var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(airtable_base);    
     var target = -1
 
     base('experiment').select({
@@ -35,13 +41,13 @@ function App() {
         });
         setgroup(target + 1)
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
-      })  
+      })
     }, [fetched])
   
 
   return (
     <>
-      <Game experimentID={experimentID} group={group} base_ids={base_ids}/>
+      <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso}/>
     </>
   );
 }
