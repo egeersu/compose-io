@@ -14,17 +14,6 @@ import env_sound from '../assets/sound/env.wav'
 
 export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso) => {
 
-    // console.log({
-    //     'day': day,
-    //     'group': group,
-    //     'sessionId': sessionId,
-    //     'experimentId': experimentId,
-    //     'die': die,
-    //     'dataSaved': dataSaved,
-    //     'setdataSaved':setdataSaved,
-    //     'wso': wso
-    // })
-
     const resetLevel = () => {
         resetItems()
         setmapX(window.innerWidth/2 - 80)
@@ -79,7 +68,6 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
                     "level_completed": playerAlive ? 1 : 0
                 }
 
-            console.log(level_data)
             // send level data here
             wso.sendChunk(level_data)
         }

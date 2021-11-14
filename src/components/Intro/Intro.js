@@ -15,7 +15,6 @@ const Intro = (props) => {
 
     useEffect(() => {
         const handle_resize = (e) => {
-            console.log('resized to: ', window.innerWidth, ', ', window.innerHeight)
             setw(window.innerWidth)  
             seth(window.innerHeight)
         }

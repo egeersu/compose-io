@@ -66,7 +66,7 @@ const Game = (props) => {
     }
 
     function dead_screen() {
-        return <DeadScreen />
+        return <DeadScreen setdataSaved={setdataSaved} />
     }
 
     function game_ui() {

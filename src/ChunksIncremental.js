@@ -21,7 +21,7 @@ export class ChunksIncremental {
         this.wso.onmessage = event => {
             // If we are just printing, don't deserialize via JSON.parse
             const message = event.data;
-            if (message.status == "SUCCESS") {
+            if (message.status === "SUCCESS") {
                 this.completedChunks += 1;
             }
             this.messageCallback(
@@ -45,7 +45,7 @@ export class ChunksIncremental {
     
     sendChunk(dataChunk) {
         const {experimentId, sessionId} = dataChunk;
-        if (experimentId === null || sessionId == null) {
+        if (experimentId === null || sessionId === null) {
             console.log("Reguires session and experiment id.");
         }
         const dataStr = JSON.stringify(dataChunk);
@@ -58,7 +58,7 @@ export class ChunksIncremental {
     }
     
     sendAll() { // less validation than sendChunk. Used to clear message backlog.
-        while (this.wso.readyState == 1 && this.msgs.length > 0) {
+        while (this.wso.readyState === 1 && this.msgs.length > 0) {
             this.wso.send(this.msgs.pop());
             this.sentChunks += 1; }
         if (this.msgs.length > 0) {

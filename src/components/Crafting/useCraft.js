@@ -1,6 +1,5 @@
 import {useState } from 'react'
 import {input_size, rules} from '../../config'
-import {ChunksIncremental} from '../../ChunksIncremental'
 
 export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sendChunk) => {
 

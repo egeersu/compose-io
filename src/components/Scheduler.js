@@ -27,8 +27,8 @@ export const Scheduler = (props) => {
     }
 
     const die = () => {
+        //setdataSaved(false)
         setphase('dead')
-        setdataSaved(false)
     }
 
     const nextPhase = () => {
@@ -37,7 +37,6 @@ export const Scheduler = (props) => {
                 setphase('game')
                 setstartTime(Date.now())            
                 setgameTime(experiments[day-1].duration)
-                console.log(experiments[day-1].duration)
                 break;
             case 'game':
                 if (day === numDays) {

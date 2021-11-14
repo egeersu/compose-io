@@ -22,6 +22,10 @@ export const useZombie = (day) => {
     // const aggroRange = 250
     const frame_lag = 3
 
+    function stdNormalDistribution () {
+        return ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) - 3) / 3
+    }
+
     const [play_aggro] = useSound(aggro_sound)
 
     const initZombieList = (maxX, maxY, numZombie) => {
@@ -34,6 +38,7 @@ export const useZombie = (day) => {
         for (i; i<numZombie+1; i++){
             const random_x = Math.floor(Math.random()*maxX)+1
             const random_y = Math.floor(Math.random()*maxY)+1           
+            const unique_speed = chase_speed + stdNormalDistribution()*10
 
             const new_zombie = {
                 id: i, 
@@ -51,7 +56,8 @@ export const useZombie = (day) => {
                 idleTarget: [0,0],
                 direction: 'left',
                 dx: 0,
-                dy: 0
+                dy: 0,
+                unique_speed: unique_speed
             }
             zombie_dict[i] = new_zombie
         }
@@ -82,8 +88,14 @@ export const useZombie = (day) => {
             const diff_x = playerX - zombie.x 
             const diff_y = playerY - zombie.y
             const vector_length = Math.sqrt((diff_x**2 + diff_y**2))
-            const dx = (diff_x/vector_length) * chase_speed
-            const dy = diff_y/vector_length * chase_speed
+
+            // constant speed for all zombies
+            // const dx = (diff_x/vector_length) * chase_speed
+            // const dy = (diff_y/vector_length) * chase_speed
+
+            // unique speed for each zombie
+            const dx = (diff_x/vector_length) * Math.abs(zombie['unique_speed'])
+            const dy = (diff_y/vector_length) * Math.abs(zombie['unique_speed'])
 
             var new_runState = zombie.runState
             var new_frameCounter = zombie.frameCounter

@@ -173,7 +173,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "level": parseInt(clicked_food.slice(-1))
             }
 
-            console.log(food_data)
             wso.sendChunk(food_data)
         }
         else {
@@ -223,7 +222,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
             }
             setInventory({...inventory, [clicked_weapon]: inventory[clicked_weapon]-1})
 
-            console.log(zombies_in_range.length)
 
             var currentdate = new Date(); 
             var datetime = currentdate.getDate() + "-"
@@ -244,7 +242,6 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "Enemies_Hit": zombies_in_range.length
             }
             
-            console.log(weapon_data)
             wso.sendChunk(weapon_data)
 
         }
