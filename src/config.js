@@ -36,7 +36,7 @@ const day1 = {
     zombieSpeedIdle: 0.6,
     zombieSpeedAttack: 2,
     zombieHealth: 20,
-    zombieAggro: 25000,
+    zombieAggro: 250,
     loot_table: {
         food1: 1.0,
         food2: 0,
@@ -59,7 +59,7 @@ const day2 = {
     num_items: 55,
     playerSpeed: 5.5,
     zombieSpeedIdle: 0.9,
-    zombieSpeedAttack:2.2,
+    zombieSpeedAttack:2,
     zombieHealth: 30,
     zombieAggro: 250,
     loot_table: {
@@ -84,7 +84,7 @@ const day3 = {
     num_zombies: 80,
     num_items: 0,
     playerSpeed: 6.5,
-    zombieSpeedIdle: 2.4,
+    zombieSpeedIdle: 2.7,
     zombieSpeedAttack: 2.4,
     zombieHealth: 200,
     zombieAggro: 700,
