@@ -26,18 +26,18 @@ function App() {
 
   const saveData = false
 
-  const getData = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/')
-    setIP(res.data.IPv4)
-    setipFetched(true)
-  }
+  var wso = null
 
   // var wso = new ChunksIncremental(
   //   "wss://somata.inf.ed.ac.uk/chunks/ws", 
   //   (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
   //   (e) => {console.log("Encountered error: " + e)})
-
-  var wso=10
+  
+  const getData = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/')
+    setIP(res.data.IPv4)
+    setipFetched(true)
+  }
 
   useEffect(() => {
     getData()

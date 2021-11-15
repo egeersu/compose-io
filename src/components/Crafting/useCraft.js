@@ -109,7 +109,6 @@ export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sa
         var clear_fail_alert = setInterval(function(){ 
             setSuccess('null') 
             clearInterval(clear_fail_alert)
-            wso.sendAll()
         }, 4000);
 
 
