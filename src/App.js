@@ -24,6 +24,8 @@ function App() {
   const [ip, setIP] = useState('');
   const [blacklist, setblacklist] = useState(false)
 
+  const saveData = false
+
   const getData = async () => {
     const res = await axios.get('https://geolocation-db.com/json/')
     setIP(res.data.IPv4)
@@ -84,7 +86,7 @@ function App() {
     <>
       {blacklist ? 
         <Blacklist setblacklist={setblacklist}/> :
-        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip}/> 
+        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData}/> 
       }
     </>
   );

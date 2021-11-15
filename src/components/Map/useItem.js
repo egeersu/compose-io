@@ -8,7 +8,7 @@ import eating from '../../assets/sound/eat.wav'
 import looting from '../../assets/sound/loot.wav'
 
 
-export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso) => {
+export const useItem = (inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso, saveData) => {
 
 
     const num_items = experiments[day-1].num_items
@@ -173,7 +173,9 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "level": parseInt(clicked_food.slice(-1))
             }
 
-            wso.sendChunk(food_data)
+            if (saveData) {
+                wso.sendChunk(food_data)
+            }
         }
         else {
              console.log('NOT ENOUGH!')
@@ -241,9 +243,10 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "Level": parseInt(clicked_weapon.slice(-1)),
                 "Enemies_Hit": zombies_in_range.length
             }
-            
-            wso.sendChunk(weapon_data)
 
+            if (saveData) {
+                wso.sendChunk(weapon_data)
+            }
         }
         else {
             console.log('NOT ENOUGH!')

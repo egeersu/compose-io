@@ -12,7 +12,7 @@ import useSound from 'use-sound'
 import env_sound from '../assets/sound/env.wav'
 
 
-export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso) => {
+export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso, saveData) => {
 
     const resetLevel = () => {
         resetItems()
@@ -41,7 +41,7 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
     const [zombies, setzombies, updateZombieDistance, get_zombies_in_range, resetZombies] = useZombie(day)
 
     // Items
-    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso)
+    const [food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon, resetItems, food_collected, weapon_collected, enemies_killed] = useItem(inventory, setInventory, eat, get_zombies_in_range, playerX, playerY, zombies, setzombies, day, group, experimentId, sessionId, wso, saveData)
  
     const SaveLevelAnalytics = (props) => {
         if (!dataSaved){
@@ -69,7 +69,9 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
                 }
 
             // send level data here
-            wso.sendChunk(level_data)
+            if (saveData) {
+                wso.sendChunk(level_data)
+            }
         }
     }
 

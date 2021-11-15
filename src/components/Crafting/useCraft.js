@@ -1,7 +1,7 @@
 import {useState } from 'react'
 import {input_size, rules} from '../../config'
 
-export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sendChunk) => {
+export const useCraft = (inventory, experimentId, sessionId, group, day, wso, saveData) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
@@ -101,7 +101,7 @@ export const useCraft = (inventory, experimentId, sessionId, group, day, wso, se
             success: rule_found ? 1 : 0,
         }
 
-        if (inputList.length !== 0) {
+        if (inputList.length !== 0 & saveData) {
             wso.sendChunk(message)
         }
         

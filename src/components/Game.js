@@ -23,7 +23,7 @@ const Game = (props) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.sessionId, props.experimentId, die, dataSaved, setdataSaved, props.wso)        
+        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.sessionId, props.experimentId, die, dataSaved, setdataSaved, props.wso, props.saveData)        
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -58,7 +58,7 @@ const Game = (props) => {
     }
       
     function crafting_ui(){
-        return <CraftingScreen inventory={inventory} sessionId={props.sessionId} experimentId={props.experimentId} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} wso={props.wso}/>
+        return <CraftingScreen inventory={inventory} sessionId={props.sessionId} experimentId={props.experimentId} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} wso={props.wso} saveData={props.saveData}/>
     }
 
     function end_screen() {
