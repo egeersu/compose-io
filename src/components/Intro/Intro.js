@@ -106,7 +106,7 @@ const Intro = (props) => {
                     <p className='consent-text3'> Title of Study: Studying Compositional Generalization in Virtual Environments </p>
                     <p className='consent-text3'> The experiment should take no longer than 10 minutes. </p>                
                     <p className='consent-text3'> We recommend using Google Chrome or Safari for a smooth experience.</p>     
-                    <p className='consent-text3'> Experimental Group: {props.group}</p>                           
+                    <p className='consent-text3'> Experimental Group: {props.group} IP: {props.ip}</p>                           
                 </div>
             </>
         )

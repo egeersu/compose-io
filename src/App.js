@@ -3,6 +3,7 @@ import axios from 'axios'
 import Game from './components/Game'
 import {useState, useEffect} from 'react'
 import { ChunksIncremental } from './ChunksIncremental';
+import Blacklist from './components/Blacklist/Blacklist'
 import('./ChunksIncremental.js')
 
 
@@ -17,15 +18,17 @@ function App() {
 
   const [group, setgroup] = useState(0)
   const [fetched, setfetched] = useState(false)
+  const [ipFetched, setipFetched] = useState(false)
+  const [blacklistFetched, setblacklistFetched] = useState(false)
 
   const [ip, setIP] = useState('');
+  const [blacklist, setblacklist] = useState(false)
 
   const getData = async () => {
     const res = await axios.get('https://geolocation-db.com/json/')
-    console.log(res.data);
     setIP(res.data.IPv4)
+    setipFetched(true)
   }
-
 
   // var wso = new ChunksIncremental(
   //   "wss://somata.inf.ed.ac.uk/chunks/ws", 
@@ -34,13 +37,17 @@ function App() {
 
   var wso = 10
 
+  
+  useEffect(() => {
+    getData()
+  }, [ipFetched])
+
   useEffect(()=>{
     var Airtable = require('airtable');
     var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(airtable_base);    
     var target = -1
 
-    getData()
-
+    // group
     base('experiment').select({
         view: 'Grid view'
     }).firstPage(function(err, records) {
@@ -52,11 +59,34 @@ function App() {
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
       })
     }, [fetched])
-  
+
+    useEffect(() => {  
+      var Airtable = require('airtable');
+      var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(airtable_base);    
+      var target = -1
+
+      base('ip_list').select({
+        view: 'Grid view'
+    }).firstPage(function(err, records) {
+        if (err) { console.error(err); return; }
+        records.forEach(function(record) {
+            target = record.get('ip');
+            if (ip === target) {
+              setblacklist(true)
+            }
+        });
+        setblacklistFetched(true)
+      })
+
+    }, [blacklistFetched])
+
 
   return (
     <>
-      <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso}/>
+      {blacklist ? 
+        <Blacklist setblacklist={setblacklist}/> :
+        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip}/> 
+      }
     </>
   );
 }

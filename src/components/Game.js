@@ -54,7 +54,7 @@ const Game = (props) => {
       })
 
     function main_screen() {
-        return <Intro nextPhase={nextPhase} group={props.group} airtable_base={props.airtable_base}/>
+        return <Intro nextPhase={nextPhase} group={props.group} airtable_base={props.airtable_base} ip={props.ip}/>
     }
       
     function crafting_ui(){
@@ -62,11 +62,11 @@ const Game = (props) => {
     }
 
     function end_screen() {
-        return <EndScreen group={props.group} sessionId={props.sessionId} experimentId={props.experimentId} airtable_base={props.airtable_base}/>
+        return <EndScreen group={props.group} sessionId={props.sessionId} experimentId={props.experimentId} airtable_base={props.airtable_base} ip={props.ip}/>
     }
 
     function dead_screen() {
-        return <DeadScreen setdataSaved={setdataSaved} />
+        return <DeadScreen setdataSaved={setdataSaved} ip={props.ip} />
     }
 
     function game_ui() {
