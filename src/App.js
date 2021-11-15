@@ -1,8 +1,10 @@
 import './App.css';
+import axios from 'axios'
 import Game from './components/Game'
 import {useState, useEffect} from 'react'
 import { ChunksIncremental } from './ChunksIncremental';
 import('./ChunksIncremental.js')
+
 
 function App() {
   const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
@@ -16,21 +18,28 @@ function App() {
   const [group, setgroup] = useState(0)
   const [fetched, setfetched] = useState(false)
 
-  var wso = new ChunksIncremental(
-    "wss://somata.inf.ed.ac.uk/chunks/ws", 
-    (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
-    (e) => {console.log("Encountered error: " + e)})
+  const [ip, setIP] = useState('');
 
-  if (wso.wso.readyState === 1) {
-    console.log('LETS GO!')
-    wso.sendChunk({experimentId: experimentId, sessionId: sessionId})
-    wso.sendAll()  
+  const getData = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/')
+    console.log(res.data);
+    setIP(res.data.IPv4)
   }
+
+
+  // var wso = new ChunksIncremental(
+  //   "wss://somata.inf.ed.ac.uk/chunks/ws", 
+  //   (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
+  //   (e) => {console.log("Encountered error: " + e)})
+
+  var wso = 10
 
   useEffect(()=>{
     var Airtable = require('airtable');
     var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(airtable_base);    
     var target = -1
+
+    getData()
 
     base('experiment').select({
         view: 'Grid view'

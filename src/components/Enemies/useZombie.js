@@ -39,7 +39,7 @@ export const useZombie = (day) => {
             const random_x = Math.floor(Math.random()*maxX)+1
             const random_y = Math.floor(Math.random()*maxY)+1           
             const unique_speed = chase_speed + stdNormalDistribution()*3
-            console.log(chase_speed, unique_speed)
+            // console.log(chase_speed, unique_speed)
 
             const new_zombie = {
                 id: i, 

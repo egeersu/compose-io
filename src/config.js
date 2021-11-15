@@ -31,7 +31,7 @@ const day1 = {
     input_size: 3,
     output_size: 3,
     num_zombies: 15,
-    num_items: 25,
+    num_items: 35,
     playerSpeed: 5.5,
     zombieSpeedIdle: 0.6,
     zombieSpeedAttack: 2,
