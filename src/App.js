@@ -35,9 +35,8 @@ function App() {
   //   (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
   //   (e) => {console.log("Encountered error: " + e)})
 
-  var wso = 10
+  var wso=10
 
-  
   useEffect(() => {
     getData()
   }, [ipFetched])
