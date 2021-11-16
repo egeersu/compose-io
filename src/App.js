@@ -24,14 +24,12 @@ function App() {
   const [ip, setIP] = useState('');
   const [blacklist, setblacklist] = useState(false)
 
-  const saveData = false
+  const saveData = true
 
-  var wso = null
-
-  // var wso = new ChunksIncremental(
-  //   "wss://somata.inf.ed.ac.uk/chunks/ws", 
-  //   (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
-  //   (e) => {console.log("Encountered error: " + e)})
+  var wso = new ChunksIncremental(
+    "wss://somata.inf.ed.ac.uk/chunks/ws", 
+    (chunksLeft,errStatus,m) => {console.log("Received message: " + m);}, 
+    (e) => {console.log("Encountered error: " + e)})
   
   const getData = async () => {
     const res = await axios.get('https://geolocation-db.com/json/')
