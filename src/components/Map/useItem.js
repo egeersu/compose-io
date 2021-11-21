@@ -199,7 +199,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 const the_id = zombies_in_range[i].id
                 const new_health = Math.max(zombies_copy[the_id].health - weapon_damage, 0)
                 if (new_health <= 0) {
-                    set_enemies_killed(enemies_killed + 1)
+                    set_enemies_killed(prev => prav + 1)
                     zombies_copy[the_id] = {...zombies_copy[the_id], ['alive']: false, ['health']: 0}
                     //drop item 
                     var items = ['food1', 'food2', 'food3', 'food4', 'weapon1', 'weapon2', 'weapon3', 'weapon4']

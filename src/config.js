@@ -32,7 +32,7 @@ const day1 = {
     output_size: 3,
     num_zombies: 15,
     num_items: 35,
-    playerSpeed: 5.5,
+    playerSpeed: 5.3,
     zombieSpeedIdle: 0.6,
     zombieSpeedAttack: 2,
     zombieHealth: 20,
@@ -57,7 +57,7 @@ const day2 = {
     output_size: 3,
     num_zombies: 25,
     num_items: 55,
-    playerSpeed: 5.5,
+    playerSpeed: 5.3,
     zombieSpeedIdle: 0.9,
     zombieSpeedAttack:2,
     zombieHealth: 30,
@@ -75,7 +75,7 @@ const day2 = {
 }
 
 const day3 = {
-    duration: 45,
+    duration: 90,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -83,9 +83,9 @@ const day3 = {
     num_weapon: 5,
     num_zombies: 80,
     num_items: 0,
-    playerSpeed: 6.5,
-    zombieSpeedIdle: 2.7,
-    zombieSpeedAttack: 2.4,
+    playerSpeed: 6.2,
+    zombieSpeedIdle: 3.0,
+    zombieSpeedAttack: 3.2,
     zombieHealth: 200,
     zombieAggro: 700,
     loot_table: {
