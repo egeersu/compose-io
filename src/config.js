@@ -25,7 +25,7 @@ const foods = {food1: food1, food2: food2, food3: food3, food4: food4}
 const inventory_start = {food1:12, food2:0, food3:0, food4:0, weapon1:0, weapon2:0, weapon3:0, weapon4:0}
 
 const day1 = {
-    duration: 50,
+    duration: 10,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -50,7 +50,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 50,
+    duration: 40,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -83,9 +83,9 @@ const day3 = {
     num_weapon: 5,
     num_zombies: 80,
     num_items: 0,
-    playerSpeed: 6.2,
+    playerSpeed: 5.2,
     zombieSpeedIdle: 3.0,
-    zombieSpeedAttack: 3.2,
+    zombieSpeedAttack: 3.5,
     zombieHealth: 200,
     zombieAggro: 700,
     loot_table: {
