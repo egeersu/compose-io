@@ -17,9 +17,6 @@ export const useZombie = (day) => {
     const zombie_max_x = map_width - 150
     const zombie_max_y = map_height - 150
 
-    // const chase_speed = 2.1
-    // const idle_speed = 0.6
-    // const aggroRange = 250
     const frame_lag = 3
 
     function stdNormalDistribution () {
