@@ -50,7 +50,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 10,
+    duration: 40,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
