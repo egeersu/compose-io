@@ -50,7 +50,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 10,
+    duration: 30,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -87,7 +87,7 @@ const day3 = {
     zombieSpeedIdle: 3.5,
     zombieSpeedAttack: 3.8,
     zombieHealth: 150,
-    zombieAggro: 1200,
+    zombieAggro: 2000,
     loot_table: {
         food1: 1.0,
         food2: 0,
