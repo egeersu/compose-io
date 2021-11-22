@@ -25,6 +25,7 @@ function App() {
   const [blacklist, setblacklist] = useState(false)
 
   const saveData = true
+  const blacklist_flag = false
 
   var wso = new ChunksIncremental(
     "wss://somata.inf.ed.ac.uk/chunks/ws", 
@@ -70,7 +71,7 @@ function App() {
         if (err) { console.error(err); return; }
         records.forEach(function(record) {
             target = record.get('ip');
-            if (ip === target) {
+            if (ip === target && blacklist_flag) {
               setblacklist(true)
             }
         });
