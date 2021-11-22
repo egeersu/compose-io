@@ -13,7 +13,7 @@ import food4_png from "./assets/foods/food4.png"
 const weapon1 = {damage: 10, range: 200, image: weapon1_png}
 const weapon2 = {damage: 25, range: 300, image: weapon2_png}
 const weapon3 = {damage: 40, range: 400, image: weapon3_png}
-const weapon4 = {damage: 100, range: 700, image: weapon4_png}
+const weapon4 = {damage: 200, range: 800, image: weapon4_png}
 const weapons = {weapon1: weapon1, weapon2: weapon2, weapon3: weapon3, weapon4: weapon4}
 
 const food1 = {health: 10, hunger: 10, image: food1_png}
