@@ -171,8 +171,8 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "group": group,
                 "day": day,
                 "level": parseInt(clicked_food.slice(-1)),
-                "PlayerX": playerX,
-                "PlayerY": playerY
+                "PlayerX": Integer(playerX),
+                "PlayerY": Integer(playerY)
             }
 
             if (saveData) {
@@ -244,8 +244,8 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "Day": day,
                 "Level": parseInt(clicked_weapon.slice(-1)),
                 "Enemies_Hit": zombies_in_range.length,
-                "PlayerX": playerX,
-                "PlayerY": playerY
+                "PlayerX": Integer(playerX),
+                "PlayerY": Integer(playerY)
             }
 
             if (saveData) {
