@@ -94,6 +94,7 @@ export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sa
             experimentId: experimentId,
             sessionId: sessionId,
             table: 'craft',
+            "timestamp": Date.now(),
             date: datetime,
             group: group,
             day: day,

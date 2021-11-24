@@ -167,6 +167,7 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "experimentId": experimentId,
                 "sessionId": sessionId,           
                 "table": 'food', 
+                "timestamp": Date.now(),
                 "date": datetime,
                 "group": group,
                 "day": day,
@@ -239,13 +240,14 @@ export const useItem = (inventory, setInventory, eat, get_zombies_in_range, play
                 "experimentId": experimentId,
                 "sessionId": sessionId,
                 "table": 'weapon',
-                "Date": datetime,
-                "Group": group,
-                "Day": day,
-                "Level": parseInt(clicked_weapon.slice(-1)),
-                "Enemies_Hit": zombies_in_range.length,
-                "PlayerX": playerX|0,
-                "PlayerY": playerY|0
+                "timestamp": Date.now(),
+                "date": datetime,
+                "group": group,
+                "day": day,
+                "level": parseInt(clicked_weapon.slice(-1)),
+                "enemies_Hit": zombies_in_range.length,
+                "playerX": playerX|0,
+                "playerY": playerY|0
             }
 
             if (saveData) {

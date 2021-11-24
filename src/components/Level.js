@@ -59,6 +59,7 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
                     "sessionId": sessionId,
                     "table": "level",
                     "group": group,
+                    "timestamp": Date.now(),
                     "date": datetime,
                     "day": day,
                     "food_collected": food_collected,
