@@ -64,7 +64,7 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
                     "day": day,
                     "food_collected": food_collected,
                     "weapon_collected": weapon_collected,
-                    "distance_covered": distanceCovered,
+                    "distance_covered": distanceCovered|0,
                     "enemies_killed": enemies_killed,
                     "level_completed": playerAlive ? 1 : 0
                 }
