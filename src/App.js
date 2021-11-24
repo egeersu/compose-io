@@ -80,7 +80,6 @@ function App() {
 
     }, [blacklistFetched])
 
-
   return (
     <>
       {blacklist ? 
