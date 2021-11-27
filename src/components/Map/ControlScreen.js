@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import HealthBar from './HealthBar'
 import Inventory from './Inventory'
-import HungerBar from './HungerBar'
 
 const ControlScreen = (props) => {
 

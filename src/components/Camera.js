@@ -6,13 +6,16 @@ import HungerBar from './Map/HungerBar'
 import Information from './Map/Information'
 import GameTimer from './GameTimer'
 import MessageBox from './MessageBox'
-
+import Warning from './Map/Warning'
 
 const Camera = (props) => {
 
     const [weaponHovered, setweaponHovered] = useState()
     const [foodHovered, setfoodHovered] = useState()
     const [itemHovered, setitemHovered] = useState(null)
+
+    const [healthBarHovered, sethealthBarHovered] = useState(false)
+    const [hungerBarHovered, sethungerBarHovered] = useState(false)
 
     return (
         <div className='camera'>
@@ -32,8 +35,9 @@ const Camera = (props) => {
                 foodHovered={foodHovered}
                 day={props.day}
             />
-            <HealthBar playerHealth={props.playerHealth}/>
-            <HungerBar playerHunger={props.playerHunger}/>
+            <Warning healthBarHovered={healthBarHovered} hungerBarHovered={hungerBarHovered}/>
+            <HealthBar playerHealth={props.playerHealth} healthBarHovered={healthBarHovered} sethealthBarHovered={sethealthBarHovered}/>
+            <HungerBar playerHunger={props.playerHunger} hungerBarHovered={hungerBarHovered} sethungerBarHovered={sethungerBarHovered}/>
             <Information itemHovered={itemHovered}/>
             <ControlScreen 
                 playerHealth={props.playerHealth} 

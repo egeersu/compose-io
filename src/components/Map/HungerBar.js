@@ -28,6 +28,7 @@ const HealthBar = (props) => {
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: '6px',
+        borderColor: props.hungerBarHovered ? 'white' : 'black'
     }
 
     const healthFluid_style = {
@@ -44,6 +45,7 @@ const HealthBar = (props) => {
         color: 'black',
         width: '100%',
         alignItems: 'center',
+        color: 'black'
     }
 
     const healthLogo_style = {
@@ -62,7 +64,7 @@ const HealthBar = (props) => {
     }
     
     return (
-        <div style={healthDiv_style}>
+        <div style={healthDiv_style} onMouseOver={(e)=>props.sethungerBarHovered(true)} onMouseLeave={(e)=>props.sethungerBarHovered(false)}>
             <div style={healthLogo_style}></div>
             <div style={healthBar_style}>
                 <div style={healthFluid_style}></div>
