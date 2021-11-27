@@ -4,6 +4,8 @@
     align-items: center;
     flex-wrap: wrap;
     background-color: black;
+    width: 100%;
+    
 }
 
 .title-compose {
@@ -47,8 +49,19 @@
     flex-wrap: wrap;
     width: 100%;
     height: 70%;
-    margin: 0;
-    padding: 0;
+}
+
+.PIS {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
 }
 
 .project-information {
@@ -56,11 +69,12 @@
     align-items: center;
     vertical-align: center;
     flex-wrap: wrap;
-    width: 50%;
+    width: 48%;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(24, 23, 23);
+    background-color: rgb(0, 0, 0);
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
 }
 
 .project-information2 {
@@ -68,11 +82,13 @@
     align-items: center;
     vertical-align: center;
     flex-wrap: wrap;
-    width: 50%;
+    width: 48%;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(46, 44, 44);
+    background-color: rgb(0, 0, 0);
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+
 }
 
 
@@ -80,30 +96,35 @@
     width: 100%;
     margin: 1rem auto;
     font-size: 2.5rem;    
+    text-transform: uppercase;
 }
 
 .consent-form {
     display: flex;
+    align-items: center;
+    vertical-align: center;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(71, 66, 66);
+    background-color: rgb(2, 2, 2);
+    border-style: solid;
+    border-color: white;
 }
 
 .consent-text2 {
     width: 100%;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     margin: 0;
-    padding: 0;
+    padding: 0.4em;
 }
 
 .consent-text3 {
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 0;
-    padding: 0;
+    padding: 0.7em;
 }
 
 .div-button2 {

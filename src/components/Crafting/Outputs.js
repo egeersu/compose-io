@@ -3,8 +3,8 @@ import {images, input_size, output_size} from '../../config'
 
 const Outputs = (props) => {
 
-    var background_color = 'grey'
-    if (props.success === 'null'){background_color = 'grey'}
+    var background_color = 'rgb(50,50,50)'
+    if (props.success === 'null'){background_color = 'rgb(50,50,50)'}
     if (props.success === 'success'){background_color = 'green'}
     if (props.success === 'fail'){background_color = 'red'}
 

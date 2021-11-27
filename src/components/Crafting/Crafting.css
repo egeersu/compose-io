@@ -1,12 +1,13 @@
 @import url("https://use.typekit.net/mbh6xeh.css");
 
 .crafting-screen {
-    background-color: gray;
+    background-color: rgb(37, 37, 37);
     height: 100%;
     width: 100%;
 }
 
 .expressions-div {
+    background-color: rgb(37, 37, 37);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +24,8 @@
   align-items: center;
   height: 20%;
   width: 100%;
+  padding: 0;
+  margin: 0;
   background-color: black;
   word-wrap: break-word;
 }
@@ -83,7 +86,7 @@
     border: solid;
     border-color: black;
     border-width: 3.5px;
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 600;
     color: black;
   
@@ -116,7 +119,7 @@
     border: solid;
     border-color: black;
     border-width: 3.5px;
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 600;
     color: black;
 

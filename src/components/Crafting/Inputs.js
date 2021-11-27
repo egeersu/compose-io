@@ -8,7 +8,7 @@ const Inputs = (props) => {
         alignItems: 'center',
         width: (Math.max(input_size, output_size) * 8) + 'rem',
         height: '8rem',
-        backgroundColor: 'grey',
+        backgroundColor: 'rgb(50,50,50)',
         borderStyle: 'solid',
         borderColor: 'black',
         borderRadius: '1px'
