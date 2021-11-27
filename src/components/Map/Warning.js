@@ -18,6 +18,24 @@ const Warning = (props) => {
         display: 'flex',
     }
 
+    if (props.playerHealth < 40) {
+        return (
+            <div style={box_style}>
+                <h1 style={{width: '100%', textAlign: 'center'}}>DANGER</h1>
+                <p style={{width: '100%', fontSize: '1.5rem', textAlign: 'center'}}>You are about to die! Eat some food!</p>
+            </div> 
+        )
+    }
+
+    if (props.playerHunger < 5) {
+        return (
+            <div style={box_style}>
+                <h1 style={{width: '100%', textAlign: 'center'}}>STARVING</h1>
+                <p style={{width: '100%', fontSize: '1.5rem', textAlign: 'center'}}>You are starving! Eat some food!</p>
+            </div> 
+        )
+    }
+
     if (props.healthBarHovered) {
         return (
             <div style={box_style}>

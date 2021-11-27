@@ -35,7 +35,7 @@ const Camera = (props) => {
                 foodHovered={foodHovered}
                 day={props.day}
             />
-            <Warning healthBarHovered={healthBarHovered} hungerBarHovered={hungerBarHovered}/>
+            <Warning healthBarHovered={healthBarHovered} hungerBarHovered={hungerBarHovered} playerHunger={props.playerHunger} playerHealth={props.playerHealth}/>
             <HealthBar playerHealth={props.playerHealth} healthBarHovered={healthBarHovered} sethealthBarHovered={sethealthBarHovered}/>
             <HungerBar playerHunger={props.playerHunger} hungerBarHovered={hungerBarHovered} sethungerBarHovered={sethungerBarHovered}/>
             <Information itemHovered={itemHovered}/>
