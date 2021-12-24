@@ -48,7 +48,7 @@ const day1 = {
 }
 
 const day2 = {
-    duration: 30,
+    duration: 100,
     map_height: 4000,
     map_width: 4000,
     input_size: 3,
@@ -57,7 +57,7 @@ const day2 = {
     num_items: 80,
     playerSpeed: 4.6,
     zombieSpeedIdle: 1.1,
-    zombieSpeedAttack:1.0,
+    zombieSpeedAttack:1.3,
     zombieHealth: 20,
     zombieAggro: 250,
     loot_table: {
