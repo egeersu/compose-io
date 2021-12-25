@@ -24,7 +24,7 @@ const CraftingScreen = (props) => {
         opacity: display_message ? '20%' : '100%'
     }
 
-    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentId, props.sessionId, props.group, props.day, props.wso, props.saveData, props.prolificID)
+    const [inputList, outputList, success, addItem, removeItem, collectItem, craft, itemHovered, setitemHovered] = useCraft(props.inventory, props.experimentId, props.sessionId, props.prolificID, props.group, props.day, props.wso, props.saveData)
 
     return (
         <>
