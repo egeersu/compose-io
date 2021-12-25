@@ -103,6 +103,8 @@ export const useCraft = (inventory, experimentId, sessionId, prolificID, group, 
             success: rule_found ? 1 : 0,
         }
 
+        console.log(message)
+
         if (inputList.length !== 0 & saveData) {
             wso.sendChunk(message)
         }
