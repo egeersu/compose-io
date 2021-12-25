@@ -12,7 +12,7 @@ import useSound from 'use-sound'
 import env_sound from '../assets/sound/env.wav'
 
 
-export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso, saveData) => {
+export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso, saveData, prolificID) => {
 
     const resetLevel = () => {
         resetItems()
@@ -57,6 +57,7 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
             const level_data = {
                     "experimentId": experimentId,
                     "sessionId": sessionId,
+                    "prolificID": prolificID,
                     "table": "level",
                     "group": group,
                     "timestamp": Date.now(),

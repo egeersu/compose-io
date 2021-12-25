@@ -23,7 +23,7 @@ const Game = (props) => {
         addDirection, removeDirection, move, playerX, playerY, direction, frame, 
         zombies, setzombies, updateZombieDistance, get_zombies_in_range,
         food_list, weapon_list, check_reachable, somethingReachable, reachableItem, loot_food, loot_weapon, consumeFood, consumeWeapon,
-        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.sessionId, props.experimentId, die, dataSaved, setdataSaved, props.wso, props.saveData)        
+        resetLevel, saveLevelAnalytics] = Level(day, props.group, props.sessionId, props.experimentId, die, dataSaved, setdataSaved, props.wso, props.saveData, props.prolificID)        
 
     useKeyPress((e) => {
         addDirection(e) 
@@ -54,7 +54,7 @@ const Game = (props) => {
       })
 
     function main_screen() {
-        return <Intro nextPhase={nextPhase} group={props.group} airtable_base={props.airtable_base} ip={props.ip}/>
+        return <Intro nextPhase={nextPhase} group={props.group} airtable_base={props.airtable_base} ip={props.ip} prolificID={props.prolificID} setprolificID={props.setprolificID}  />
     }
       
     function crafting_ui(){

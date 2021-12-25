@@ -16,6 +16,8 @@ function App() {
   // 20-digit alphanumeric Id for the participant
   const sessionId = Math.random().toString(36).substr(2, 10) + Math.random().toString(36).substr(2, 10)
 
+  const [prolificID, setprolificID] = useState('')
+
   const [group, setgroup] = useState(0)
   const [fetched, setfetched] = useState(false)
   const [ipFetched, setipFetched] = useState(false)
@@ -84,7 +86,7 @@ function App() {
     <>
       {blacklist ? 
         <Blacklist setblacklist={setblacklist}/> :
-        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData}/> 
+        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}  /> 
       }
     </>
   );

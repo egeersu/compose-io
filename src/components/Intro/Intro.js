@@ -34,7 +34,10 @@ const Intro = (props) => {
                     <h1 className='consent-title'>Participant Information Sheet</h1>
                     <p className='consent-text2' style={{fontStyle: 'italic'}}> We recommend using Google Chrome or Safari for a smooth experience.</p>     
 
-                    <p className='consent-text2'><strong>Project Title: </strong> Compositional Games</p>
+                    <input name="Prolific ID" value={props.prolificID} style={{fontSize:'1.5em', textAlign:'center'}} onChange={e=>props.setprolificID(e)}></input>
+
+
+                    {/* <p className='consent-text2'><strong>Project Title: </strong> Compositional Games</p>
                     <p className='consent-text2'><strong>Principal Investigator: </strong> Chris G. Lucas</p>
                     <p className='consent-text2'><strong>Principal Investigator Contact Details: </strong> <a href='c.lucas@ed.ac.uk'>c.lucas@ed.ac.uk</a></p>
                     <p className='consent-text2'><strong>Researcher: </strong>Ege Ersü</p>
@@ -91,7 +94,7 @@ const Intro = (props) => {
                     <p className='consent-text2'>To request this document in an alternative format, such as large print or on coloured paper, please contact Ege Ersü at <a>s2124950@ed.ac.uk</a></p>
 
                     <p className='consent-text3'><strong>General Information</strong></p>
-                    <p className='consent-text2'>For general information about how we use your data, go to: <a href='https://www.ed.ac.uk/data-protection/privacy-notice-research'>edin.ac/privacy-research</a></p>
+                    <p className='consent-text2'>For general information about how we use your data, go to: <a href='https://www.ed.ac.uk/data-protection/privacy-notice-research'>edin.ac/privacy-research</a></p> */}
             </div>
         )
     }
@@ -190,7 +193,7 @@ const Intro = (props) => {
                         
             <div className='div-button2'>
                 {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1)}}>NEXT</button> : null}
-                {stage === 1 ? <button className='starter-button' onClick={()=>{props.nextPhase(); getGroupCounts().then(res2 => {writeGroupCounts(res2)})}}>I CONSENT</button> : null}                
+                {stage === 1 ? <button className='starter-button' onClick={()=>{props.nextPhase(); console.log('save id'); getGroupCounts().then(res2 => {writeGroupCounts(res2)})}}>I CONSENT</button> : null}                
             </div>
 
         </div>
