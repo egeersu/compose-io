@@ -1,7 +1,7 @@
 import {useState } from 'react'
 import {input_size, rules} from '../../config'
 
-export const useCraft = (inventory, experimentId, sessionId, group, day, wso, saveData) => {
+export const useCraft = (inventory, experimentId, sessionId, prolificID, group, day, wso, saveData) => {
 
     const [inputList, setinputList] = useState([])
     const [outputList, setoutputList] = useState([])
@@ -93,6 +93,7 @@ export const useCraft = (inventory, experimentId, sessionId, group, day, wso, sa
         let message = {
             experimentId: experimentId,
             sessionId: sessionId,
+            prolificID: prolificID,
             table: 'craft',
             "timestamp": Date.now(),
             date: datetime,

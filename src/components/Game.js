@@ -58,7 +58,7 @@ const Game = (props) => {
     }
       
     function crafting_ui(){
-        return <CraftingScreen inventory={inventory} sessionId={props.sessionId} experimentId={props.experimentId} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} wso={props.wso} saveData={props.saveData}/>
+        return <CraftingScreen inventory={inventory} sessionId={props.sessionId} experimentId={props.experimentId} group={props.group} day={day} nextPhase={nextPhase} resetLevel={resetLevel} wso={props.wso} saveData={props.saveData} prolificID={props.prolificID}/>
     }
 
     function end_screen() {
