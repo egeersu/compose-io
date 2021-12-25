@@ -26,15 +26,18 @@ const Intro = (props) => {
         width: w
     }
 
-    const [play] = useSound(env_sound)
+    // const [play] = useSound(env_sound)
 
     const page0 = () => {
         return (
             <div className='PIS'>
                     <h1 className='consent-title'>Participant Information Sheet</h1>
                     <p className='consent-text2' style={{fontStyle: 'italic'}}> We recommend using Google Chrome or Safari for a smooth experience.</p>     
+                    
+                    
+                    <p className='consent-text2'> Please enter your unique Prolific ID below and press Next.</p>     
 
-                    <input name="Prolific ID" value={props.prolificID} style={{fontSize:'1.5em', textAlign:'center'}} onChange={e=>props.setprolificID(e)}></input>
+                    <input name="Prolific ID" style={{fontSize:'1.5em', textAlign:'center', width:'100%'}} onChange={e=>props.setprolificID(e)}></input>
 
 
                     {/* <p className='consent-text2'><strong>Project Title: </strong> Compositional Games</p>
