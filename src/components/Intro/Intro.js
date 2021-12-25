@@ -38,7 +38,7 @@ const Intro = (props) => {
                     <p className='consent-text2'> Please enter your unique Prolific ID below and press Next.</p>     
 
                     <div className='thank-div'>
-                      <input name="Prolific ID" style={{fontSize:'1.5em', textAlign:'center', width:'100%', paddingLeft:'10rem', paddingLeft:'10rem'}} onChange={e=>props.setprolificID(e)}></input>
+                      <input name="Prolific ID" style={{fontSize:'1.3em', textAlign:'center', width:'100%'}} onChange={e=>props.setprolificID(e.target.value)}></input>
                     </div>
 
 
