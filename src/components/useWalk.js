@@ -64,7 +64,7 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
         const top_key = heldDirections[0]
         //console.log(heldDirections)
        
-        if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1]); stop()}
+        if (!heldDirections.length){setvelocity([0,0]); setframe((prev)=>['idle', prev[1]+1])}
         if (top_key === 'KeyW' || top_key === 'ArrowUp'){setvelocity([0,-playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
         if (top_key === 'KeyS' || top_key === 'ArrowDown'){setvelocity([0,playerSpeed]); setframe((prev)=>['run', prev[1]+1])}
         if (top_key === 'KeyA' || top_key === 'ArrowLeft'){setvelocity([-playerSpeed, 0]); setdirection('left'); setframe((prev)=>['run', prev[1]+1])}
