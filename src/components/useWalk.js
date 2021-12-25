@@ -35,10 +35,6 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
 
     //   );
     const addDirection = (e) => {
-        if (heldDirections.length == 0) {
-            // play()
-            null
-        }
         const index = heldDirections.indexOf(e.code)
         if (index === -1 && walking_keys.includes(e.code)) {
             setheldDirections([e.code, ...heldDirections])
