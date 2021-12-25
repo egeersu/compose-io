@@ -8,8 +8,8 @@ import {useZombie} from './Enemies/useZombie'
 import {useWalk} from './useWalk'
 import {usePlayer} from './usePlayer'
 
-import useSound from 'use-sound'
-import env_sound from '../assets/sound/env.wav'
+// import useSound from 'use-sound'
+// import env_sound from '../assets/sound/env.wav'
 
 
 export const Level = (day, group, sessionId, experimentId, die, dataSaved, setdataSaved, wso, saveData, prolificID) => {
@@ -23,7 +23,7 @@ export const Level = (day, group, sessionId, experimentId, die, dataSaved, setda
         resetZombies()
     }
 
-    const [play] = useSound(env_sound);
+    // const [play] = useSound(env_sound);
 
     // Initialize Player
     const [mapX, setmapX] = useState(window.innerWidth/2 - 80) //camera/2

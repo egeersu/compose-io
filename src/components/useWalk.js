@@ -29,14 +29,15 @@ export const useWalk = (mapX, setmapX, mapY, setmapY, day) => {
 
     const walking_keys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'] 
 
-    const [play, { stop }] = useSound(
-        walk_sound,
-        { volume: 0.8 }
+    // const [play, { stop }] = useSound(
+    //     walk_sound,
+    //     { volume: 0.8 }
 
-      );
+    //   );
     const addDirection = (e) => {
         if (heldDirections.length == 0) {
-            play()
+            // play()
+            null
         }
         const index = heldDirections.indexOf(e.code)
         if (index === -1 && walking_keys.includes(e.code)) {
