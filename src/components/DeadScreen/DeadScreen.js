@@ -49,6 +49,7 @@ const DeadScreen = (props) => {
             <div className='thank-div'>
                 <h1 className='thank-title'>GAME OVER!</h1>
                 <p className='thank-text'> Thank you for participating!</p>
+                <p className='thank-text'> Completion Code: 6BD98366</p>
             </div>
       </div>
     )

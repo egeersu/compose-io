@@ -53,7 +53,8 @@ const EndScreen = (props) => {
             <div className='thank-div'>
                 <h1 className='thank-title'>YOU SURVIVED!</h1>
                 <p className='thank-text'> Thank you for participating!</p>
-                <p className='thank-text'> Your data has been recorded.</p>
+                <p className='thank-text'> Completion Code: 6BD98366</p>
+                {/* <p className='thank-text'> Your data has been recorded.</p> */}
             </div>
       </div>
     )
