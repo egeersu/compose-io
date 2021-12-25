@@ -197,7 +197,7 @@ const Intro = (props) => {
             </div>
                         
             <div className='div-button2'>
-                {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1)}}>NEXT</button> : null}
+                {stage === 0 ? <button className='starter-button' onClick={()=>{setStage(1); console.log(props.prolificID)}}>NEXT</button> : null}
                 {stage === 1 ? <button className='starter-button' onClick={()=>{props.nextPhase(); console.log('save id'); getGroupCounts().then(res2 => {writeGroupCounts(res2)})}}>I CONSENT</button> : null}                
             </div>
 

@@ -86,7 +86,7 @@ function App() {
     <>
       {blacklist ? 
         <Blacklist setblacklist={setblacklist}/> :
-        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}  /> 
+        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}/> 
       }
     </>
   );
