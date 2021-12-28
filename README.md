@@ -41,7 +41,12 @@
 
 ---
 
-## Future Work
+## Discussion 
+The framework would be useful for researchers studying how humans learn to apply rules \& functions, generalize to novel inputs and even compose multiple learned functions together. By treating symbolic rule learning as a tria-and-error learning task, we collect a dataset of learning attempts over time. 
+
+For example the acquisition of the _fep_ function from [1](https://arxiv.org/pdf/1901.04587.pdf) can be studied by adding it into the config file as a function object with a ruleset defining its behavior. Similarly the data from the acquisition of _copy_ and _blicket_ functions from [2](https://arxiv.org/abs/1908.08351) would allow direct comparison with neural models.
+
+
+This could easily be done through our configuration file by (1) adding the function to the configuration file and (2) adding the rules for that function into the ruleset. We display some example rules in Figure 6.1, which are direct replications of the experiments from human few-shot learning of compositional instructions [20] within our framework
 
 ![](functions1.png)
-![](gif1.gif)
