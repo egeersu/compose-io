@@ -12,6 +12,7 @@
 2. Games allow us to 
     - Study rule learning over time, through trial and error. By interacting with a complex environment. (Cite developmental literature)
     - Entertainment as a natural incentive. Collect data for free. (How to justify?)
+    - Has the potential to go viral, resulting in a large behavioral dataset.  
 
 ---
 ## 2. Game Design 
@@ -41,4 +42,6 @@
 ---
 
 ## Future Work
-* Functions.
+
+![](functions1.png)
+![](gif1.gif)
