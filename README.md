@@ -1,3 +1,8 @@
+## Titles
+1. Studying Human Rule Learning in Virtual Environments. 
+2. Online Crafting Games for Studying Human Rule Learning.
+3. Customizable Crafting Games are Rule Learning Experiments. 
+
 ## Abstract
 
 [Compose.io](https://compose-io.netlify.app/) is a customizable browser game designed for large-scale behavioral data collection for symbolic rule learning and generalization experiments. Each level in the game consists of a survival phase where the player has to gather and use items to stay alive, and a crafting phase where items can be combined together to yield other items. Researchers can set their own custom crafting rules to study how humans learn the underlying rule system through trial and error. By chaining multiple levels with different rulesets one after another, researchers can also study how humans generalize from one rule system to another. We also use the framework to conduct an example experiment, arguing that exposure to a strict rule system prior to a more permissible system results in less exploration during crafting.
@@ -15,12 +20,23 @@
 ---
 ## 2. Game Design 
 
- 
+1. **Crafting is Symbolic Translation**
+   * Any rule can be implemented as a crafting rule, as long as it specifies an output for each possible input. 
+
+3. **Survival Games**
+   * Successful crafters have a higher chance of survival. 
+   * Items make the player stronger and destroy enemies. They are not purely symbolic entities like in most experiments. 
+
+4. **Scarcity** 
+   * Resources are limited, so attempts have to be earned through gathering.
+   * This limits the number of attempts, improving data quality. 
+
+5. **Levels are Trials** 
+![phases](phases.png)
+
 ---
 ## 3. Experiments
 
-### Data Analysis
-1. Compare 
 
 ### Groups
 
