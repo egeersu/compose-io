@@ -58,13 +58,17 @@
 
 ### Experiment 1: 
 
-> Exposure to a strict system prior to a flexible system causes participants to be more conservative when learning the new system. 
+> Exposure to a strict system prior to a permissible system causes participants to be more conservative (less exploration?) when learning the new system. 
 
-
+* For each participant compute a conservativeness score (permissible / total attempts) for the testing phase. 
+* Compare Group 1 with Group 4 with p-value.
+* Follow [Simon's APA guidelines](https://www.scribbr.com/apa-style/results-section/)
 
 ### Experiment 2: 
 > Exposure to a flexible system prior to a strict system should cause a low-accuracy _adaptation period_ at the start of the testing phase. 
 
+* For each participant compute testing accuracy for the first $k$ attempts.
+* Compare Group 2 and Group 3 with p-value. 
 ---
 
 ## 4. Discussion 
