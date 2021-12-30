@@ -11,9 +11,9 @@
 
 ## 1. Introduction
 
-1. Overview: Rule learning and generalization experiments. (similar to [dissertation](https://egeersu.github.io/papers/dissertation.pdf))
-2. Our framework studies rule learning as trial & error over time, as opposed to symbolic translation on a fixed training/test dataset. Therefore our data shows attempts over time. 
-3. Games are good.
+1. Overview: Rule learning and generalization experiments. (Concise version of the [Dissertation](https://egeersu.github.io/papers/dissertation.pdf))
+2. Our framework studies rule learning as discovery (trial & error over time), as opposed to symbolic translation on a fixed training/test dataset. Our data is learning attempts over time as the participant discovers the underlying ruleset. 
+4. Hype up [Games to Understand Intelligence](https://cognitivesciencesociety.org/wp-content/uploads/2021/05/WS2.pdf) 
     - Infants learn by interacting & playing with a complex environment. With games, we can study how the participant’s gameplay decisions evolve over time conditioned on the feedback they receive from an environment. 
     - Entertainment is a natural incentive, we can collect data without paying. (Compare prolific vs convenience sample in analysis)
 
@@ -21,20 +21,26 @@
 ## 2. Game Design 
 
 1. **Crafting is Symbolic Translation**
-   * Any rule can be implemented as a crafting rule, as long as it specifies an output for each possible input. 
+   * A popular game mechanism with rules and compositionality built into it. 
+   * Any symbolic rule can be implemented as a crafting rule, as long as it specifies an output for each possible input. 
    
+![trees](crafting_tree.png)
 
-![trees](tree.png)
+2. **Survival Games**
+   * Rule learning is no longer an end in itself, it is a mean to survive and win a game.
+   * Items are no longer purely symbolic entities like in most experiments. They impact the environment and make the player stronger. 
+   * Higher level items get exponentially stronger, which incentivizes players to craft rather than hold low-level items. (Correlation between number of Level 4 items crafted and winning the game)
 
-3. **Survival Games**
-   * Crafting is a mean to survive and win, not an end in itself. 
-   * Items are not purely symbolic entities like in most experiments. They make the player stronger and destroy enemies.  
+4. **Scarcity for Improving Data Quality** 
+   * Resources are limited, so attempts have to be earned via gathering.
+   * This limits the number of attempts, raising the stakes for each attempt. 
 
-4. **Scarcity** 
-   * Resources are limited, so attempts have to be earned through gathering.
-   * This limits the number of attempts, improving data quality. 
-
-5. **Levels are Trials** 
+6. **Levels are Trials** 
+   * Each Level consists of two customizable phases: Crafting and Survival. 
+   * Each Crafting phase can be assigned its own custom ruleset.
+   * Each Survival phase can be assigned its own item distribution to control which items spawn for gathering. 
+   * Levels can be chained one after another.
+    
 ![days](days.png)
 
 ---
@@ -61,9 +67,18 @@
 
 ---
 
-## Discussion 
+## 4. Discussion 
+1. Hypothesis 1
+2. Hypothesis 2
+3. Compare Convenience Sample to Prolific
+
+### Future Work
+
+
 The framework would also be useful for researchers studying how humans learn to apply rules \& functions, generalize to novel inputs and even compose multiple learned functions together. By treating symbolic rule learning as a trial-and-error learning task, we are able to collect a dataset of learning attempts over time. 
 
 For example the acquisition of the _fep_ function from [Lake et al.](https://arxiv.org/pdf/1901.04587.pdf) can be studied by (1) adding the function to the configuration file as a collectable item and (2) adding the corresponding rules into the ruleset. Similarly collecting data for the acquisition of _copy_ and _blicket_ functions from [Hupkes et al.](https://arxiv.org/abs/1908.08351) would benefit researchers aiming to compare humans learning with neural models.
 
 ![](functions1.png)
+
+> TODO: Prepare config files for replicating actual experiments from the literature. 
