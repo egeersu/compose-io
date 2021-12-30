@@ -69,6 +69,7 @@
 
 * For each participant compute testing accuracy for the first $k$ attempts.
 * Compare Group 2 and Group 3 with p-value. 
+
 ---
 
 ## 4. Discussion 
