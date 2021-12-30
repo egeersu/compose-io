@@ -22,17 +22,20 @@
 
 1. **Crafting is Symbolic Translation**
    * Any rule can be implemented as a crafting rule, as long as it specifies an output for each possible input. 
+   
+
+![trees](tree.png)
 
 3. **Survival Games**
-   * Successful crafters have a higher chance of survival. 
-   * Items make the player stronger and destroy enemies. They are not purely symbolic entities like in most experiments. 
+   * Crafting is a mean to survive and win, not an end in itself. 
+   * Items are not purely symbolic entities like in most experiments. They make the player stronger and destroy enemies.  
 
 4. **Scarcity** 
    * Resources are limited, so attempts have to be earned through gathering.
    * This limits the number of attempts, improving data quality. 
 
 5. **Levels are Trials** 
-![phases](phases.png)
+![days](days.png)
 
 ---
 ## 3. Experiments
