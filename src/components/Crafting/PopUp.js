@@ -22,7 +22,7 @@ const PopUp = (props) => {
         return (
             <div style={box_style}>
                 <h1 style={{width: '100%', textAlign: 'center'}}>WARNING</h1>
-                <p style={{width: '100%', fontSize: '1.3rem', textAlign: 'center'}}>Are you sure you want to start the game? <br/> You will not be able to craft any items until the end of the level. </p>
+                <p style={{width: '100%', fontSize: '1.3rem', textAlign: 'center'}}>Are you sure you want to start the game? <br/> You should try crafting high level items if you want to win the game. </p>
                 <button className='next' style={{width: '35%'}} onClick={()=>{
                     props.set_display_message(false);
                     props.nextPhase();
