@@ -11,7 +11,7 @@ function App() {
   const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
   const airtable_base = 'appWGnhKcDCqpBUzM'
 
-  const experimentId = 'eersu_game/2.0.0'
+  const experimentId = 'eersu_game/3.0.0'
 
   // 20-digit alphanumeric Id for the participant
   const sessionId = Math.random().toString(36).substr(2, 10) + Math.random().toString(36).substr(2, 10)
