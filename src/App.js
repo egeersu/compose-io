@@ -18,7 +18,7 @@ function App() {
 
   const [prolificID, setprolificID] = useState('')
 
-  const [group, setgroup] = useState(0)
+  const [group, setgroup] = useState([0,1][Math.floor(Math.random()*2)])
   const [fetched, setfetched] = useState(false)
   const [ipFetched, setipFetched] = useState(false)
   const [blacklistFetched, setblacklistFetched] = useState(false)
@@ -57,10 +57,7 @@ function App() {
         records.forEach(function(record) {
             target = record.get('Target');
         });
-
-        setgroup([0,1][Math.floor(Math.random()*2)])
         console.log(group)
-
         // setgroup(target + 1)
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
       })
