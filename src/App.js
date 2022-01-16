@@ -57,7 +57,10 @@ function App() {
         records.forEach(function(record) {
             target = record.get('Target');
         });
-        setgroup(target + 1)
+
+        setgroup([0,1][Math.floor(Math.random()*2)])
+
+        // setgroup(target + 1)
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
       })
     }, [fetched])
