@@ -11,7 +11,7 @@ function App() {
   const AIRTABLE_API_KEY=process.env.REACT_APP_API_KEY
   const airtable_base = 'appWGnhKcDCqpBUzM'
 
-  const experimentId = 'eersu_game/final1'
+  const experimentId = 'eersu_game/group4'
 
   // 20-digit alphanumeric Id for the participant
   const sessionId = Math.random().toString(36).substr(2, 10) + Math.random().toString(36).substr(2, 10)
@@ -86,8 +86,9 @@ function App() {
     <>
       {blacklist ? 
         <Blacklist setblacklist={setblacklist}/> :
-        <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}/> 
-      }
+        // <Game experimentId={experimentId} sessionId={sessionId} group={group} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}/> 
+           <Game experimentId={experimentId} sessionId={sessionId} group={4} airtable_base={airtable_base} wso={wso} ip={ip} saveData={saveData} prolificID={prolificID} setprolificID={setprolificID}/> 
+     }
     </>
   );
 }
