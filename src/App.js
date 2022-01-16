@@ -18,7 +18,7 @@ function App() {
 
   const [prolificID, setprolificID] = useState('')
 
-  const [group, setgroup] = useState([0,1][Math.floor(Math.random()*2)])
+  const [group, setgroup] = useState([1,2][Math.floor(Math.random()*2)])
   const [fetched, setfetched] = useState(false)
   const [ipFetched, setipFetched] = useState(false)
   const [blacklistFetched, setblacklistFetched] = useState(false)
