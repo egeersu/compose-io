@@ -59,6 +59,7 @@ function App() {
         });
 
         setgroup([0,1][Math.floor(Math.random()*2)])
+        console.log(group)
 
         // setgroup(target + 1)
         if (group === 1 || group === 2 || group === 3 || group === 4) {setfetched(true)}
