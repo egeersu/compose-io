@@ -1,7 +1,4 @@
-## Titles
-1. Studying Human Rule Learning in Virtual Environments. 
-2. Online Crafting Games for Studying Human Rule Learning.
-3. Customizable Crafting Games are Rule Learning Experiments. 
+# Studying Human Rule Learning in Virtual Environments. 
 
 ## Abstract
 
